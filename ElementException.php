@@ -14,20 +14,27 @@
  *
  * @category   Zend
  * @package    Zend_Form
+ * @subpackage Element
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version    $Id$
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /**
- * Zend_Form_Decorator_Marker_File_Interface
+ * @namespace
+ */
+namespace Zend\Form;
+
+/**
+ * Exception for Zend_Form component.
  *
+ * @uses       \Zend\Form\Exception
  * @category   Zend
  * @package    Zend_Form
- * @subpackage Decorator
+ * @subpackage Element
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
  */
-interface Zend_Form_Decorator_Marker_File_Interface
+class ElementException extends Exception
 {
 }
