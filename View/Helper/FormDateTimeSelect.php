@@ -23,17 +23,7 @@ class FormDateTimeSelect extends FormDateSelectHelper
      *
      * @var int
      */
-    protected $timeType;
-
-    /**
-     * @throws Exception\ExtensionsNotLoadedException if ext/intl is not present
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->timeType = IntlDateFormatter::LONG;
-    }
+    protected $timeType = IntlDateFormatter::LONG;
 
     /**
      * Invoke helper as function
