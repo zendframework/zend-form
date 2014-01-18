@@ -9,11 +9,6 @@
 
 namespace Zend\Form;
 
-/**
- * Deprecated by https://github.com/zendframework/zf2/pull/5636
- *
- * @deprecated
- */
 interface FieldsetPrepareAwareInterface
 {
     /**

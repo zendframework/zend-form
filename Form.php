@@ -17,7 +17,6 @@ use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\InputFilter\InputProviderInterface;
-use Zend\InputFilter\ReplaceableInputInterface;
 use Zend\Stdlib\ArrayUtils;
 use Zend\Stdlib\Hydrator\HydratorInterface;
 
@@ -109,13 +108,6 @@ class Form extends Fieldset implements FormInterface
     protected $preferFormInputFilter = true;
 
     /**
-     * Has preferFormInputFilter been set with setPreferFormInputFilter?
-     *
-     * @var bool
-     */
-    protected $hasSetPreferFormInputFilter = false;
-
-    /**
      * Are the form elements/fieldsets wrapped by the form name ?
      *
      * @var bool
@@ -144,10 +136,6 @@ class Form extends Fieldset implements FormInterface
 
         if (isset($options['prefer_form_input_filter'])) {
             $this->setPreferFormInputFilter($options['prefer_form_input_filter']);
-        }
-
-        if (isset($options['use_input_filter_defaults'])) {
-            $this->setUseInputFilterDefaults($options['use_input_filter_defaults']);
         }
 
         return $this;
@@ -654,11 +642,6 @@ class Form extends Fieldset implements FormInterface
         $this->hasValidated                = false;
         $this->hasAddedInputFilterDefaults = false;
         $this->filter                      = $inputFilter;
-
-        if (false === $this->hasSetPreferFormInputFilter) {
-            $this->preferFormInputFilter = false;
-        }
-
         return $this;
     }
 
@@ -728,7 +711,6 @@ class Form extends Fieldset implements FormInterface
     public function setPreferFormInputFilter($preferFormInputFilter)
     {
         $this->preferFormInputFilter = (bool) $preferFormInputFilter;
-        $this->hasSetPreferFormInputFilter = true;
         return $this;
     }
 
@@ -773,20 +755,13 @@ class Form extends Fieldset implements FormInterface
                         continue;
                     }
                     // Create a new empty default input for this element
-                    $spec  = array('name' => $name, 'required' => false);
-                    $input = $inputFactory->createInput($spec);
+                    $spec = array('name' => $name, 'required' => false);
                 } else {
                     // Create an input based on the specification returned from the element
                     $spec  = $element->getInputSpecification();
-                    $input = $inputFactory->createInput($spec);
-
-                    if ($inputFilter->has($name) && $inputFilter instanceof ReplaceableInputInterface) {
-                        $input->merge($inputFilter->get($name));
-                        $inputFilter->replace($input, $name);
-                        continue;
-                    }
                 }
 
+                $input = $inputFactory->createInput($spec);
                 $inputFilter->add($input, $name);
             }
 

@@ -38,15 +38,6 @@ interface ElementInterface
     public function setOptions($options);
 
     /**
-     * Set a single option for an element
-     *
-     * @param  string $key
-     * @param  mixed $value
-     * @return self
-     */
-    public function setOption($key, $value);
-
-    /**
      * get the defined options
      *
      * @return array

@@ -45,7 +45,7 @@ class Color extends Element implements InputProviderInterface
     /**
      * Provide default input rules for this element
      *
-     * Attaches a color validator.
+     * Attaches an email validator.
      *
      * @return array
      */

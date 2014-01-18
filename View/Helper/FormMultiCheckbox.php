@@ -12,7 +12,6 @@ namespace Zend\Form\View\Helper;
 use Zend\Form\ElementInterface;
 use Zend\Form\Element\MultiCheckbox as MultiCheckboxElement;
 use Zend\Form\Exception;
-use Zend\Form\LabelAwareInterface;
 
 class FormMultiCheckbox extends FormInput
 {
@@ -152,12 +151,8 @@ class FormMultiCheckbox extends FormInput
         $labelHelper      = $this->getLabelHelper();
         $labelClose       = $labelHelper->closeTag();
         $labelPosition    = $this->getLabelPosition();
-        $globalLabelAttributes = array();
+        $globalLabelAttributes = $element->getLabelAttributes();
         $closingBracket   = $this->getInlineClosingBracket();
-
-        if ($element instanceof LabelAwareInterface) {
-            $globalLabelAttributes = $element->getLabelAttributes();
-        }
 
         if (empty($globalLabelAttributes)) {
             $globalLabelAttributes = $this->labelAttributes;
@@ -227,10 +222,7 @@ class FormMultiCheckbox extends FormInput
                 );
             }
 
-            if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
-                $label = $escapeHtmlHelper($label);
-            }
-
+            $label     = $escapeHtmlHelper($label);
             $labelOpen = $labelHelper->openTag($labelAttributes);
             $template  = $labelOpen . '%s%s' . $labelClose;
             switch ($labelPosition) {

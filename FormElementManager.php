@@ -11,7 +11,6 @@ namespace Zend\Form;
 
 use Zend\ServiceManager\AbstractPluginManager;
 use Zend\ServiceManager\ConfigInterface;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Stdlib\InitializableInterface;
 
@@ -77,7 +76,6 @@ class FormElementManager extends AbstractPluginManager
         parent::__construct($configuration);
 
         $this->addInitializer(array($this, 'injectFactory'));
-        $this->addInitializer(array($this, 'callElementInit'), false);
     }
 
     /**
@@ -101,18 +99,6 @@ class FormElementManager extends AbstractPluginManager
     }
 
     /**
-     * Call init() on any element that implements InitializableInterface
-     *
-     * @internal param $element
-     */
-    public function callElementInit($element)
-    {
-        if ($element instanceof InitializableInterface) {
-            $element->init();
-        }
-    }
-
-    /**
      * Validate the plugin
      *
      * Checks that the element is an instance of ElementInterface
@@ -123,6 +109,11 @@ class FormElementManager extends AbstractPluginManager
      */
     public function validatePlugin($plugin)
     {
+        // Hook to perform various initialization, when the element is not created through the factory
+        if ($plugin instanceof InitializableInterface) {
+            $plugin->init();
+        }
+
         if ($plugin instanceof ElementInterface) {
             return; // we're okay
         }
@@ -162,7 +153,7 @@ class FormElementManager extends AbstractPluginManager
      * @param  string $canonicalName
      * @param  string $requestedName
      * @return null|\stdClass
-     * @throws ServiceNotCreatedException If resolved class does not exist
+     * @throws Exception\ServiceNotCreatedException If resolved class does not exist
      */
     protected function createFromInvokable($canonicalName, $requestedName)
     {
