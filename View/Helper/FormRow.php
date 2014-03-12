@@ -12,6 +12,7 @@ namespace Zend\Form\View\Helper;
 use Zend\Form\Element\Button;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
+use Zend\Form\LabelOptionsAwareInterface;
 
 class FormRow extends AbstractHelper
 {
@@ -158,11 +159,19 @@ class FormRow extends AbstractHelper
 
         $elementString = $elementHelper->render($element);
 
-        //hidden elements do not need a <label> -https://github.com/zendframework/zf2/issues/5607
-        $type = $element->getAttribute('type');
-        if (isset($label) && '' !== $label && $type !== 'hidden') {
-            $label = $escapeHtmlHelper($label);
-            $labelAttributes = $element->getLabelAttributes();
+        if (isset($label) && '' !== $label) {
+
+            $labelOptions = array();
+            $labelAttributes = array();
+
+            if ($element instanceof LabelOptionsAwareInterface) {
+                $labelOptions    = $element->getLabelOptions();
+                $labelAttributes = $element->getLabelAttributes();
+            }
+
+            if (empty($labelOptions) || $labelOptions['disable_html_escape'] == false) {
+                $label = $escapeHtmlHelper($label);
+            }
 
             if (empty($labelAttributes)) {
                 $labelAttributes = $this->labelAttributes;
@@ -170,6 +179,7 @@ class FormRow extends AbstractHelper
 
             // Multicheckbox elements have to be handled differently as the HTML standard does not allow nested
             // labels. The semantic way is to group them inside a fieldset
+            $type = $element->getAttribute('type');
             if ($type === 'multi_checkbox' || $type === 'radio') {
                 $markup = sprintf(
                     '<fieldset><legend>%s</legend>%s</fieldset>',

@@ -106,11 +106,19 @@ class FormCollection extends AbstractHelper
 
         // Every collection is wrapped by a fieldset if needed
         if ($this->shouldWrap) {
+            $attributes = $element->getAttributes();
+            unset($attributes['name']);
+            $attributesString = '';
+            if (count($attributes)) {
+                $attributesString = ' ' . $this->createAttributesString($attributes);
+            }
+
             $label = $element->getLabel();
             $legend = '';
 
+            $label = $element->getLabel();
+            $labelMarkup = '';
             if (!empty($label)) {
-
                 if (null !== ($translator = $this->getTranslator())) {
                     $label = $translator->translate(
                         $label,
@@ -122,13 +130,8 @@ class FormCollection extends AbstractHelper
 
                 $legend = sprintf(
                     '<legend>%s</legend>',
-                    $label
+                    $escapeHtmlHelper($label)
                 );
-            }
-
-            $attributesString = $this->createAttributesString($attributes);
-            if (!empty($attributesString)) {
-                $attributesString = ' ' . $attributesString;
             }
 
             $markup = sprintf(

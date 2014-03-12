@@ -210,6 +210,22 @@ class Collection extends Fieldset
             );
         }
 
+        // Check to see if elements have been replaced or removed
+        foreach ($this->byName as $name => $elementOrFieldset) {
+            if (isset($data[$name])) {
+                continue;
+            }
+
+            if (!$this->allowRemove) {
+                throw new Exception\DomainException(sprintf(
+                    'Elements have been removed from the collection (%s) but the allow_remove option is not true.',
+                    get_class($this)
+                ));
+            }
+
+            $this->remove($name);
+        }
+
         foreach ($data as $key => $value) {
             if ($this->has($key)) {
                 $elementOrFieldset = $this->get($key);
