@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -220,10 +220,6 @@ class DateTimeSelect extends DateSelect
             }
         }
 
-        if (null === $value) {
-            $value = new PhpDateTime();
-        }
-
         if ($value instanceof PhpDateTime) {
             $value = array(
                 'year'   => $value->format('Y'),
@@ -245,21 +241,6 @@ class DateTimeSelect extends DateSelect
         $this->hourElement->setValue($value['hour']);
         $this->minuteElement->setValue($value['minute']);
         $this->secondElement->setValue($value['second']);
-    }
-
-    /**
-     * @return String
-     */
-    public function getValue()
-    {
-        return sprintf('%s-%s-%s %s:%s:%s',
-            $this->getYearElement()->getValue(),
-            $this->getMonthElement()->getValue(),
-            $this->getDayElement()->getValue(),
-            $this->getHourElement()->getValue(),
-            $this->getMinuteElement()->getValue(),
-            $this->getSecondElement()->getValue()
-        );
     }
 
     /**
@@ -307,7 +288,7 @@ class DateTimeSelect extends DateSelect
                 array(
                     'name'    => 'Callback',
                     'options' => array(
-                        'callback' => function ($date) {
+                        'callback' => function($date) {
                             // Convert the date to a specific format
                             if (is_array($date)) {
                                 if (!isset($date['second'])) {
@@ -338,7 +319,7 @@ class DateTimeSelect extends DateSelect
         $this->dayElement    = clone $this->dayElement;
         $this->monthElement  = clone $this->monthElement;
         $this->yearElement   = clone $this->yearElement;
-        $this->hourElement   = clone $this->hourElement;
+        $this->hourElement   = clone $this->monthElement;
         $this->minuteElement = clone $this->minuteElement;
         $this->secondElement = clone $this->secondElement;
     }

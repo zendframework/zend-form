@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -335,10 +335,6 @@ class Factory
         $elements = $this->validateSpecification($elements, $method);
 
         foreach ($elements as $elementSpecification) {
-            if (null === $elementSpecification) {
-                continue;
-            }
-
             $flags = isset($elementSpecification['flags']) ? $elementSpecification['flags'] : array();
             $spec  = isset($elementSpecification['spec'])  ? $elementSpecification['spec']  : array();
 
@@ -444,7 +440,7 @@ class Factory
 
         if (!$hydrator instanceof Hydrator\HydratorInterface) {
             throw new Exception\DomainException(sprintf(
-                '%s expects a valid implementation of Zend\Stdlib\Hydrator\HydratorInterface; received "%s"',
+                '%s expects a valid implementation of Zend\Form\Hydrator\HydratorInterface; received "%s"',
                 $method,
                 $hydratorOrName
             ));

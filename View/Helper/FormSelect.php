@@ -3,13 +3,12 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
 namespace Zend\Form\View\Helper;
 
-use Zend\Form\Element\Hidden;
 use Zend\Form\ElementInterface;
 use Zend\Form\Element\Select as SelectElement;
 use Zend\Form\Exception;
@@ -68,11 +67,6 @@ class FormSelect extends AbstractHelper
     );
 
     /**
-     * @var FromHidden|null
-     */
-    protected $formHiddenHelper;
-
-    /**
      * Invoke helper as functor
      *
      * Proxies to {@link render()}.
@@ -129,22 +123,11 @@ class FormSelect extends AbstractHelper
         }
         $this->validTagAttributes = $this->validSelectAttributes;
 
-        $rendered = sprintf(
+        return sprintf(
             '<select %s>%s</select>',
             $this->createAttributesString($attributes),
             $this->renderOptions($options, $value)
         );
-
-        // Render hidden element
-        $useHiddenElement = method_exists($element, 'useHiddenElement')
-            && method_exists($element, 'getUnselectedValue')
-            && $element->useHiddenElement();
-
-        if ($useHiddenElement) {
-            $rendered = $this->renderHiddenElement($element) . $rendered;
-        }
-
-        return $rendered;
     }
 
     /**
@@ -294,31 +277,5 @@ class FormSelect extends AbstractHelper
         }
 
         return $value;
-    }
-
-    protected function renderHiddenElement(ElementInterface $element)
-    {
-        $hiddenElement = new Hidden($element->getName());
-        $hiddenElement->setValue($element->getUnselectedValue());
-
-        return $this->getFormHiddenHelper()->__invoke($hiddenElement);
-    }
-
-    /**
-     * @return FormHidden
-     */
-    protected function getFormHiddenHelper()
-    {
-        if (!$this->formHiddenHelper) {
-            if (method_exists($this->view, 'plugin')) {
-                $this->formHiddenHelper = $this->view->plugin('formhidden');
-            }
-
-            if (!$this->formHiddenHelper instanceof FormHidden) {
-                $this->formHiddenHelper = new FormHidden();
-            }
-        }
-
-        return $this->formHiddenHelper;
     }
 }

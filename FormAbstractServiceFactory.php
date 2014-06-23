@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -33,36 +33,36 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
     /**
      * Can we create the requested service?
      *
-     * @param  ServiceLocatorInterface $serviceLocator
+     * @param  ServiceLocatorInterface $services
      * @param  string $name Service name (as resolved by ServiceManager)
-     * @param  string $requestedName Name by which service was requested
+     * @param  string $rName Name by which service was requested
      * @return bool
      */
-    public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+    public function canCreateServiceWithName(ServiceLocatorInterface $services, $name, $rName)
     {
-        $config = $this->getConfig($serviceLocator);
+        $config = $this->getConfig($services);
         if (empty($config)) {
             return false;
         }
 
-        return (isset($config[$requestedName]) && is_array($config[$requestedName]) && !empty($config[$requestedName]));
+        return (isset($config[$rName]) && is_array($config[$rName]) && !empty($config[$rName]));
     }
 
     /**
      * Create a form
      *
-     * @param  ServiceLocatorInterface $serviceLocator
+     * @param  ServiceLocatorInterface $services
      * @param  string $name Service name (as resolved by ServiceManager)
-     * @param  string $requestedName Name by which service was requested
+     * @param  string $rName Name by which service was requested
      * @return Form
      */
-    public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+    public function createServiceWithName(ServiceLocatorInterface $services, $name, $rName)
     {
-        $config  = $this->getConfig($serviceLocator);
-        $config  = $config[$requestedName];
-        $factory = $this->getFormFactory($serviceLocator);
+        $config  = $this->getConfig($services);
+        $config  = $config[$rName];
+        $factory = $this->getFormFactory($services);
 
-        $this->marshalInputFilter($config, $serviceLocator, $factory);
+        $this->marshalInputFilter($config, $services, $factory);
         return $factory->createForm($config);
     }
 
