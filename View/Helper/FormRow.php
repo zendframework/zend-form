@@ -163,6 +163,7 @@ class FormRow extends AbstractHelper
         // hidden elements do not need a <label> -https://github.com/zendframework/zf2/issues/5607
         $type = $element->getAttribute('type');
         if (isset($label) && '' !== $label && $type !== 'hidden') {
+
             $labelAttributes = array();
 
             if ($element instanceof LabelAwareInterface) {
