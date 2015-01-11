@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -32,14 +32,13 @@ class FormSelect extends AbstractHelper
      * @var array
      */
     protected $validSelectAttributes = array(
-        'name'         => true,
-        'autocomplete' => true,
-        'autofocus'    => true,
-        'disabled'     => true,
-        'form'         => true,
-        'multiple'     => true,
-        'required'     => true,
-        'size'         => true
+        'name'      => true,
+        'autofocus' => true,
+        'disabled'  => true,
+        'form'      => true,
+        'multiple'  => true,
+        'required'  => true,
+        'size'      => true
     );
 
     /**
@@ -69,7 +68,7 @@ class FormSelect extends AbstractHelper
     );
 
     /**
-     * @var FormHidden|null
+     * @var FromHidden|null
      */
     protected $formHiddenHelper;
 
@@ -209,8 +208,7 @@ class FormSelect extends AbstractHelper
 
             if (null !== ($translator = $this->getTranslator())) {
                 $label = $translator->translate(
-                    $label,
-                    $this->getTranslatorTextDomain()
+                    $label, $this->getTranslatorTextDomain()
                 );
             }
 
