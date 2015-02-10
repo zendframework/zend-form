@@ -48,7 +48,7 @@ class Url extends Element implements InputProviderInterface
     /**
      * Provide default input rules for this element
      *
-     * Attaches an uri validator.
+     * Attaches an email validator.
      *
      * @return array
      */
