@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -12,7 +12,6 @@ namespace Zend\Form\View\Helper;
 use Zend\Form\ElementInterface;
 use Zend\Form\Element\MultiCheckbox as MultiCheckboxElement;
 use Zend\Form\Exception;
-use Zend\Form\LabelAwareInterface;
 
 class FormMultiCheckbox extends FormInput
 {
@@ -95,6 +94,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @param  ElementInterface $element
      * @throws Exception\InvalidArgumentException
+     * @throws Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
@@ -109,6 +109,12 @@ class FormMultiCheckbox extends FormInput
         $name = static::getName($element);
 
         $options = $element->getValueOptions();
+        if (empty($options)) {
+            throw new Exception\DomainException(sprintf(
+                '%s requires that the element has "value_options"; none found',
+                __METHOD__
+            ));
+        }
 
         $attributes         = $element->getAttributes();
         $attributes['name'] = $name;
@@ -138,18 +144,15 @@ class FormMultiCheckbox extends FormInput
      * @param  array                $attributes
      * @return string
      */
-    protected function renderOptions(MultiCheckboxElement $element, array $options, array $selectedOptions, array $attributes)
+    protected function renderOptions(MultiCheckboxElement $element, array $options, array $selectedOptions,
+        array $attributes)
     {
         $escapeHtmlHelper = $this->getEscapeHtmlHelper();
         $labelHelper      = $this->getLabelHelper();
         $labelClose       = $labelHelper->closeTag();
         $labelPosition    = $this->getLabelPosition();
-        $globalLabelAttributes = array();
+        $globalLabelAttributes = $element->getLabelAttributes();
         $closingBracket   = $this->getInlineClosingBracket();
-
-        if ($element instanceof LabelAwareInterface) {
-            $globalLabelAttributes = $element->getLabelAttributes();
-        }
 
         if (empty($globalLabelAttributes)) {
             $globalLabelAttributes = $this->labelAttributes;
@@ -215,15 +218,11 @@ class FormMultiCheckbox extends FormInput
 
             if (null !== ($translator = $this->getTranslator())) {
                 $label = $translator->translate(
-                    $label,
-                    $this->getTranslatorTextDomain()
+                    $label, $this->getTranslatorTextDomain()
                 );
             }
 
-            if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
-                $label = $escapeHtmlHelper($label);
-            }
-
+            $label     = $escapeHtmlHelper($label);
             $labelOpen = $labelHelper->openTag($labelAttributes);
             $template  = $labelOpen . '%s%s' . $labelClose;
             switch ($labelPosition) {
