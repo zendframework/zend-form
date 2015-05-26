@@ -77,7 +77,7 @@ class FormCaptchaTest extends CommonTestCase
     public function testPassingElementWithDumbCaptchaRendersCorrectly()
     {
         $captcha = new Captcha\Dumb(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'ZendTest\Form\TestAsset\Captcha\SessionContainer',
         ));
         $element = $this->getElement();
         $element->setCaptcha($captcha);
@@ -91,7 +91,7 @@ class FormCaptchaTest extends CommonTestCase
     public function testPassingElementWithFigletCaptchaRendersCorrectly()
     {
         $captcha = new Captcha\Figlet(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'ZendTest\Form\TestAsset\Captcha\SessionContainer',
         ));
         $element = $this->getElement();
         $element->setCaptcha($captcha);
@@ -122,7 +122,7 @@ class FormCaptchaTest extends CommonTestCase
         }
 
         $captcha = new Captcha\Image(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'ZendTest\Form\TestAsset\Captcha\SessionContainer',
             'imgDir'       => $this->testDir,
             'font'         => __DIR__. '/Captcha/_files/Vera.ttf',
         ));
@@ -147,7 +147,7 @@ class FormCaptchaTest extends CommonTestCase
         }
 
         $captcha = new Captcha\ReCaptcha(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'ZendTest\Form\TestAsset\Captcha\SessionContainer',
         ));
         $service = $captcha->getService();
         $service->setPublicKey($this->publicKey);
