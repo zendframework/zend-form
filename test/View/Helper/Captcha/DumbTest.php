@@ -20,7 +20,7 @@ class DumbTest extends CommonTestCase
     {
         $this->helper  = new DumbCaptchaHelper();
         $this->captcha = new DumbCaptcha(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'ZendTest\Form\TestAsset\Captcha\SessionContainer',
         ));
         parent::setUp();
     }

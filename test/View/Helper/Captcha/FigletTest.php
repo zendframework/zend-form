@@ -20,7 +20,7 @@ class FigletTest extends CommonTestCase
     {
         $this->helper  = new FigletCaptchaHelper();
         $this->captcha = new FigletCaptcha(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'ZendTest\Form\TestAsset\Captcha\SessionContainer',
         ));
         parent::setUp();
     }
