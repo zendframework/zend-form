@@ -237,4 +237,4 @@ class LabelAwareTraitTest extends TestCase
         $hasLabelOptionResult = $object->hasLabelOption($option);
         $this->assertFalse($hasLabelOptionResult);
     }
-    }
+}
