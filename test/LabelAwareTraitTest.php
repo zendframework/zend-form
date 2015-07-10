@@ -146,7 +146,6 @@ class LabelAwareTraitTest extends TestCase
 
         $object->removeLabelOptions($toRemoveLabelOptions);
 
-
         $expectedLabelOptions = [
             'foo2' => 'bar2',
         ];
@@ -159,7 +158,6 @@ class LabelAwareTraitTest extends TestCase
     public function testSetLabelOption()
     {
         $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
-
 
         $object->setLabelOption('foo', 'bar');
 
@@ -174,7 +172,6 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetInvalidLabelOption()
     {
-
         $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
 
         $invalidOption = 'foo';
@@ -201,7 +198,6 @@ class LabelAwareTraitTest extends TestCase
     public function testRemoveLabelOption()
     {
         $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
-
 
         $option = 'foo';
         $value = 'bar';
