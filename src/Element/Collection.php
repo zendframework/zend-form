@@ -40,6 +40,13 @@ class Collection extends Fieldset
     protected $count = 1;
 
     /**
+     * Initial key names array (optional parameter)
+     *
+     * @var array
+     */
+    protected $keyNames = [];
+
+    /**
      * Are new elements allowed to be added dynamically ?
      *
      * @var bool
@@ -139,6 +146,10 @@ class Collection extends Fieldset
             $this->setCreateNewObjects($options['create_new_objects']);
         }
 
+        if (isset($options['key_names']) && is_array($options['key_names'])) {
+            $this->setKeyNames(array_values($options['key_names']));
+        }
+
         return $this;
     }
 
@@ -193,6 +204,11 @@ class Collection extends Fieldset
                 __METHOD__,
                 (is_object($data) ? get_class($data) : gettype($data))
             ));
+        }
+
+        // Can't do anything with empty data
+        if (empty($data)) {
+            return;
         }
 
         if (!$this->allowRemove && count($data) < $this->count) {
@@ -299,6 +315,29 @@ class Collection extends Fieldset
     public function getCount()
     {
         return $this->count;
+    }
+
+    /**
+     * Set the array key names
+     *
+     * @param $names
+     * @return Collection
+     */
+    public function setKeyNames($names)
+    {
+        $this->keyNames = $names;
+        $this->setCount(count($this->keyNames));
+        return $this;
+    }
+
+    /**
+     * Get the array key names
+     *
+     * @return int
+     */
+    public function getKeyNames()
+    {
+        return $this->keyNames;
     }
 
     /**
@@ -472,8 +511,9 @@ class Collection extends Fieldset
     {
         if (true === $this->shouldCreateChildrenOnPrepareElement) {
             if ($this->targetElement !== null && $this->count > 0) {
+                $applyNames = count($this->keyNames) > 0 && count($this->keyNames) === $this->count ? 1 : 0;
                 while ($this->count > $this->lastChildIndex + 1) {
-                    $this->addNewTargetElementInstance(++$this->lastChildIndex);
+                    $this->addNewTargetElementInstance($applyNames ? $this->keyNames[++$this->lastChildIndex] : ++$this->lastChildIndex);
                 }
             }
         }
