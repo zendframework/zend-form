@@ -506,6 +506,8 @@ class Form extends Fieldset implements FormInterface
         $validationGroup = $this->getValidationGroup();
         if ($validationGroup !== null) {
             $this->prepareValidationGroup($this, $this->data, $validationGroup);
+            
+            $filter->setData($this->data);
             $filter->setValidationGroup($validationGroup);
         }
 
@@ -613,7 +615,7 @@ class Form extends Fieldset implements FormInterface
      * @param array             $data
      * @param array             $validationGroup
      */
-    protected function prepareValidationGroup(FieldsetInterface $formOrFieldset, array $data, array &$validationGroup)
+    protected function prepareValidationGroup(FieldsetInterface $formOrFieldset, array &$data, array &$validationGroup)
     {
         foreach ($validationGroup as $key => &$value) {
             if (!$formOrFieldset->has($key)) {
