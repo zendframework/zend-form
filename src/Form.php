@@ -506,7 +506,7 @@ class Form extends Fieldset implements FormInterface
         $validationGroup = $this->getValidationGroup();
         if ($validationGroup !== null) {
             $this->prepareValidationGroup($this, $this->data, $validationGroup);
-            
+
             $filter->setData($this->data);
             $filter->setValidationGroup($validationGroup);
         }
