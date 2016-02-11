@@ -645,8 +645,12 @@ class Form extends Fieldset implements FormInterface
                 }
             }
             
-            $temp = (isset($data[$key]))? $data[$key]: [];
-            $this->prepareValidationGroup($fieldset, $temp, $validationGroup[$key]);
+            if (isset($data[$key])) {
+                $this->prepareValidationGroup($fieldset, $data[$key], $validationGroup[$key]);
+            } else {
+                $temp = [];
+                $this->prepareValidationGroup($fieldset, $temp, $validationGroup[$key]);
+            }
         }
     }
 
