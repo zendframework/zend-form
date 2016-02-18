@@ -15,7 +15,7 @@ be populated from the validated values.
 If nothing else, you can simply start creating elements, fieldsets, and forms and wiring them
 together.
 
-``` sourceCode
+```php
 use Zend\Captcha;
 use Zend\Form\Element;
 use Zend\Form\Fieldset;
@@ -74,7 +74,7 @@ $form->setInputFilter($inputFilter);
 As a demonstration of fieldsets, let's alter the above slightly. We'll create two fieldsets, one for
 the sender information, and another for the message details.
 
-``` sourceCode
+```php
 $sender = new Fieldset('sender');
 $sender->add($name);
 $sender->add($email);
@@ -99,7 +99,7 @@ You can create the entire form, and input filter, using the `Factory`. This is p
 you want to store your forms as pure configuration; you can simply pass the configuration to the
 factory and be done.
 
-``` sourceCode
+```php
 use Zend\Form\Factory;
 
 $factory = new Factory();
@@ -189,7 +189,7 @@ $form    = $factory->createForm(array(
 If we wanted to use fieldsets, as we demonstrated in the previous example, we could do the
 following:
 
-``` sourceCode
+```php
 use Zend\Form\Factory;
 
 $factory = new Factory();
@@ -295,7 +295,7 @@ The default `Form` implementation is backed by the `Factory`. This allows you to
 define your form internally. This has the benefit of allowing a mixture of programmatic and
 factory-backed creation, as well as defining a form for re-use in your application.
 
-``` sourceCode
+```php
 namespace Contact;
 
 use Zend\Captcha\AdapterInterface as CaptchaAdapter;
@@ -380,7 +380,7 @@ Validating forms requires three steps. First, the form must have an input filter
 you must inject the data to validate into the form. Third, you validate the form. If invalid, you
 can retrieve the error messages, if any.
 
-``` sourceCode
+```php
 // assuming $captcha is an instance of some Zend\Captcha\AdapterInterface
 $form = new Contact\ContactForm($captcha);
 
@@ -403,7 +403,7 @@ if ($form->isValid()) {
 
 You can get the raw data if you want, by accessing the composed input filter.
 
-``` sourceCode
+```php
 $filter = $form->getInputFilter();
 
 $rawValues    = $filter->getRawValues();
@@ -431,7 +431,7 @@ input filter factory to create an input. Every HTML5 (email, url, color…) elem
 element that use this logic. For instance, here is how the `Zend\Form\Element\Color` element is
 defined:
 
-``` sourceCode
+```php
 namespace Zend\Form\Element;
 
 use Zend\Form\Element;
@@ -500,7 +500,7 @@ directly instantiate them.
 For fieldsets, you do very similarly; the difference is that `getInputFilterSpecification()` must
 return configuration for an input filter.
 
-``` sourceCode
+```php
 namespace Contact\Form;
 
 use Zend\Form\Fieldset;
@@ -573,7 +573,7 @@ composes will be used instead of the one composed on the form.
 
 This is easier to understand in practice.
 
-``` sourceCode
+```php
 $contact = new ArrayObject;
 $contact['subject'] = '[Contact Form] ';
 $contact['message'] = 'Type your message here';
@@ -606,7 +606,7 @@ When an object is bound to the form, calling `getData()` will return that object
 want to return an associative array instead, you can pass the `FormInterface::VALUES_AS_ARRAY` flag
 to the method.
 
-``` sourceCode
+```php
 use Zend\Form\FormInterface;
 $data = $form->getData(FormInterface::VALUES_AS_ARRAY);
 ```
@@ -614,7 +614,7 @@ $data = $form->getData(FormInterface::VALUES_AS_ARRAY);
 Zend Framework ships several standard \[hydrators\](zend.stdlib.hydrator), and implementation is as
 simple as implementing `Zend\Stdlib\Hydrator\HydratorInterface`, which looks like this:
 
-``` sourceCode
+```php
 namespace Zend\Stdlib\Hydrator;
 
 interface HydratorInterface
@@ -641,7 +641,7 @@ injections are done, and will likely in the future munge names to allow for
 The simplest view helpers available are `Form`, `FormElement`, `FormLabel`, and `FormElementErrors`.
 Let's use them to display the contact form.
 
-``` sourceCode
+```php
 <?php
 // within a view script
 $form = $this->form;
@@ -718,7 +718,7 @@ automatically renders a label (if present), the element itself using the `FormEl
 well as any errors that could arise. Here is the previous form, rewritten to take advantage of this
 helper :
 
-``` sourceCode
+```php
 <?php
 // within a view script
 $form = $this->form;
@@ -766,7 +766,7 @@ echo $this->form()->openTag($form);
 Note that `FormRow` helper automatically prepends the label. If you want it to be rendered after the
 element itself, you can pass an optional parameter to the `FormRow` view helper :
 
-``` sourceCode
+```php
 <div class="form_element">
 <?php
     $name = $form->get('name');
@@ -781,7 +781,7 @@ Adding HTML5 attributes is simple as you just need to add specify the attributes
 note that adding those attributes does not automatically add Zend validators to the form's input
 filter. You still need to manually add them.
 
-``` sourceCode
+```php
 $form->add(array(
     'name' => 'phoneNumber',
     'options' => array(
@@ -811,7 +811,7 @@ elements are not of interest, and shouldn't be validated.
 `Zend\Form` provides a proxy method to the underlying `InputFilter`'s `setValidationGroup()` method,
 allowing us to perform this operation.
 
-``` sourceCode
+```php
 $form->setValidationGroup('name', 'email', 'subject', 'message');
 $form->setData($data);
 if ($form->isValid()) {
@@ -823,7 +823,7 @@ if ($form->isValid()) {
 If you later want to reset the form to validate all, simply pass the `FormInterface::VALIDATE_ALL`
 flag to the `setValidationGroup()` method.
 
-``` sourceCode
+```php
 use Zend\Form\FormInterface;
 $form->setValidationGroup(FormInterface::VALIDATE_ALL);
 ```
@@ -831,7 +831,7 @@ $form->setValidationGroup(FormInterface::VALIDATE_ALL);
 When your form contains nested fieldsets, you can use an array notation to validate only a subset of
 the fieldsets :
 
-``` sourceCode
+```php
 $form->setValidationGroup(array(
      'profile' => array(
          'firstname',
@@ -907,7 +907,7 @@ as long or as short as you want depending on what you import.
 Form annotations require `Doctrine\Common`, which contains an annotation parsering engine. The
 simplest way to install `Doctrine\Common` is if you are using `Composer`; simply update your
 `composer.json` and add the following line to the `require` section:
-``` sourceCode
+```php
 "doctrine/common": "=2.1",
 ```
 Then run `php composer.phar update` to install the dependency.
@@ -916,7 +916,7 @@ website](http://www.doctrine-project.org/projects/common.html) for more details 
 
 Here's a simple example.
 
-``` sourceCode
+```php
 use Zend\Form\Annotation;
 
 /**
@@ -958,7 +958,7 @@ will have an attribute "type" with value "text" (a text element), and a label "U
 
 To use the above, we need `Zend\Form\Annotation\AnnotationBuilder`:
 
-``` sourceCode
+```php
 use Zend\Form\Annotation\AnnotationBuilder;
 
 $builder = new AnnotationBuilder();

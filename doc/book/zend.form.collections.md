@@ -8,7 +8,7 @@ tasks to a task list.
 This document is intended to demonstrate these features. To do so, we first need to define some
 domain objects that we'll be using.
 
-``` sourceCode
+```php
 namespace Application\Entity;
 
 class Product
@@ -193,7 +193,7 @@ relationships for a specific entity.
 
 Here is the `Brand` fieldset:
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Application\Entity\Brand;
@@ -266,7 +266,7 @@ has semantic meaning only).
 
 Here is the `Category` fieldset:
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Application\Entity\Category;
@@ -316,7 +316,7 @@ Nothing new here.
 
 And finally the `Product` fieldset:
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Application\Entity\Product;
@@ -435,7 +435,7 @@ describes the element or fieldset that will be used in the collection. In this c
 So far, so good. We now have our field sets in place. But those are field sets, not forms. And only
 `Form` instances can be validated. So here is the form :
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Zend\Form\Form;
@@ -493,7 +493,7 @@ every form that deals with users!
 
 Now, let's create the action in the controller:
 
-``` sourceCode
+```php
 /**
   * @return array
   */
@@ -524,7 +524,7 @@ This is super easy. Nothing to do in the controllers. All the magic is done behi
 
 And finally, the view:
 
-``` sourceCode
+```php
 <?php
 $form->setAttribute('action', $this->url('home'))
      ->prepare();
@@ -598,7 +598,7 @@ changed to 2.
 If you want, this placeholder (`__index__` is the default) can be changed using the
 `template_placeholder` option key:
 
-``` sourceCode
+```php
 $this->add(array(
     'type' => 'Zend\Form\Element\Collection',
     'name' => 'categories',
@@ -616,7 +616,7 @@ $this->add(array(
 
 First, let's add a small button "Add new category" anywhere in the form:
 
-``` sourceCode
+```php
 <button onclick="return add_category()">Add a new category</button>
 ```
 
@@ -629,7 +629,7 @@ The `add_category` function is fairly simple:
 
 Here is the code:
 
-``` sourceCode
+```php
 <script>
     function add_category() {
         var currentCount = $('form > fieldset > fieldset').length;
@@ -660,7 +660,7 @@ Of course, if you don't want to allow adding elements in a collection, you must 
 not added to the entity. Also, if we don't want elements to be added, we don't need the data
 template, either. Here's how you do it:
 
-``` sourceCode
+```php
 $this->add(array(
     'type' => 'Zend\Form\Element\Collection',
     'name' => 'categories',
@@ -695,7 +695,7 @@ As an example, although the `Brand` entity has a `URL` property, we don't want t
 it in the creation form (but may wish to later in the "Edit Product" form, for instance). Let's
 update the view to remove the `URL` input:
 
-``` sourceCode
+```php
 <?php
 
 $form
@@ -736,7 +736,7 @@ The solution: validation groups. A validation group is specified in a `Form` obj
 case, in the `CreateProduct` form) by giving an array of all the elements we want to validate. Our
 `CreateProduct` now looks like this:
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Zend\Form\Form;
