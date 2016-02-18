@@ -11,7 +11,7 @@ all the benefits of this new architecture in ZF 2.1.
 The first advantage of pulling form elements from the service manager is that now you can use short
 names to create new elements through the factory. Therefore, this code:
 
-``` sourceCode
+```php
 $form->add(array(
     'type' => 'Zend\Form\Element\Email',
     'name' => 'email'
@@ -20,7 +20,7 @@ $form->add(array(
 
 can now be replaced by:
 
-``` sourceCode
+```php
 $form->add(array(
      'type' => 'Email',
      'name' => 'email'
@@ -42,7 +42,7 @@ will extend `Zend\Form\Element` class and provide some default input rules.
 
 Our custom phone element could look something like this:
 
-``` sourceCode
+```php
 namespace Application\Form\Element;
 
 use Zend\Form\Element;
@@ -118,7 +118,7 @@ beginning and is followed by 11 or 12 digits.
 The easiest way of start using your new custom element in your forms is to use the custom element's
 FQCN:
 
-``` sourceCode
+```php
 $form = new Zend\Form\Form();
 $form->add(array(
     'name' => 'phone',
@@ -128,7 +128,7 @@ $form->add(array(
 
 Or, if you are extending `Zend\Form\Form`:
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Zend\Form\Form;
@@ -157,7 +157,7 @@ how you write and use your forms.
 
 First, add the custom element to the plugin manager, in your `Module.php` class:
 
-``` sourceCode
+```php
 namespace Application;
 
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
@@ -177,7 +177,7 @@ class Module implements FormElementProviderInterface
 
 Or, you can do the same in your `module.config.php` file:
 
-``` sourceCode
+```php
 return array(
     'form_elements' => array(
         'invokables' => array(
@@ -196,7 +196,7 @@ If you are creating your form class by extending `Zend\Form\Form`, you *must not
 element in the `__construct`-or (as we have done in the previous example where we used the custom
 element's FQCN), but rather in the `init()` method:
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Zend\Form\Form;
@@ -216,7 +216,7 @@ class MyForm extends Form
 **The second catch** is that you *must not* directly instantiate your form class, but rather get an
 instance of it through the `Zend\Form\FormElementManager`:
 
-``` sourceCode
+```php
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -237,7 +237,7 @@ if they do not fit your needs. For instance, if you want to create your own Emai
 the standard one, you can simply create your element and add it to the form element config with the
 same key as the element you want to replace:
 
-``` sourceCode
+```php
 namespace Application;
 
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
@@ -289,7 +289,7 @@ elegant manner.
 
 For instance, let's say that a form create a fieldset called `AlbumFieldset`:
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Zend\Form\Form;
@@ -309,7 +309,7 @@ class CreateAlbum extends Form
 Let's now create the `AlbumFieldset` that depends on an `AlbumTable` object that allows you to fetch
 albums from the database.
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Album\Model\AlbumTable;
@@ -328,7 +328,7 @@ class AlbumFieldset extends Fieldset
 For this to work, you need to add a line to the form element manager by adding an element to your
 Module.php class:
 
-``` sourceCode
+```php
 namespace Application;
 
 use Application\Form\AlbumFieldset;
@@ -357,7 +357,7 @@ class Module implements FormElementProviderInterface
 
 Create your form using the form element manager instead of directly instantiating it:
 
-``` sourceCode
+```php
 public function testAction()
 {
     $formManager = $this->serviceLocator->get('FormElementManager');
@@ -367,7 +367,7 @@ public function testAction()
 
 Finally, to use your fieldset in a view you need to use the formCollection function.
 
-``` sourceCode
+```php
 echo $this->form()->openTag($form);
 echo $this->formCollection($form->get('album'));
 echo $this->form()->closeTag();
@@ -388,7 +388,7 @@ The problem with initializers is that they are injected AFTER the construction o
 means that if you need this dependency when you create elements, it won't be available yet. For
 instance, this example **won't work**:
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Album\Model;
@@ -423,7 +423,7 @@ Thankfully, there is an easy workaround: every form element now implements the n
 form elements, this `init()` function is automatically called once all the dependencies (including
 all initializers) are resolved. Therefore, the previous example can be rewritten as such:
 
-``` sourceCode
+```php
 namespace Application\Form;
 
 use Album\Model;

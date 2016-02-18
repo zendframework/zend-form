@@ -31,7 +31,7 @@ In this example we will:
 
 Here we define a `Zend\Form\Element\File` input in a Form class named `UploadForm`.
 
-``` sourceCode
+```php
 // File: UploadForm.php
 
 use Zend\Form\Element;
@@ -71,7 +71,7 @@ uploaded file, and to report other types of upload errors to the user.
 In the view template we render the `<form>`, a file input (with label and errors), and a submit
 button.
 
-``` sourceCode
+```php
 // File: upload-form.phtml
 <?php $form->prepare(); // The correct enctype is set here ?>
 <?php echo $this->form()->openTag($form); ?>
@@ -90,7 +90,7 @@ button.
 
 When rendered, the HTML should look similar to:
 
-``` sourceCode
+```php
 <form name="upload-form" id="upload-form" method="post" enctype="multipart/form-data">
     <div class="form-element">
         <label for="image-file">Avatar Image Upload</label>
@@ -109,7 +109,7 @@ action.
 The form processing in the controller action will be similar to normal forms, *except* that you
 **must** merge the `$_FILES` information in the request with the other post data.
 
-``` sourceCode
+```php
 // File: MyController.php
 
 public function uploadFormAction()
@@ -138,7 +138,7 @@ public function uploadFormAction()
 
 Upon a successful file upload, `$form->getData()` would return:
 
-``` sourceCode
+```php
 array(1) {
     ["image-file"] => array(5) {
         ["name"]     => string(11) "myimage.png"
@@ -154,7 +154,7 @@ array(1) {
 It is suggested that you always use the `Zend\Http\PhpEnvironment\Request` object to retrieve and
 merge the `$_FILES` information with the form, instead of using `$_FILES` directly.
 This is due to how the file information is mapped in the `$_FILES` array:
-``` sourceCode
+```php
 // A $_FILES array with single input and multiple files:
 array(1) {
 ["image-file"]=array(2) {
@@ -205,7 +205,7 @@ Changing our earlier example to use the `fileprg` plugin will require two change
 1.  Adding a `RenameUpload` filter to our form's file input, with details on where the valid files
 should be stored:
 
-    ``` sourceCode
+    ```php
     // File: UploadForm.php
 
     use Zend\InputFilter;
@@ -259,7 +259,7 @@ information on its supported options.
 
 2.  And, changing the Controller action to use the `fileprg` plugin:
 
-    ``` sourceCode
+    ```php
     // File: MyController.php
 
     public function uploadFormAction()
@@ -317,7 +317,7 @@ feature.
 To enable multiple file uploads in Zend Framework, just set the file element's `multiple` attribute
 to true:
 
-``` sourceCode
+```php
 // File: UploadForm.php
 
 use Zend\InputFilter;
@@ -398,7 +398,7 @@ setup has the appropriate extension or feature enabled.
 For this example we will use PHP **5.4**'s [Session progress
 handler](http://php.net/manual/en/session.upload-progress.php)
 **PHP 5.4 is required** and you may need to verify these php.ini settings for it to work:
-``` sourceCode
+```php
 file_uploads = On
 post_max_size = 50M
 upload_max_filesize = 50M
@@ -412,7 +412,7 @@ When uploading a file with a form POST, you must also include the progress ident
 input. The \[File Upload Progress View Helpers\](zend.form.view.helper.file) provide a convenient
 way to add the hidden input based on your handler type.
 
-``` sourceCode
+```php
 // File: upload-form.phtml
 <?php $form->prepare(); ?>
 <?php echo $this->form()->openTag($form); ?>
@@ -432,7 +432,7 @@ way to add the hidden input based on your handler type.
 
 When rendered, the HTML should look similar to:
 
-``` sourceCode
+```php
 <form name="upload-form" id="upload-form" method="post" enctype="multipart/form-data">
     <input type="hidden" id="progress_key" name="PHP_SESSION_UPLOAD_PROGRESS" value="12345abcde">
 
@@ -454,7 +454,7 @@ progress.
 
 The following is an example Controller action which provides the progress information:
 
-``` sourceCode
+```php
 // File: MyController.php
 
 public function uploadProgressAction()
@@ -486,7 +486,7 @@ are using the [jQuery Form plugin](https://github.com/malsup/form) to do the AJA
 project uses a different JavaScript framework (or none at all), this will hopefully at least
 illustrate the necessary high-level logic that would need to be performed.
 
-``` sourceCode
+```php
 // File: upload-form.phtml
 // ...after the form...
 
@@ -592,7 +592,7 @@ And finally, our Controller action can be modified to return form status and val
 JSON format if we see the 'isAjax' post parameter (which was set in the JavaScript just before
 submit):
 
-``` sourceCode
+```php
 // File: MyController.php
 
 public function uploadFormAction()
