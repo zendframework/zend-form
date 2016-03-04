@@ -1,5 +1,9 @@
 # CONTRIBUTING
 
+## CONDUCT
+
+All contrubtors are expect to abide by the Code Manifesto outlines in [CONDUCT.md](CONDUCT.md).
+
 ## RESOURCES
 
 If you wish to contribute to Zend Framework, please be sure to
