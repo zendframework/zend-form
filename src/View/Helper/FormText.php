@@ -34,6 +34,7 @@ class FormText extends FormInput
         'size'           => true,
         'type'           => true,
         'value'          => true,
+        'v-mode'         => true, // This item is necessary to enable "FormText" render 'v-mode' attribute 
     ];
 
     /**
