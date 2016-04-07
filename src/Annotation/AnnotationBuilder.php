@@ -22,6 +22,7 @@ use Zend\Form\Exception;
 use Zend\Form\Factory;
 use Zend\Form\FormFactoryAwareInterface;
 use Zend\Stdlib\ArrayUtils;
+use Doctrine\Common\Annotations\AnnotationReader;
 
 /**
  * Parses the properties of a class for annotations in order to create a form
@@ -205,23 +206,18 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         }
 
         $this->entity      = $entity;
-        $annotationManager = $this->getAnnotationManager();
         $formSpec          = new ArrayObject();
         $filterSpec        = new ArrayObject();
 
-        $reflection  = new ClassReflection($entity);
-        $annotations = $reflection->getAnnotations($annotationManager);
+        $reflection = new \ReflectionClass($entity);
+        $reader = new AnnotationReader();
+        $annotations = new AnnotationCollection($reader->getClassAnnotations($reflection));
 
-        if ($annotations instanceof AnnotationCollection) {
-            $this->configureForm($annotations, $reflection, $formSpec, $filterSpec);
-        }
+        $this->configureForm($annotations, $reflection, $formSpec, $filterSpec);
 
         foreach ($reflection->getProperties() as $property) {
-            $annotations = $property->getAnnotations($annotationManager);
-
-            if ($annotations instanceof AnnotationCollection) {
-                $this->configureElement($annotations, $property, $formSpec, $filterSpec);
-            }
+            $annotations = new AnnotationCollection($reader->getPropertyAnnotations($property));
+            $this->configureElement($annotations, $property, $formSpec, $filterSpec);
         }
 
         if (!isset($formSpec['input_filter'])) {
