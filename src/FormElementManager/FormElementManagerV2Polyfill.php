@@ -55,6 +55,7 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
         'month'          => Element\Month::class,
         'monthselect'    => Element\MonthSelect::class,
         'MonthSelect'    => Element\MonthSelect::class,
+        'multicheckbox'  => Element\MultiCheckbox::class,
         'multiCheckbox'  => Element\MultiCheckbox::class,
         'multiCheckBox'  => Element\MultiCheckbox::class,
         'number'         => Element\Number::class,
