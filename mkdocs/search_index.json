@@ -2,12 +2,12 @@
     "docs": [
         {
             "location": "/", 
-            "text": "zend-form\n\n\n\n\n\n\nThe \nZend\\Form\n is intended primarily as a bridge between your domain models and\nthe View Layer. It composes a thin layer of objects representing form elements,\nan InputFilter, and a small number of methods for binding data to and from the\nform and attached objects.\n\n\n\n\nFile issues at https://github.com/zendframework/zend-form/issues\n\n\nDocumentation is at http://framework.zend.com/manual/current/en/index.html#zend-form", 
+            "text": "zend-form\n\n\n\n\n\n\nThe \nZend\\Form\n is intended primarily as a bridge between your domain models and\nthe View Layer. It composes a thin layer of objects representing form elements,\nan InputFilter, and a small number of methods for binding data to and from the\nform and attached objects.\n\n\n\n\nFile issues at https://github.com/zendframework/zend-form/issues\n\n\nDocumentation is at https://zendframework.github.io/zend-form/", 
             "title": "Home"
         }, 
         {
             "location": "/#zend-form", 
-            "text": "The  Zend\\Form  is intended primarily as a bridge between your domain models and\nthe View Layer. It composes a thin layer of objects representing form elements,\nan InputFilter, and a small number of methods for binding data to and from the\nform and attached objects.   File issues at https://github.com/zendframework/zend-form/issues  Documentation is at http://framework.zend.com/manual/current/en/index.html#zend-form", 
+            "text": "The  Zend\\Form  is intended primarily as a bridge between your domain models and\nthe View Layer. It composes a thin layer of objects representing form elements,\nan InputFilter, and a small number of methods for binding data to and from the\nform and attached objects.   File issues at https://github.com/zendframework/zend-form/issues  Documentation is at https://zendframework.github.io/zend-form/", 
             "title": "zend-form"
         }, 
         {
