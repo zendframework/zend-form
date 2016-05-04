@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <link rel="shortcut icon" href="../img/favicon.ico">
 
-    <title>Intro - zend-http</title>
+    <title>Response - zend-http</title>
 
     <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -74,13 +74,13 @@
                 
                 
                 
-                    <li class="active">
-                        <a href="./">Intro</a>
+                    <li >
+                        <a href="../intro/">Intro</a>
                     </li>
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -91,8 +91,8 @@
 
                         
                             
-<li >
-    <a href="../response/">Response</a>
+<li class="active">
+    <a href="./">Response</a>
 </li>
 
                         
@@ -181,11 +181,15 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#introduction">Introduction</a></li>
+        <li class="main active"><a href="#the-response-class">The Response Class</a></li>
         
-            <li><a href="#not-psr-7">Not PSR-7!</a></li>
+            <li><a href="#quick-start">Quick Start</a></li>
         
-            <li><a href="#zendhttp-request-response-and-headers">Zend\Http Request, Response and Headers</a></li>
+            <li><a href="#configuration-options">Configuration Options</a></li>
+        
+            <li><a href="#available-methods">Available Methods</a></li>
+        
+            <li><a href="#examples">Examples</a></li>
         
     
     </ul>
@@ -193,10 +197,10 @@
     
     <ul class="pager hidden-print">
       <li class="previous">
-        <a rel="prev" href=".."><i class="fa fa-arrow-left"></i> Previous</a>
+        <a rel="prev" href="../request/"><i class="fa fa-arrow-left"></i> Previous</a>
       </li>
       <li class="next">
-        <a rel="next" href="../request/">Next <i class="fa fa-arrow-right"></i></a>
+        <a rel="next" href="../headers/">Next <i class="fa fa-arrow-right"></i></a>
       </li>
     </ul>
     
@@ -207,43 +211,225 @@
   <li><a href="..">Docs</a> &raquo;</li>
   
     
+      
+        <li>Reference &raquo;</li>
+      
+    
   
-  <li class="active">Intro</li>
+  <li class="active">Response</li>
 </ol>
 
-<h1 id="introduction">Introduction</h1>
-<p>zend-http provides the HTTP message abstraction used by
-<a href="https://zendframework.github.io/zend-mvc/">zend-mvc</a>, and also provides an
-extensible, adapter-driven HTTP client library. It provides the following
-abstractions:</p>
+<h1 id="the-response-class">The Response Class</h1>
+<p><code>Zend\Http\Response</code> is responsible for providing a fluent API that allows a
+developer to interact with all the various parts of an HTTP response.</p>
+<p>A typical HTTP Response looks like this:</p>
+<pre class="codehilite"><code class="language-text">| VERSION | CODE | REASON |
+|        HEADERS          |
+|         BODY            |</code></pre>
+
+
+<p>The first line of the response consists of the HTTP version, status code, and
+the reason string for the provided status code; this is called the Response
+Line. Next is a set of zero or more headers.  The remainder of the response is
+the response body, which is typically a string of HTML that will render on the
+client's browser, but which can also be a place for request/response payload
+data typical of an AJAX request. More information on the structure and
+specification of an HTTP response can be found in
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html">RFC-2616 on the W3.org site</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<p>Response objects can either be created from the provided <code>fromString()</code> factory,
+or, if you wish to have a completely empty object to start with, by
+instantiating the <code>Zend\Http\Response</code> class with no arguments.</p>
+<pre class="codehilite"><code class="language-php">use Zend\Http\Response;
+$response = Response::fromString(&lt;&lt;&lt;EOS
+HTTP/1.0 200 OK
+HeaderField1: header-field-value
+HeaderField2: header-field-value2
+
+&lt;html&gt;
+&lt;body&gt;
+    Hello World
+&lt;/body&gt;
+&lt;/html&gt;
+EOS);
+
+// OR
+
+$response = new Response();
+$response-&gt;setStatusCode(Response::STATUS_CODE_200);
+$response-&gt;getHeaders()-&gt;addHeaders([
+    'HeaderField1' =&gt; 'header-field-value',
+    'HeaderField2' =&gt; 'header-field-value2',
+]);
+$response-&gt;setContent(&lt;&lt;&lt;EOS
+&lt;html&gt;
+&lt;body&gt;
+    Hello World
+&lt;/body&gt;
+&lt;/html&gt;
+EOS
+);</code></pre>
+
+
+<h2 id="configuration-options">Configuration Options</h2>
+<p>No configuration options are available.</p>
+<h2 id="available-methods">Available Methods</h2>
+<p>The following table details available methods, their signatures, and a brief
+description. Note that the following references refer to the following
+fully qualified class names and/or namespaces:</p>
 <ul>
-<li>Context-less <code>Request</code> and <code>Response</code> classes that expose a fluent API for
-  introspecting several aspects of HTTP messages:</li>
-<li>Request line information and response status information</li>
-<li>Parameters, such as those found in POST and GET</li>
-<li>Message Body</li>
-<li>Headers</li>
-<li>A client implementation with various adapters that allow for sending requests
-  and introspecting responses.</li>
+<li><code>Headers</code>: <code>Zend\Http\Headers</code></li>
+<li><code>Response</code>: <code>Zend\Http\Response</code></li>
 </ul>
-<blockquote>
-<h3 id="not-psr-7">Not PSR-7!</h3>
-<p>This library <strong>does not</strong> support <a href="http://www.php-fig.org/psr/psr-7">PSR-7</a>, as
-it predates that specification. For PSR-7 support, please see our
-<a href="https://zendframework.github.io/zend-diactoros/">Diactoros component</a>.</p>
-</blockquote>
-<h2 id="zendhttp-request-response-and-headers">Zend\Http Request, Response and Headers</h2>
-<p>The request, response and headers implementations of the zend-http component
-provides a fluent, object-oriented interface for introspecting information from
-all the various parts of an HTTP request or HTTP response. The primary classes
-are <code>Zend\Http\Request</code> and <code>Zend\Http\Response</code>. Both are “context-less”,
-meaning that they model a request or response in the same way whether it is
-presented by a client (to <strong>send</strong> a request and <strong>receive</strong> a response) or by a
-server (to <strong>receive</strong> a request and <strong>send</strong> a response). In other words,
-regardless of the context, the API remains the same for introspecting their
-various respective parts. Each attempts to fully model a request or response so
-that a developer can create these objects from a factory, or create and populate
-them manually.</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Method signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stati fromString(string $string) : Response</code></td>
+<td>Populate object from string.</td>
+</tr>
+<tr>
+<td><code>renderStatusLine() : string</code></td>
+<td>Render the status line header</td>
+</tr>
+<tr>
+<td><code>setHeaders(Headers $headers) : self</code></td>
+<td>Provide an alternate Parameter Container implementation for headers in this object. (This is NOT the primary API for value setting; for that, see <code>getHeaders()</code>.)</td>
+</tr>
+<tr>
+<td><code>getHeaders() : Headers</code></td>
+<td>Return the container responsible for storing HTTP headers. This container exposes the primary API for manipulating headers set in the HTTP response. See the section on <a href="../headers/">Headers</a> for more information.</td>
+</tr>
+<tr>
+<td><code>setVersion(string $version) : self</code></td>
+<td>Set the HTTP version for this object, one of 1.0 or 1.1 (<code>Request::VERSION_10</code>, <code>Request::VERSION_11</code>).</td>
+</tr>
+<tr>
+<td><code>getVersion() : string</code></td>
+<td>Return the HTTP version for this request.</td>
+</tr>
+<tr>
+<td><code>setStatusCode(int $code) : self</code></td>
+<td>Set HTTP status code.</td>
+</tr>
+<tr>
+<td><code>getStatusCode() : int</code></td>
+<td>Retrieve HTTP status code.</td>
+</tr>
+<tr>
+<td><code>setReasonPhrase(string $reasonPhrase) : self</code></td>
+<td>Set custom HTTP status message.</td>
+</tr>
+<tr>
+<td><code>getReasonPhrase() : string</code></td>
+<td>Get HTTP status message.</td>
+</tr>
+<tr>
+<td><code>isClientError() : bool</code></td>
+<td>Does the status code indicate a client error?</td>
+</tr>
+<tr>
+<td><code>isForbidden() : bool</code></td>
+<td>Is the request forbidden due to ACLs?</td>
+</tr>
+<tr>
+<td><code>isInformational() : bool</code></td>
+<td>Is the current status "informational"?</td>
+</tr>
+<tr>
+<td><code>isNotFound() : bool</code></td>
+<td>Does the status code indicate the resource is not found?</td>
+</tr>
+<tr>
+<td><code>isOk() : bool</code></td>
+<td>Do we have a normal, OK response?</td>
+</tr>
+<tr>
+<td><code>isServerError() : bool</code></td>
+<td>Does the status code reflect a server error?</td>
+</tr>
+<tr>
+<td><code>isRedirect() : bool</code></td>
+<td>Do we have a redirect?</td>
+</tr>
+<tr>
+<td><code>isSuccess() : bool</code></td>
+<td>Was the response successful?</td>
+</tr>
+<tr>
+<td><code>decodeChunkedBody(string $body) : string</code></td>
+<td>Decode a "chunked" transfer-encoded body and return the decoded text.</td>
+</tr>
+<tr>
+<td><code>decodeGzip(string $body) : string</code></td>
+<td>Decode a gzip encoded message (when <code>Content-Encoding</code> indicates gzip). Currently requires PHP with zlib support.</td>
+</tr>
+<tr>
+<td><code>decodeDeflate(string $body) : string</code></td>
+<td>Decode a zlib deflated message (when <code>Content-Encoding</code> indicates deflate). Currently requires PHP with zlib support.</td>
+</tr>
+<tr>
+<td><code>setMetadata(string|int|array|Traversable $spec, mixed $value) : self</code></td>
+<td>Non-destructive setting of message metadata; always adds to the metadata, never overwrites the entire metadata container.</td>
+</tr>
+<tr>
+<td><code>getMetadata(null|string|int $key, null|mixed $default) : mixed</code></td>
+<td>Retrieve all metadata or a single metadatum as specified by key.</td>
+</tr>
+<tr>
+<td><code>setContent(mixed $value) : self</code></td>
+<td>Set message content.</td>
+</tr>
+<tr>
+<td><code>getContent() : mixed</code></td>
+<td>Get raw message content.</td>
+</tr>
+<tr>
+<td><code>getBody() : mixed</code></td>
+<td>Get decoded message content.</td>
+</tr>
+<tr>
+<td><code>toString() : string</code></td>
+<td>Returns string representation of response.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="examples">Examples</h2>
+<h3 id="generating-a-response-object-from-a-string">Generating a Response object from a string</h3>
+<pre class="codehilite"><code class="language-php">use Zend\Http\Response;
+$request = Response::fromString(&lt;&lt;&lt;EOS
+HTTP/1.0 200 OK
+HeaderField1: header-field-value
+HeaderField2: header-field-value2
+
+&lt;html&gt;
+&lt;body&gt;
+    Hello World
+&lt;/body&gt;
+&lt;/html&gt;
+EOS);</code></pre>
+
+
+<h3 id="generating-a-formatted-http-response-from-a-response-object">Generating a formatted HTTP Response from a Response object</h3>
+<pre class="codehilite"><code class="language-php">use Zend\Http\Response;
+$response = new Response();
+$response-&gt;setStatusCode(Response::STATUS_CODE_200);
+$response-&gt;getHeaders()-&gt;addHeaders([
+    'HeaderField1' =&gt; 'header-field-value',
+    'HeaderField2' =&gt; 'header-field-value2',
+]);
+$response-&gt;setContent(&lt;&lt;&lt;EOS
+&lt;html&gt;
+&lt;body&gt;
+    Hello World
+&lt;/body&gt;
+&lt;/html&gt;
+EOS);</code></pre>
 
 <hr />
 
@@ -251,10 +437,10 @@ them manually.</p>
 <nav>
   <ul class="pager hidden-print">
     <li class="previous">
-      <a rel="prev" href=".."><i class="fa fa-arrow-left"></i> Previous</a>
+      <a rel="prev" href="../request/"><i class="fa fa-arrow-left"></i> Previous</a>
     </li>
     <li class="next">
-      <a rel="next" href="../request/">Next <i class="fa fa-arrow-right"></i></a>
+      <a rel="next" href="../headers/">Next <i class="fa fa-arrow-right"></i></a>
     </li>
   </ul>
 </nav>

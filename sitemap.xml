@@ -4,7 +4,7 @@
     
     <url>
      <loc>None/</loc>
-     <lastmod>2016-05-03</lastmod>
+     <lastmod>2016-05-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,15 +12,7 @@
     
     <url>
      <loc>None/intro/</loc>
-     <lastmod>2016-05-03</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-    <url>
-     <loc>None/quick-start/</loc>
-     <lastmod>2016-05-03</lastmod>
+     <lastmod>2016-05-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -28,32 +20,26 @@
     
         
     <url>
+     <loc>None/request/</loc>
+     <lastmod>2016-05-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/response/</loc>
+     <lastmod>2016-05-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/headers/</loc>
+     <lastmod>2016-05-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>None</loc>
      <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/collections/</loc>
-     <lastmod>2016-05-03</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/file-upload/</loc>
-     <lastmod>2016-05-03</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None</loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/advanced/</loc>
-     <lastmod>2016-05-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
