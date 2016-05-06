@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    <title>Quick Start - zend-form</title>
+
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/zf.css" rel="stylesheet">
+    <link href="../css/prism-zf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <span class="navbar-brand">
+              <a class="logo-link" href="http://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Zend Framework"><img src="../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
+              <a href="..">zend-form</a>
+            </span>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../intro/">Intro</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">Quick Start</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Elements</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../element/intro/">Intro</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/element/">Element</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/button/">button</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/captcha/">CAPTCHA</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/checkbox/">checkbox</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/collection/">Collection</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/color/">color</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/csrf/">CSRF</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/date/">date</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/date-time/">datetime</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/date-time-local/">datetime-local</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/email/">email</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/file/">file</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/hidden/">hidden</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/image/">image</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/month/">month</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/month-select/">MonthSelect</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/multi-checkbox/">MultiCheckbox</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/number/">number</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/password/">password</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/radio/">radio</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/range/">range</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/select/">select</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/submit/">submit</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/text/">text</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/textarea/">textarea</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/time/">time</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/url/">url</a>
+</li>
+
+        
+            
+<li >
+    <a href="../element/week/">week</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../collections/">Collections</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../file-upload/">File Uploads</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">View Helpers</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../helper/intro/">Intro</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/abstract-helper/">AbstractHelper</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-input/">formInput</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-element/">formElement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-element-errors/">formElementErrors</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-label/">formLabel</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-row/">formRow</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-collection/">formCollection</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form/">form</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-button/">formButton</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-captcha/">formCaptcha</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-checkbox/">formCheckbox</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-color/">formColor</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-date/">formDate</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-date-time/">formDateTime</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-date-time-local/">formDateTimeLocal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-email/">formEmail</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-file/">formFile</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-hidden/">formHidden</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-image/">formImage</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-month/">formMonth</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-month-select/">formMonthSelect</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-multicheckbox/">formMultiCheckbox</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-number/">formNumber</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-password/">formPassword</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-radio/">formRadio</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-range/">formRange</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-reset/">formReset</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-search/">formSearch</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-select/">formSelect</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-submit/">formSubmit</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-tel/">formTel</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-text/">formText</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-textarea/">formTextarea</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-time/">formTime</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-url/">formUrl</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-week/">formWeek</a>
+</li>
+
+        
+            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Upload Progress</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../helper/upload-progress-helpers/">Intro</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-file-apc-progress/">formFileApcProgress</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-file-session-progress/">formFileSessionProgress</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper/form-file-upload-progress/">formFileUploadProgress</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../advanced/">Advanced</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="component-toggle" data-toggle="tooltip" data-placement="bottom" title="Show component list">
+                        <i class="fa fa-book"></i> Components
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li>
+                        <a href="https://github.com/zendframework/zend-form">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- content:begin -->
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#quick-start">Quick Start</a></li>
+        
+            <li><a href="#programmatic-form-creation">Programmatic Form Creation</a></li>
+        
+            <li><a href="#creation-via-factory">Creation via Factory</a></li>
+        
+            <li><a href="#factory-backed-form-extension">Factory-backed Form Extension</a></li>
+        
+            <li><a href="#validating-forms">Validating Forms</a></li>
+        
+            <li><a href="#hinting-to-the-input-filter">Hinting to the Input Filter</a></li>
+        
+            <li><a href="#binding-an-object">Binding an object</a></li>
+        
+            <li><a href="#rendering">Rendering</a></li>
+        
+            <li><a href="#taking-advantage-of-html5-input-attributes">Taking advantage of HTML5 input attributes</a></li>
+        
+            <li><a href="#validation-groups">Validation Groups</a></li>
+        
+            <li><a href="#using-annotations">Using Annotations</a></li>
+        
+    
+    </ul>
+
+    
+    <ul class="pager hidden-print">
+      <li class="previous">
+        <a rel="prev" href="../intro/"><i class="fa fa-arrow-left"></i> Previous</a>
+      </li>
+      <li class="next">
+        <a rel="next" href="../element/intro/">Next <i class="fa fa-arrow-right"></i></a>
+      </li>
+    </ul>
+    
+</div></div>
+        <div class="col-md-9" role="main">
+
+<ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+  <li><a href="..">Docs</a> &raquo;</li>
+  
+    
+  
+  <li class="active">Quick Start</li>
+</ol>
+
+<h1 id="quick-start">Quick Start</h1>
+<p>Forms are composed of elements and fieldsets. At the bare minimum, each element
+or fieldset requires a name; in most situations, you'll also provide some
+attributes to hint to the view layer how it might render the item. The form
+itself generally composes an <code>InputFilter</code> &mdash; which you can also create
+directly in the form via a factory. Individual elements can hint as to what
+defaults to use when generating a related input for the input filter.</p>
+<p>Perform form validation by providing an array of data to the <code>setData()</code> method,
+and calling the <code>isValid()</code> method. If you want to simplify your work even more,
+you can bind an object to the form; on successful validation, it will be
+populated from the validated values.</p>
+<h2 id="programmatic-form-creation">Programmatic Form Creation</h2>
+<p>The following example demonstrates element, fieldset, and form creation, and how
+they are wired together.</p>
+<pre class="codehilite"><code class="language-php">use Zend\Captcha;
+use Zend\Form\Element;
+use Zend\Form\Fieldset;
+use Zend\Form\Form;
+use Zend\InputFilter\Input;
+use Zend\InputFilter\InputFilter;
+
+// Create a text element to capture the user name:
+$name = new Element('name');
+$name-&gt;setLabel('Your name');
+$name-&gt;setAttributes([
+    'type' =&gt; 'text',
+]);
+
+// Create a text element to capture the user email address:
+$email = new Element\Email('email');
+$email-&gt;setLabel('Your email address');
+
+// Create a text element to capture the message subject:
+$subject = new Element('subject');
+$subject-&gt;setLabel('Subject');
+$subject-&gt;setAttributes([
+    'type' =&gt; 'text',
+]);
+
+// Create a textarea element to capture a message:
+$email = new Element\Email('email');
+$message = new Element\Textarea('message');
+$message-&gt;setLabel('Message');
+
+// Create a CAPTCHA:
+$captcha = new Element\Captcha('captcha');
+$captcha-&gt;setCaptcha(new Captcha\Dumb());
+$captcha-&gt;setLabel('Please verify you are human');
+
+// Create a CSRF token:
+$captcha = new Element\Captcha('captcha');
+$csrf = new Element\Csrf('security');
+
+// Create a submit button:
+$send = new Element('send');
+$send-&gt;setValue('Submit');
+$send-&gt;setAttributes([
+    'type' =&gt; 'submit',
+]);
+
+// Create the form and add all elements:
+$form = new Form('contact');
+$form-&gt;add($name);
+$form-&gt;add($email);
+$form-&gt;add($subject);
+$form-&gt;add($message);
+$form-&gt;add($captcha);
+$form-&gt;add($csrf);
+$form-&gt;add($send);
+
+// Create an input for the &quot;name&quot; element:
+$nameInput = new Input('name');
+
+/* ... configure the input, and create and configure all others ... */
+
+// Create the input filter:
+$inputFilter = new InputFilter();
+
+// Attach inputs:
+$inputFilter-&gt;add($nameInput);
+/* ... */
+
+// Attach the input filter to the form:
+$form-&gt;setInputFilter($inputFilter);</code></pre>
+
+
+<p>As a demonstration of fieldsets, let's alter the above slightly. We'll create
+two fieldsets, one for the sender information, and another for the message
+details.</p>
+<pre class="codehilite"><code class="language-php">// Create the fieldset for sender details:
+$sender = new Fieldset('sender');
+$sender-&gt;add($name);
+$sender-&gt;add($email);
+
+// Create the fieldset for message details:
+$details = new Fieldset('details');
+$details-&gt;add($subject);
+$details-&gt;add($message);
+
+$form = new Form('contact');
+$form-&gt;add($sender);
+$form-&gt;add($details);
+$form-&gt;add($captcha);
+$form-&gt;add($csrf);
+$form-&gt;add($send);</code></pre>
+
+
+<p>This manual approach gives maximum flexibility over form creation; however, it
+comes at the expense of verbosity. In the next section, we'll look at another
+approach.</p>
+<h2 id="creation-via-factory">Creation via Factory</h2>
+<p>You can create the entire form and input filter at once using the <code>Factory</code>.
+This is particularly nice if you want to store your forms as pure configuration;
+you can then pass the configuration to the factory and be done.</p>
+<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+use Zend\Form\Factory;
+use Zend\Hydrator\ArraySerializable;
+
+$factory = new Factory();
+$form    = $factory-&gt;createForm([
+    'hydrator' =&gt; ArraySerializable::class,
+    'elements' =&gt; [
+        [
+            'spec' =&gt; [
+                'name' =&gt; 'name',
+                'options' =&gt; [
+                    'label' =&gt; 'Your name',
+                ],
+                'type'  =&gt; 'Text',
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'type' =&gt; Element\Email::class,
+                'name' =&gt; 'email',
+                'options' =&gt; [
+                    'label' =&gt; 'Your email address',
+                ]
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'name' =&gt; 'subject',
+                'options' =&gt; [
+                    'label' =&gt; 'Subject',
+                ],
+                'type'  =&gt; 'Text',
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'type' =&gt; Element\Textarea::class,
+                'name' =&gt; 'message',
+                'options' =&gt; [
+                    'label' =&gt; 'Message',
+                ]
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'type' =&gt; Element\Captcha::class,
+                'name' =&gt; 'captcha',
+                'options' =&gt; [
+                    'label' =&gt; 'Please verify you are human.',
+                    'captcha' =&gt; [
+                        'class' =&gt; 'Dumb',
+                    ],
+                ],
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'type' =&gt; Element\Csrf::class,
+                'name' =&gt; 'security',
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'name' =&gt; 'send',
+                'type'  =&gt; 'Submit',
+                'attributes' =&gt; [
+                    'value' =&gt; 'Submit',
+                ],
+            ],
+        ],
+    ],
+
+    /* If we had fieldsets, they'd go here; fieldsets contain
+     * &quot;elements&quot; and &quot;fieldsets&quot; keys, and potentially a &quot;type&quot;
+     * key indicating the specific FieldsetInterface
+     * implementation to use.
+    'fieldsets' =&gt; [
+    ],
+     */
+
+    // Configuration to pass on to
+    // Zend\InputFilter\Factory::createInputFilter()
+    'input_filter' =&gt; [
+        /* ... */
+    ],
+]);</code></pre>
+
+
+<p>If we wanted to use fieldsets, as we demonstrated in the previous example, we
+could do the following:</p>
+<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+use Zend\Form\Factory;
+use Zend\Hydrator\ArraySerializable;
+
+$factory = new Factory();
+$form    = $factory-&gt;createForm([
+    'hydrator'  =&gt; ArraySerializable::class,
+
+    // Top-level fieldsets to define:
+    'fieldsets' =&gt; [
+        [
+            'spec' =&gt; [
+                'name' =&gt; 'sender',
+                'elements' =&gt; [
+                    [
+                        'spec' =&gt; [
+                            'name' =&gt; 'name',
+                            'options' =&gt; [
+                                'label' =&gt; 'Your name',
+                            ],
+                            'type' =&gt; 'Text'
+                        ],
+                    ],
+                    [
+                        'spec' =&gt; [
+                            'type' =&gt; Element\Email::class,
+                            'name' =&gt; 'email',
+                            'options' =&gt; [
+                                'label' =&gt; 'Your email address',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'name' =&gt; 'details',
+                'elements' =&gt; [
+                    [
+                        'spec' =&gt; [
+                            'name' =&gt; 'subject',
+                            'options' =&gt; [
+                                'label' =&gt; 'Subject',
+                            ],
+                            'type' =&gt; 'Text',
+                        ],
+                    ],
+                    [
+                        'spec' =&gt; [
+                            'name' =&gt; 'message',
+                            'type' =&gt; Element\Textarea::class,
+                            'options' =&gt; [
+                                'label' =&gt; 'Message',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+
+    // You can specify an &quot;elements&quot; key explicitly:
+    'elements' =&gt; [
+        [
+            'spec' =&gt; [
+                'type' =&gt; Element\Captcha::class,
+                'name' =&gt; 'captcha',
+                'options' =&gt; [
+                    'label' =&gt; 'Please verify you are human.',
+                    'captcha' =&gt; [
+                        'class' =&gt; 'Dumb',
+                    ],
+                ],
+            ],
+        ],
+        [
+            'spec' =&gt; [
+            'type' =&gt; Element\Csrf::class,
+            'name' =&gt; 'security',
+        ],
+    ],
+
+    // But entries without string keys are also considered elements:
+    [
+        'spec' =&gt; [
+            'name' =&gt; 'send',
+            'type'  =&gt; 'Submit',
+            'attributes' =&gt; [
+                'value' =&gt; 'Submit',
+            ],
+        ],
+    ],
+
+    // Configuration to pass on to
+    // Zend\InputFilter\Factory::createInputFilter()
+    'input_filter' =&gt; [
+        /* ... */
+    ],
+]);</code></pre>
+
+
+<p>Note that the chief difference is nesting; otherwise, the information is
+basically the same.</p>
+<p>The chief benefits to using the <code>Factory</code> are allowing you to store definitions
+in configuration, and usage of significant whitespace.</p>
+<h2 id="factory-backed-form-extension">Factory-backed Form Extension</h2>
+<p>The default <code>Form</code> implementation is backed by the <code>Factory</code>. This allows you to
+extend it, and define your form internally. This has the benefit of allowing a
+mixture of programmatic and factory-backed creation, as well as defining a form
+for re-use in your application.</p>
+<pre class="codehilite"><code class="language-php">namespace Contact;
+
+use Zend\Captcha\AdapterInterface as CaptchaAdapter;
+use Zend\Form\Element;
+use Zend\Form\Form;
+
+class ContactForm extends Form
+{
+    protected $captcha;
+
+    public function __construct(CaptchaAdapter $captcha)
+    {
+        parent::__construct();
+
+        $this-&gt;captcha = $captcha;
+
+        // add() can take an Element/Fieldset instance, or a specification, from
+        // which the appropriate object will be built.
+        $this-&gt;add([
+            'name' =&gt; 'name',
+            'options' =&gt; [
+                'label' =&gt; 'Your name',
+            ],
+            'type'  =&gt; 'Text',
+        ]);
+        $this-&gt;add([
+            'type' =&gt; Element\Email::class,
+            'name' =&gt; 'email',
+            'options' =&gt; [
+                'label' =&gt; 'Your email address',
+            ],
+        ]);
+        $this-&gt;add([
+            'name' =&gt; 'subject',
+            'options' =&gt; [
+                'label' =&gt; 'Subject',
+            ],
+            'type'  =&gt; 'Text',
+        ]);
+        $this-&gt;add([
+            'type' =&gt; Element\Textarea::class,
+            'name' =&gt; 'message',
+            'options' =&gt; [
+                'label' =&gt; 'Message',
+            ],
+        ]);
+        $this-&gt;add([
+            'type' =&gt; Element\Captcha::class,
+            'name' =&gt; 'captcha',
+            'options' =&gt; [
+                'label' =&gt; 'Please verify you are human.',
+                'captcha' =&gt; $this-&gt;captcha,
+            ],
+        ]);
+        $this-&gt;add(new Element\Csrf('security'));
+        $this-&gt;add([
+            'name' =&gt; 'send',
+            'type'  =&gt; 'Submit',
+            'attributes' =&gt; [
+                'value' =&gt; 'Submit',
+            ],
+        ]);
+
+        // We could also define the input filter here, or
+        // lazy-create it in the getInputFilter() method.
+    }
+}</code></pre>
+
+
+<p>In the above example, elements are added in the constructor. This is done to
+allow altering and/or configuring either the form or input filter factory
+instances, which could then have bearing on how elements, inputs, etc. are
+created. In this case, it also allows injection of the CAPTCHA adapter, allowing
+us to configure it elsewhere in our application and inject it into the form.</p>
+<h2 id="validating-forms">Validating Forms</h2>
+<p>Validating forms requires three steps. First, the form must have an input filter
+attached. Second, you must inject the data to validate into the form. Third, you
+validate the form. If invalid, you can retrieve the error messages, if any.</p>
+<pre class="codehilite"><code class="language-php">// assuming $captcha is an instance of some Zend\Captcha\AdapterInterface:
+$form = new Contact\ContactForm($captcha);
+
+// If the form doesn't define an input filter by default, inject one.
+$form-&gt;setInputFilter(new Contact\ContactFilter());
+
+// Get the data. In an MVC application, you might try:
+$data = $request-&gt;getPost();  // for POST data
+$data = $request-&gt;getQuery(); // for GET (or query string) data
+
+$form-&gt;setData($data);
+
+// Validate the form
+if ($form-&gt;isValid()) {
+    $validatedData = $form-&gt;getData();
+} else {
+    $messages = $form-&gt;getMessages();
+}</code></pre>
+
+
+<p>You can get the raw data if you want, by accessing the composed input filter.</p>
+<pre class="codehilite"><code class="language-php">$filter = $form-&gt;getInputFilter();
+
+$rawValues    = $filter-&gt;getRawValues();
+$nameRawValue = $filter-&gt;getRawValue('name');</code></pre>
+
+
+<h2 id="hinting-to-the-input-filter">Hinting to the Input Filter</h2>
+<p>Often, you'll create elements that you expect to behave in the same way on each
+usage, and for which you'll want specific filters or validation as well. Since
+the input filter is a separate object, how can you achieve these latter points?</p>
+<p>Because the default form implementation composes a factory, and the default
+factory composes an input filter factory, you can have your elements and/or
+fieldsets hint to the input filter. If no input or input filter is provided in
+the input filter for that element, these hints will be retrieved and used to
+create them.</p>
+<p>To do so, one of the following must occur. For elements, they must implement
+<code>Zend\InputFilter\InputProviderInterface</code>, which defines a
+<code>getInputSpecification()</code> method; for fieldsets (and, by extension, forms), they
+must implement <code>Zend\InputFilter\InputFilterProviderInterface</code>, which defines a
+<code>getInputFilterSpecification()</code> method.</p>
+<p>In the case of an element, the <code>getInputSpecification()</code> method should return
+data to be used by the input filter factory to create an input. Every HTML5
+(<code>email</code>, <code>url</code>, <code>color</code>, etc.) element has a built-in element that use this
+logic. For instance, here is how the <code>Zend\Form\Element\Color</code> element is
+defined:</p>
+<pre class="codehilite"><code class="language-php">namespace Zend\Form\Element;
+
+use Zend\Filter;
+use Zend\Form\Element;
+use Zend\InputFilter\InputProviderInterface;
+use Zend\Validator\Regex as RegexValidator;
+use Zend\Validator\ValidatorInterface;
+
+class Color extends Element implements InputProviderInterface
+{
+    /**
+     * Seed attributes
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'type' =&gt; 'color',
+    ];
+
+    /**
+     * @var ValidatorInterface
+     */
+    protected $validator;
+
+    /**
+     * Get validator
+     *
+     * @return ValidatorInterface
+     */
+    protected function getValidator()
+    {
+        if (null === $this-&gt;validator) {
+            $this-&gt;validator = new RegexValidator('/^#[0-9a-fA-F]{6}$/');
+        }
+        return $this-&gt;validator;
+    }
+
+    /**
+     * Provide default input rules for this element
+     *
+     * Attaches an email validator.
+     *
+     * @return array
+     */
+    public function getInputSpecification()
+    {
+        return [
+            'name' =&gt; $this-&gt;getName(),
+            'required' =&gt; true,
+            'filters' =&gt; [
+                ['name' =&gt; Filter\StringTrim::class],
+                ['name' =&gt; Filter\StringToLower::class],
+            ],
+            'validators' =&gt; [
+                $this-&gt;getValidator(),
+            ],
+        ];
+    }
+}</code></pre>
+
+
+<p>The above hints to the input filter to create and attach an input named after
+the element, marking it as required, giving it <code>StringTrim</code> and <code>StringToLower</code>
+filters, and defining a <code>Regex</code> validator. Note that you can either rely on the
+input filter to create filters and validators, or directly instantiate them.</p>
+<p>For fieldsets, you do very similarly; the difference is that
+<code>getInputFilterSpecification()</code> must return configuration for an input filter.</p>
+<pre class="codehilite"><code class="language-php">namespace Contact\Form;
+
+use Zend\Filter;
+use Zend\Form\Fieldset;
+use Zend\InputFilter\InputFilterProviderInterface;
+use Zend\Validator;
+
+class SenderFieldset extends Fieldset implements InputFilterProviderInterface
+{
+    public function getInputFilterSpecification()
+    {
+        return [
+            'name' =&gt; [
+                'required' =&gt; true,
+                'filters'  =&gt; [
+                    ['name' =&gt; Filter\StringTrim::class],
+                ],
+                'validators' =&gt; [
+                    [
+                        'name' =&gt; Validator\StringLength::class, 
+                        'options' =&gt; [
+                            'min' =&gt; 3,
+                            'max' =&gt; 256
+                        ],
+                    ],
+                ],
+            ],
+            'email' =&gt; [
+                'required' =&gt; true,
+                'filters'  =&gt; [
+                    ['name' =&gt; Filter\StringTrim::class],
+                ],
+                'validators' =&gt; [
+                    new Validator\EmailAddress(),
+                ],
+            ],
+        ];
+    }
+}</code></pre>
+
+
+<p>Specifications are a great way to make forms, fieldsets, and elements re-usable
+trivially in your applications. In fact, the <code>Captcha</code> and <code>Csrf</code> elements
+define specifications in order to ensure they can work without additional user
+configuration!</p>
+<blockquote>
+<h3 id="use-the-most-specific-input-type">Use the most specific input type</h3>
+<p>If you set custom input filter specification either in
+<code>getInputSpecification()</code> or in <code>getInputFilterSpecification()</code>, the
+<code>Zend\InputFilter\InputInterface</code> set for that specific field is reset to the
+default <code>Zend\InputFilter\Input</code>.</p>
+<p>Some form elements may need a particular input filter, like
+<code>Zend\Form\Element\File</code>: in this case it's mandatory to specify the <code>type</code>
+key in your custom specification to match the original one (e.g., for the
+file element, use <code>Zend\InputFilter\FileInput</code>).</p>
+</blockquote>
+<h2 id="binding-an-object">Binding an object</h2>
+<p>As noted in the introduction, forms bridge the domain model and the view layer.
+Let's see that in action.</p>
+<p>When you <code>bind()</code> an object to the form, the following happens:</p>
+<ul>
+<li>The composed <code>Hydrator</code> calls <code>extract()</code> on the object, and uses the values
+  returned, if any, to populate the <code>value</code> attributes of all elements. If a
+  form contains a fieldset that itself contains another fieldset, the form will
+  recursively extract the values.</li>
+<li>When <code>isValid()</code> is called, if <code>setData()</code> has not been previously set, the
+  form uses the composed <code>Hydrator</code> to extract values from the object, and uses
+  those during validation.</li>
+<li>If <code>isValid()</code> is successful (and the <code>bindOnValidate</code> flag is enabled, which
+  is true by default), then the <code>Hydrator</code> will be passed the validated values
+  to use to hydrate the bound object. (If you do not want this behavior, call
+  <code>setBindOnValidate(FormInterface::BIND_MANUAL)</code>).</li>
+<li>If the object implements <code>Zend\InputFilter\InputFilterAwareInterface</code>, the
+  input filter it composes will be used instead of the one composed on the form.</li>
+</ul>
+<p>This is easier to understand with an example.</p>
+<pre class="codehilite"><code class="language-php">$contact = new ArrayObject;
+$contact['subject'] = '[Contact Form] ';
+$contact['message'] = 'Type your message here';
+
+$form = new Contact\ContactForm;
+
+$form-&gt;bind($contact); // form now has default values for
+                       // 'subject' and 'message'
+
+$data = [
+    'name'    =&gt; 'John Doe',
+    'email'   =&gt; 'j.doe@example.tld',
+    'subject' =&gt; '[Contact Form] \'sup?',
+];
+$form-&gt;setData($data);
+
+if ($form-&gt;isValid()) {
+    // $contact now has the following structure:
+    // [
+    //     'name'    =&gt; 'John Doe',
+    //     'email'   =&gt; 'j.doe@example.tld',
+    //     'subject' =&gt; '[Contact Form] \'sup?',
+    //     'message' =&gt; 'Type your message here',
+    // ]
+    // But is an ArrayObject instance!
+}</code></pre>
+
+
+<p>When an object is bound to the form, calling <code>getData()</code> will return that object
+by default. If you want to return an associative array instead, you can pass the
+<code>FormInterface::VALUES_AS_ARRAY</code> flag to the method.</p>
+<pre class="codehilite"><code class="language-php">use Zend\Form\FormInterface;
+$data = $form-&gt;getData(FormInterface::VALUES_AS_ARRAY);</code></pre>
+
+
+<p>Zend Framework ships several standard <a href="https://zendframework.github.io/zend-hydrator/">hydrators</a>;
+you can create custom hydrators by implementing <code>Zend\Hydrator\HydratorInterface</code>,
+which looks like this:</p>
+<pre class="codehilite"><code class="language-sourceCode">namespace Zend\Hydrator;
+
+interface HydratorInterface
+{
+    /** @return array */
+    public function extract($object);
+    public function hydrate(array $data, $object);
+}</code></pre>
+
+
+<h2 id="rendering">Rendering</h2>
+<p>As noted previously, forms are meant to bridge the domain model and view layer.
+We've discussed the domain model binding, but what about the view?</p>
+<p>The form component ships a set of form-specific view helpers. These accept the
+various form objects, and introspect them in order to generate markup.
+Typically, they will inspect the attributes, but in special cases, they may look
+at other properties and composed objects.</p>
+<p>When preparing to render, you will generally want to call <code>prepare()</code>. This
+method ensures that certain injections are done, and ensures that elements
+nested in fieldsets and collections generate names in array notation (e.g.,
+<code>scoped[array][notation]</code>).</p>
+<p>The base view helpers used everywhere are <code>Form</code>, <code>FormElement</code>, <code>FormLabel</code>,
+and <code>FormElementErrors</code>. Let's use them to display the contact form.</p>
+<pre class="codehilite"><code class="language-php">&lt;?php
+// within a view script
+$form = $this-&gt;form;
+$form-&gt;prepare();
+
+// Assuming the &quot;contact/process&quot; route exists...
+$form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
+
+// Set the method attribute for the form
+$form-&gt;setAttribute('method', 'post');
+
+// Get the form label plugin
+$formLabel = $this-&gt;plugin('formLabel');
+
+// Render the opening tag
+echo $this-&gt;form()-&gt;openTag($form);
+?&gt;
+&lt;div class=&quot;form_element&quot;&gt;
+&lt;?php
+    $name = $form-&gt;get('name');
+    echo $formLabel-&gt;openTag() . $name-&gt;getOption('label');
+    echo $this-&gt;formInput($name);
+    echo $this-&gt;formElementErrors($name);
+    echo $formLabel-&gt;closeTag();
+?&gt;&lt;/div&gt;
+
+&lt;div class=&quot;form_element&quot;&gt;
+&lt;?php
+    $subject = $form-&gt;get('subject');
+    echo $formLabel-&gt;openTag() . $subject-&gt;getOption('label');
+    echo $this-&gt;formInput($subject);
+    echo $this-&gt;formElementErrors($subject);
+    echo $formLabel-&gt;closeTag();
+?&gt;&lt;/div&gt;
+
+&lt;div class=&quot;form_element&quot;&gt;
+&lt;?php
+    $message = $form-&gt;get('message');
+    echo $formLabel-&gt;openTag() . $message-&gt;getOption('label');
+    echo $this-&gt;formTextarea($message);
+    echo $this-&gt;formElementErrors($message);
+    echo $formLabel-&gt;closeTag();
+?&gt;&lt;/div&gt;
+
+&lt;div class=&quot;form_element&quot;&gt;
+&lt;?php
+    $captcha = $form-&gt;get('captcha');
+    echo $formLabel-&gt;openTag() . $captcha-&gt;getOption('label');
+    echo $this-&gt;formCaptcha($captcha);
+    echo $this-&gt;formElementErrors($captcha);
+    echo $formLabel-&gt;closeTag();
+?&gt;&lt;/div&gt;
+
+&lt;?= $this-&gt;formElement($form-&gt;get('security')) ?&gt;
+&lt;?= $this-&gt;formElement($form-&gt;get('send')) ?&gt;
+
+&lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
+
+
+<p>There are a few things to note about this. First, to prevent confusion in IDEs
+and editors when syntax highlighting, we use helpers to both open and close the
+form and label tags. Second, there's a lot of repetition happening here; we
+could easily create a partial view script or a composite helper to reduce
+boilerplate. Third, note that not all elements are created equal &mdash; the
+CSRF and submit elements don't need labels or error messages. Finally, note that
+the <code>FormElement</code> helper tries to do the right thing &mdash; it delegates actual
+markup generation to other view helpers. However, it can only guess what
+specific form helper to delegate to based on the list it has. If you introduce
+new form view helpers, you'll need to extend the <code>FormElement</code> helper, or create
+your own.</p>
+<p>Following the example above, your view files can quickly become long and
+repetitive to write. While we do not currently provide a single-line form view
+helper (as this reduces the form customization), we do provide convenience
+wrappers around emitting individual elements via the <code>FormRow</code> view helper, and
+collections of elements (<code>Zend\Form\Element\Collection</code>, <code>Zend\Form\Fieldset</code>, or
+<code>Zend\Form\Form</code>) via the <code>FormCollection</code> view helper (which, internally,
+iterates the collection and calls <code>FormRow</code> for each element, recursively
+following collections).</p>
+<p>The <code>FormRow</code> view helper automatically renders a label (if present), the
+element itself using the <code>FormElement</code> helper, as well as any errors that could
+arise. Here is the previous form, rewritten to take advantage of this helper:</p>
+<pre class="codehilite"><code class="language-php">&lt;?php
+// within a view script
+$form = $this-&gt;form;
+$form-&gt;prepare();
+
+// Assuming the &quot;contact/process&quot; route exists...
+$form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
+
+// Set the method attribute for the form
+$form-&gt;setAttribute('method', 'post');
+
+// Render the opening tag
+echo $this-&gt;form()-&gt;openTag($form);
+?&gt;
+&lt;div class=&quot;form_element&quot;&gt;
+    &lt;?= $this-&gt;formRow($form-&gt;get('name')) ?&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;form_element&quot;&gt;
+    &lt;?= $this-&gt;formRow($form-&gt;get('subject')) ?&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;form_element&quot;&gt;
+    &lt;?= $this-&gt;formRow($form-&gt;get('message')) ?&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;form_element&quot;&gt;
+    &lt;?= $this-&gt;formRow($form-&gt;get('captcha')) ?&gt;
+&lt;/div&gt;
+
+&lt;?= $this-&gt;formElement($form-&gt;get('security')) ?&gt;
+&lt;?= $this-&gt;formElement($form-&gt;get('send')) ?&gt;
+
+&lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
+
+
+<p>Note that <code>FormRow</code> helper automatically prepends the label. If you want it to
+be rendered after the element itself, you can pass an optional parameter to the
+<code>FormRow</code> view helper :</p>
+<pre class="codehilite"><code class="language-sourceCode">&lt;div class=&quot;form_element&quot;&gt;
+    &lt;?= $this-&gt;formRow($form-&gt;get('name'), 'append') ?&gt;
+&lt;/div&gt;</code></pre>
+
+
+<p>As noted previously, the <code>FormCollection</code> view helper will iterate any
+collection &mdash; including <code>Zend\Form\Element\Collection</code>, fieldsets, and
+forms &mdash; emitting each element discovered using <code>FormRow</code>. <code>FormCollection</code>
+<em>does not render fieldset or form tags</em>; you will be responsible for emitting
+those yourself.</p>
+<p>The above examples can now be rewritten again:</p>
+<pre class="codehilite"><code class="language-php">&lt;?php
+// within a view script
+$form = $this-&gt;form;
+$form-&gt;prepare();
+
+// Assuming the &quot;contact/process&quot; route exists...
+$form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
+
+// Set the method attribute for the form
+$form-&gt;setAttribute('method', 'post');
+
+// Render the opening tag
+echo $this-&gt;form()-&gt;openTag($form);
+echo $this-&gt;formCollection($form);
+echo $this-&gt;form()-&gt;closeTag();</code></pre>
+
+
+<p>Finally, the <code>Form</code> view helper can optionally accept a <code>Zend\Form\Form</code>
+instance; if provided, it will prepare the form, iterate it, and render all
+elements using either <code>FormRow</code> (for non-collection elements) or
+<code>FormCollection</code> (for collections and fieldsets):</p>
+<pre class="codehilite"><code class="language-php">&lt;?php
+// within a view script
+$form = $this-&gt;form;
+
+// Assuming the &quot;contact/process&quot; route exists...
+$form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
+
+// Set the method attribute for the form
+$form-&gt;setAttribute('method', 'post');
+
+echo $this-&gt;form($form);</code></pre>
+
+
+<p>One important point to note about the last two examples: while they greatly
+simplifies emitting the form, you also lose most customization opportunities.
+The above, for example, will not include the <code>&lt;div class="form_element"&gt;&lt;/div&gt;</code>
+wrappers from the previous examples! As such, you will generally want to use
+this facility only when prototyping.</p>
+<h2 id="taking-advantage-of-html5-input-attributes">Taking advantage of HTML5 input attributes</h2>
+<p>HTML5 brings a lot of exciting features, one of them being simplified client
+form validations. zend-form provides elements corresponding to the various HTML5
+elements, specifying the client-side attributes required by them. Additionally,
+each implements <code>InputProviderInterface</code>, ensuring that your input filter will
+have reasonable default validation and filtering rules that mimic the
+client-side validations.</p>
+<blockquote>
+<h3 id="always-validate-server-side">Always validate server-side</h3>
+<p>Although client validation is nice from a user experience point of view, it
+must be used in addition to server-side validation, as client validation can
+be easily bypassed.</p>
+</blockquote>
+<h2 id="validation-groups">Validation Groups</h2>
+<p>Sometimes you want to validate only a subset of form elements. As an example,
+let's say we're re-using our contact form over a web service; in this case, the
+<code>Csrf</code>, <code>Captcha</code>, and submit button elements are not of interest, and shouldn't
+be validated.</p>
+<p>zend-form provides a proxy method to the underlying <code>InputFilter</code>'s
+<code>setValidationGroup()</code> method, allowing us to perform this operation.</p>
+<pre class="codehilite"><code class="language-php">$form-&gt;setValidationGroup('name', 'email', 'subject', 'message');
+$form-&gt;setData($data);
+if ($form-&gt;isValid()) {
+    // Contains only the &quot;name&quot;, &quot;email&quot;, &quot;subject&quot;, and &quot;message&quot; values
+    $data = $form-&gt;getData();
+}</code></pre>
+
+
+<p>If you later want to reset the form to validate all elements, pass the
+<code>FormInterface::VALIDATE_ALL</code> flag to the <code>setValidationGroup()</code> method:</p>
+<pre class="codehilite"><code class="language-php">use Zend\Form\FormInterface;
+$form-&gt;setValidationGroup(FormInterface::VALIDATE_ALL);</code></pre>
+
+
+<p>When your form contains nested fieldsets, you can use an array notation to
+validate only a subset of the fieldsets :</p>
+<pre class="codehilite"><code class="language-php">$form-&gt;setValidationGroup(['profile' =&gt; [
+    'firstname',
+    'lastname',
+] ]);
+
+$form-&gt;setData($data);
+if ($form-&gt;isValid()) {
+    // Contains only the &quot;firstname&quot; and &quot;lastname&quot; values from the
+    // &quot;profile&quot; fieldset
+    $data = $form-&gt;getData();
+}</code></pre>
+
+
+<h2 id="using-annotations">Using Annotations</h2>
+<p>Creating a complete form solution can often be tedious: you'll create a domain
+model object, an input filter for validating it, a form object for providing a
+representation for it, and potentially a hydrator for mapping the form elements
+and fieldsets to the domain model. Wouldn't it be nice to have a central place
+to define all of these?</p>
+<p>Annotations allow us to solve this problem. You can define the following
+behaviors with the shipped annotations in zend-form:</p>
+<ul>
+<li><code>AllowEmpty</code>: mark an input as allowing an empty value. This annotation does
+  not require a value.</li>
+<li><code>Attributes</code>: specify the form, fieldset, or element attributes. This
+  annotation requires an associative array of values, in a JSON object format:
+  <code>@Attributes({"class":"zend_form","type":"text"})</code>.</li>
+<li><code>ComposedObject</code>: specify another object with annotations to parse. Typically,
+  this is used if a property references another object, which will then be added
+  to your form as an additional fieldset.  Expects a string value indicating the
+  class for the object being composed: <code>@ComposedObject("Namespace\Model\ComposedObject")</code>;
+  or an array to compose a collection:
+  <code>@ComposedObject({ "target_object":"Namespace\Model\ComposedCollection", "is_collection":"true", "options":{"count":2}})</code>;
+  <code>target_object</code> is the element to compose, <code>is_collection</code> flags this as a
+  collection, and <code>options</code> can take an array of options to pass into the
+  collection.</li>
+<li><code>ErrorMessage</code>: specify the error message to return for an element in the case
+  of a failed validation. Expects a string value.</li>
+<li><code>Exclude</code>: mark a property to exclude from the form or fieldset. This
+  annotation does not require a value.</li>
+<li><code>Filter</code>: provide a specification for a filter to use on a given element.
+  Expects an associative array of values, with a "name" key pointing to a string
+  filter name, and an "options" key pointing to an associative array of filter
+  options for the constructor: <code>@Filter({"name": "Boolean", "options": {"casting":true}})</code>.
+  This annotation may be specified multiple times.</li>
+<li><code>Flags</code>: flags to pass to the fieldset or form composing an element or
+  fieldset; these are usually used to specify the name or priority. The
+  annotation expects an associative array: <code>@Flags({"priority": 100})</code>.</li>
+<li><code>Hydrator</code>: specify the hydrator class to use for this given form or fieldset.
+  A string value is expected.</li>
+<li><code>InputFilter</code>: specify the input filter class to use for this given form or
+  fieldset. A string value is expected.</li>
+<li><code>Input</code>: specify the input class to use for this given element. A string value
+  is expected.</li>
+<li><code>Instance</code>: specify an object class instance to bind to the form or fieldset.</li>
+<li><code>Name</code>: specify the name of the current element, fieldset, or form. A string
+  value is expected.</li>
+<li><code>Object</code>: specify an object class instance to bind to the form or fieldset.
+  (Note: this is deprecated in 2.4.0; use <code>Instance</code> instead.)</li>
+<li><code>Options</code>: options to pass to the fieldset or form that are used to inform
+  behavior &mdash; things that are not attributes; e.g. labels, CAPTCHA adapters,
+  etc. The annotation expects an associative array: <code>@Options({"label": "Username:"})</code>.</li>
+<li><code>Required</code>: indicate whether an element is required. A boolean value is
+  expected. By default, all elements are required, so this annotation is mainly
+  present to allow disabling a requirement.</li>
+<li><code>Type</code>: indicate the class to use for the current element, fieldset, or form.
+  A string value is expected.</li>
+<li><code>Validator</code>: provide a specification for a validator to use on a given
+  element. Expects an associative array of values, with a "name" key pointing to
+  a string validator name, and an "options" key pointing to an associative array
+  of validator options for the constructor:
+  <code>@Validator({"name": "StringLength", "options": {"min":3, "max": 25}})</code>.
+  This annotation may be specified multiple times.</li>
+</ul>
+<p>To use annotations, include them in your class and/or property docblocks.
+Annotation names will be resolved according to the import statements in your
+class; as such, you can make them as long or as short as you want depending on
+what you import.</p>
+<blockquote>
+<h3 id="doctrinecommon-dependency">doctrine/common dependency</h3>
+<p>Form annotations require <code>doctrine\common</code>, which contains an annotation
+parsing engine. Install it using composer:</p>
+<pre class="codehilite"><code class="language-bash">$ composer require doctrine/common</code></pre>
+
+
+</blockquote>
+<p>Here's an example:</p>
+<pre class="codehilite"><code class="language-php">use Zend\Form\Annotation;
+
+/**
+ * @Annotation\Name(&quot;user&quot;)
+ * @Annotation\Hydrator(&quot;Zend\Stdlib\Hydrator\ObjectProperty&quot;)
+ */
+class User
+{
+    /**
+     * @Annotation\Exclude()
+     */
+    public $id;
+
+    /**
+     * @Annotation\Filter({&quot;name&quot;:&quot;StringTrim&quot;})
+     * @Annotation\Validator({&quot;name&quot;:&quot;StringLength&quot;, &quot;options&quot;:{&quot;min&quot;:1, &quot;max&quot;:25}})
+     * @Annotation\Validator({&quot;name&quot;:&quot;Regex&quot;,
+&quot;options&quot;:{&quot;pattern&quot;:&quot;/^[a-zA-Z][a-zA-Z0-9_-]{0,24}$/&quot;}})
+     * @Annotation\Attributes({&quot;type&quot;:&quot;text&quot;})
+     * @Annotation\Options({&quot;label&quot;:&quot;Username:&quot;})
+     */
+    public $username;
+
+    /**
+     * @Annotation\Type(&quot;Zend\Form\Element\Email&quot;)
+     * @Annotation\Options({&quot;label&quot;:&quot;Your email address:&quot;})
+     */
+    public $email;
+}</code></pre>
+
+
+<p>The above will hint to the annotation builder to create a form with name "user",
+which uses the hydrator <code>Zend\Stdlib\Hydrator\ObjectProperty</code>. That form will
+have two elements, "username" and "email". The "username" element will have an
+associated input that has a <code>StringTrim</code> filter, and two validators: a
+<code>StringLength</code> validator indicating the username is between 1 and 25 characters,
+and a <code>Regex</code> validator asserting it follows a specific accepted pattern. The
+form element itself will have an attribute "type" with value "text" (a text
+element), and a label "Username:". The "email" element will be of type
+<code>Zend\Form\Element\Email</code>, and have the label "Your email address:".</p>
+<p>To use the above, we need <code>Zend\Form\Annotation\AnnotationBuilder</code>:</p>
+<pre class="codehilite"><code class="language-php">use Zend\Form\Annotation\AnnotationBuilder;
+
+$builder = new AnnotationBuilder();
+$form    = $builder-&gt;createForm(User::class);</code></pre>
+
+
+<p>At this point, you have a form with the appropriate hydrator attached, an input
+filter with the appropriate inputs, and all elements.</p>
+<blockquote>
+<h3 id="youre-not-done">You're not done</h3>
+<p>In all likelihood, you'll need to add some more elements to the form you
+construct. For example, you'll want a submit button, and likely a
+CSRF-protection element. We recommend creating a fieldset with common elements
+such as these that you can then attach to the form you build via annotations.</p>
+</blockquote>
+
+<hr />
+
+
+<nav>
+  <ul class="pager hidden-print">
+    <li class="previous">
+      <a rel="prev" href="../intro/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../element/intro/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav>
+</div>
+        
+    </div>
+    <!-- content:end -->
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
+
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/prism-zf.js"></script>
+
+    <script>var base_url = '..';</script>
+    <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+    <script src="../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="zf-components">
+  <div class="zf-components-grid">
+    <div class="zf-logo">
+      <a href="http://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Go to the ZF homepage"><img src="../img/zf-logo-mark.png" alt="Zend Framework" width="250" /></a>
+    </div>
+
+    <div class="component-list"></div>
+
+    <p class="zf-components-rollup"><a href="#">Hide list</a></p>
+  </div>
+</div>
+
+    <script>
+  // Prepare the component list dropdown for display
+  $(function () {
+    var components = $(".zf-components"),
+        componentList = components.find(".component-list"),
+        sidebar = $(".bs-sidebar.affix"),
+        sidebarInitialPos = sidebar.css("position"),
+        hidden,
+        componentToggle = $(".component-toggle"),
+        navbar = $(".navbar-fixed-top"),
+        rollUpLink = $(".zf-components-rollup a");
+
+    // Initial setup on document load
+    components.insertBefore(navbar);
+    $(".zf-logo a").tooltip();
+    componentToggle.tooltip();
+    rollUpLink.attr({ href: "#", alt: "Hide component list" });
+
+    // Cast initial sidebar position value
+    if (undefined === sidebarInitialPos) {
+      sidebarInitialPos = "fixed";
+    }
+
+    // Setup onclick events to toggle list
+    componentToggle.click(toggleComponentList);
+    rollUpLink.click(toggleComponentList);
+
+    // Toggle the component list display
+    function toggleComponentList(event) {
+      event.preventDefault();
+
+      if (hidden === undefined) {
+        // Not loaded yet; load and display.
+        loadComponentList();
+        return;
+      }
+
+      if (hidden) {
+        // Hidden; display.
+        showComponentList();
+        return;
+      }
+
+      // Currently visible; hide
+      hideComponentList();
+    }
+
+    // Show the component list
+    function showComponentList() {
+      navbar.css({position: "relative"});
+      sidebar.css({position: "relative"});
+      components
+        .css({"margin-top": "-" + components.outerHeight() + "px"})
+        .show()
+        .animate({"margin-top": 0}, {
+          complete: function () {
+            componentToggle
+              .data("placement", "top")
+              .attr("data-original-title", "Hide component list");
+            hidden = false;
+          },
+          queue: false
+        });
+    }
+
+    // Hide the component list
+    function hideComponentList() {
+      components.animate({"margin-top": "-" + components.outerHeight() + "px"}, {
+        complete: function () {
+          navbar.css({position: "fixed"});
+          sidebar.css({position: sidebarInitialPos});
+          componentToggle
+            .data("placement", "bottom")
+            .attr("data-original-title", "Show component list");
+          components.hide();
+          hidden = true;
+        },
+        queue: false
+      });
+      sidebar.animate({ top: sidebarInitialTop + "px" }, { queue: false});
+    }
+
+    // Inject a component into the componet list DOM.
+    function injectComponent(index, component) {
+      componentList.append('<div class="component"><h4><a href="' + component.url + '">' + component.name + '</a></h4><p>' + component.description + '</p></div>');
+    }
+
+    // Parse the component list, build the DOM, and display it.
+    function parseComponentList(components) {
+      $.each(components, injectComponent);
+      showComponentList();
+    }
+
+    // Fetch the component list and display it.
+    function loadComponentList () {
+      $.ajax({
+        url: "//zendframework.github.io/zf-mkdoc-theme/scripts/zf-component-list.json",
+        dataType: "text json",
+        success: parseComponentList,
+        error: function (e) {
+          console.log("Error occurred with XHR call", e);
+        }
+      });
+    }
+  });
+</script>
+    </body>
+
+</html>

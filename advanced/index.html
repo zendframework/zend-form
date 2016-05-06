@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <link rel="shortcut icon" href="../img/favicon.ico">
 
-    <title>Intro - zend-form</title>
+    <title>Advanced - zend-form</title>
 
     <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -74,8 +74,8 @@
                 
                 
                 
-                    <li class="active">
-                        <a href="./">Intro</a>
+                    <li >
+                        <a href="../intro/">Intro</a>
                     </li>
                 
                 
@@ -86,7 +86,7 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -550,8 +550,8 @@
 
                         
                             
-<li >
-    <a href="../advanced/">Advanced</a>
+<li class="active">
+    <a href="./">Advanced</a>
 </li>
 
                         
@@ -595,7 +595,15 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#introduction">Introduction</a></li>
+        <li class="main active"><a href="#advanced-use-cases">Advanced use cases</a></li>
+        
+            <li><a href="#short-names">Short names</a></li>
+        
+            <li><a href="#creating-custom-elements">Creating custom elements</a></li>
+        
+            <li><a href="#handling-dependencies">Handling dependencies</a></li>
+        
+            <li><a href="#initialization">Initialization</a></li>
         
     
     </ul>
@@ -603,10 +611,10 @@
     
     <ul class="pager hidden-print">
       <li class="previous">
-        <a rel="prev" href=".."><i class="fa fa-arrow-left"></i> Previous</a>
+        <a rel="prev" href="../helper/form-file-upload-progress/"><i class="fa fa-arrow-left"></i> Previous</a>
       </li>
-      <li class="next">
-        <a rel="next" href="../quick-start/">Next <i class="fa fa-arrow-right"></i></a>
+      <li class="next disabled ">
+        <a rel="next" >Next <i class="fa fa-arrow-right"></i></a>
       </li>
     </ul>
     
@@ -617,41 +625,428 @@
   <li><a href="..">Docs</a> &raquo;</li>
   
     
+      
+        <li>Reference &raquo;</li>
+      
+    
   
-  <li class="active">Intro</li>
+  <li class="active">Advanced</li>
 </ol>
 
-<h1 id="introduction">Introduction</h1>
-<p>zend-form is a bridge between your domain models and the view layer. It composes
-a thin layer of objects representing form elements, an
-<a href="https://github.com/zendframework/zend-inputfilter/">InputFilter</a>, and a small
-number of methods for binding data to and from the form and attached objects.</p>
-<p>The component consists of the following objects:</p>
-<ul>
-<li>Elements, which consist of a name and attributes.</li>
-<li>Fieldsets, which extend from elements, but allow composing other fieldsets and
-  elements.</li>
-<li>Forms, which extend from Fieldsets (and thus Elements). They provide data and
-  object binding, and compose <a href="https://github.com/zendframework/zend-inputfilter/">InputFilters</a>.
-  Data binding is done via <a href="https://zendframework.github.io/zend-hydrator/">zend-hydrator</a>.</li>
-</ul>
-<p>To facilitate usage with the view layer, zend-form also aggregates a number of
-form-specific view helpers. These accept elements, fieldsets, and/or forms, and
-use the attributes they compose to render markup.</p>
-<p>A small number of specialized elements are provided for accomplishing
-application-centric tasks.  These include the <code>Csrf</code> element, used to prevent
-Cross Site Request Forgery attacks, and the <code>Captcha</code> element, used to display
-and validate <a href="https://zendframework.github.io/zend-captcha">CAPTCHAs</a>.</p>
-<p>A <code>Factory</code> is provided to facilitate creation of elements, fieldsets, forms,
-and the related input filter. The default <code>Form</code> implementation is backed by a
-factory to facilitate extension and ease the process of form creation.</p>
-<p>The code related to forms can often spread between a variety of concerns: a form
-definition, an input filter definition, a domain model class, and one or more
-hydrator implementations. As such, finding the various bits of code and how they
-relate can become tedious. To simplify the situation, you can also annotate your
-domain model class, detailing the various input filter definitions, attributes,
-and hydrators that should all be used together. <code>Zend\Form\Annotation\AnnotationBuilder</code>
-can then be used to build the various objects you need.</p>
+<h1 id="advanced-use-cases">Advanced use cases</h1>
+<p>Beginning with version 2.1, forms elements can be registered using a
+designated plugin manager, in the same way that view helpers, controller
+plugins, and filters are registered. This new feature has a number of benefits,
+especially when you need to handle complex dependencies in forms/fieldsets.</p>
+<h2 id="short-names">Short names</h2>
+<p>The first advantage of pulling form elements from the service manager is that
+now you can use short names to create new elements through the factory.
+Therefore, this code:</p>
+<pre class="codehilite"><code class="language-php">$form-&gt;add([
+    'type' =&gt; Element\Email::class,
+    'name' =&gt; 'email',
+]);</code></pre>
+
+
+<p>can now be replaced by:</p>
+<pre class="codehilite"><code class="language-php">$form-&gt;add([
+     'type' =&gt; 'Email',
+     'name' =&gt; 'email'
+]);</code></pre>
+
+
+<p>Each element provided out-of-the-box by zend-form supports this natively.</p>
+<blockquote>
+<h3 id="use-the-class-constant">Use the ::class constant</h3>
+<p>While using aliases leads to compact code, they're also can more easily result
+in typographic mistakes. We recommend using the <code>::class</code> constant in most
+situations, as these can be more easily scanned with static analysis tools for
+correctness.</p>
+</blockquote>
+<h2 id="creating-custom-elements">Creating custom elements</h2>
+<p>zend-form also supports custom form elements.</p>
+<p>To create a custom form element, make it extend the <code>Zend\Form\Element</code> class,
+or, if you have a more specific dependency, extend one of the classes in the
+<code>Zend\Form\Element</code> namespace.</p>
+<p>In the following, we will demonstrate creating a custom <code>Phone</code> element for
+entering phone numbers. It will extend <code>Zend\Form\Element</code> class and provide
+some default input rules.</p>
+<p>Our custom phone element could look something like this:</p>
+<pre class="codehilite"><code class="language-php">namespace Application\Form\Element;
+
+use Zend\Filter;
+use Zend\Form\Element;
+use Zend\InputFilter\InputProviderInterface;
+use Zend\Validator\Regex as RegexValidator;
+
+class Phone extends Element implements InputProviderInterface
+{
+    /**
+     * @var ValidatorInterface
+     */
+    protected $validator;
+
+    /**
+    * Get a validator if none has been set.
+    *
+    * @return ValidatorInterface
+    */
+    public function getValidator()
+    {
+        if (null === $this-&gt;validator) {
+            $validator = new RegexValidator('/^\+?\d{11,12}$/');
+            $validator-&gt;setMessage(
+                'Please enter 11 or 12 digits only!',
+                RegexValidator::NOT_MATCH
+            );
+
+            $this-&gt;validator = $validator;
+        }
+
+        return $this-&gt;validator;
+    }
+
+    /**
+     * Sets the validator to use for this element
+     *
+     * @param  ValidatorInterface $validator
+     * @return self
+     */
+    public function setValidator(ValidatorInterface $validator)
+    {
+        $this-&gt;validator = $validator;
+        return $this;
+    }
+
+    /**
+     * Provide default input rules for this element
+     *
+     * Attaches a phone number validator.
+     *
+     * @return array
+     */
+    public function getInputSpecification()
+    {
+        return [
+            'name' =&gt; $this-&gt;getName(),
+            'required' =&gt; true,
+            'filters' =&gt; [
+                ['name' =&gt; Filter\StringTrim::class],
+            ],
+            'validators' =&gt; [
+                $this-&gt;getValidator(),
+            ],
+        ];
+    }
+}</code></pre>
+
+
+<p>By implementing <code>Zend\InputFilter\InputProviderInterface</code> interface, we are
+hinting to our form object that this element provides some default input rules
+for filtering and/or validating values. In this example, the default input
+specification provides a <code>Zend\Filter\StringTrim</code> filter and a
+<code>Zend\Validator\Regex</code> validator that validates that the value optionally has a
+<code>+</code> sign at the beginning, and is followed by 11 or 12 digits.</p>
+<p>To use the new element in our forms, we can specify it by its fully qualified
+class name (FQCN):</p>
+<pre class="codehilite"><code class="language-php">use Application\Form\Element\Phone;
+use Zend\Form\Form;
+
+$form = Form();
+$form-&gt;add(array(
+    'name' =&gt; 'phone',
+    'type' =&gt; Phone::class,
+));</code></pre>
+
+
+<p>Or, if you are extending <code>Zend\Form\Form</code>:</p>
+<pre class="codehilite"><code class="language-php">namespace Application\Form;
+
+use Zend\Form\Form;
+
+class MyForm extends Form
+{
+    public function __construct($name = null)
+    {
+        parent::__construct($name);
+
+        $this-&gt;add([
+            'name' =&gt; 'phone',
+            'type' =&gt; Element\Phone::class,
+        ]);
+    }
+}</code></pre>
+
+
+<p>If you don't want to use the custom element's FQCN, but rather a short name,
+add an entry for it to <code>Zend\Form\FormElementManager</code>. You can do this by adding
+an entry under the <code>form_elements</code> configuration, or within your <code>Module</code> class
+via a <code>getFormElementConfig()</code> method.</p>
+<p>Configuration via a config file (e.g., <code>module.config.php</code>) file looks like the
+following:</p>
+<pre class="codehilite"><code class="language-php">use Zend\ServiceManager\Factory\InvokableFactory;
+
+return [
+    'form_elements' =&gt; [
+        'aliases' =&gt; [
+            'phone' =&gt; Application\Form\Element\Phone::class,
+        ],
+        'factories' =&gt; [
+            Application\Form\Element\Phone::class =&gt; InvokableFactory::class,
+        ],
+    ],
+];</code></pre>
+
+
+<p>The following demonstrates using your <code>Module</code> class:</p>
+<pre class="codehilite"><code class="language-php">namespace Application;
+
+use Zend\ModuleManager\Feature\FormElementProviderInterface;
+use Zend\ServiceManager\Factory\InvokableFactory;
+
+class Module implements FormElementProviderInterface
+{
+    public function getFormElementConfig()
+    {
+        return [
+            'aliases' =&gt; [
+                'phone' =&gt; Form\Element\Phone::class,
+            ],
+            'factories' =&gt; [
+                Form\Element\Phone::class =&gt; InvokableFactory::class,
+            ],
+        ];
+    }
+}</code></pre>
+
+
+<p>If needed, you can define a custom factory for handling dependencies.</p>
+<p><strong>And now comes the first catch.</strong></p>
+<p>If you are creating your form class by extending <code>Zend\Form\Form</code>, you <em>must
+not</em> add the custom element in the constructor (as we have done in the previous
+example where we used the custom element's FQCN), but rather in the <code>init()</code>
+method:</p>
+<pre class="codehilite"><code class="language-php">namespace Application\Form;
+
+use Zend\Form\Form;
+
+class MyForm extends Form
+{
+    public function init()
+    {
+        $this-&gt;add([
+            'name' =&gt; 'phone',
+            'type' =&gt; 'phone',
+        ]);
+    }
+}</code></pre>
+
+
+<p><strong>The second catch</strong> is that you <em>must not</em> directly instantiate your form
+class, but rather get an instance of it through <code>Zend\Form\FormElementManager</code>:</p>
+<pre class="codehilite"><code class="language-php">namespace Application\Controller;
+
+use Application\Form\MyForm;
+use Zend\Mvc\Controller\AbstractActionController;
+
+class IndexController extends AbstractActionController
+{
+    private $form;
+
+    public function __construct(MyForm $form)
+    {
+        $this-&gt;form = $form;
+    }
+
+    public function indexAction()
+    {
+        return array('form' =&gt; $this-&gt;form);
+    }
+}</code></pre>
+
+
+<p>This now requires a factory to inject the form instance:</p>
+<pre class="codehilite"><code class="language-php">namespace Application\Controller;
+
+use Interop\Container\ContainerInterface;
+use Application\Form\MyForm;
+
+class IndexControllerFactory
+{
+    public function __invoke(ContainerInterface $container)
+    {
+        $formManager = $container-&gt;get('FormElementManager');
+        return new IndexController($formManager-&gt;get(MyForm::class));
+    }
+}</code></pre>
+
+
+<p>Which in turn requires that you map the controller to the factory:</p>
+<pre class="codehilite"><code class="language-php">// In module.config.php
+return [
+    /* ... */
+    'controllers' =&gt; [
+        'factories' =&gt; [
+            Application\Controller\IndexController::class =&gt; Application\Controller\IndexControllerFactory::class,
+        ],
+    ],
+];</code></pre>
+
+
+<p>The biggest gain of this is that you can easily override any built-in form
+elements if they do not fit your needs. For instance, if you want to create your
+own <code>Email</code> element instead of the standard one, create your custom element, and
+add it to the form element config with the same key as the element you want to
+replace:</p>
+<pre class="codehilite"><code class="language-php">namespace Application;
+
+use Zend\Form\Element\Email;
+use Zend\ModuleManager\Feature\FormElementProviderInterface;
+use Zend\ServiceManager\Factory\InvokableFactory;
+
+class Module implements FormElementProviderInterface
+{
+    public function getFormElementConfig()
+    {
+        return [
+            'aliases' =&gt; [
+                'email' =&gt; Form\Element\MyEmail::class,
+                'Email' =&gt; Form\Element\MyEmail::class,
+            ],
+            'factories' =&gt; [
+                Form\Element\MyEmail::class =&gt; InvokableFactory::class,
+            ],
+        ];
+    }
+}</code></pre>
+
+
+<p>Now whenever you create an element with a <code>type</code> of 'email',
+it will create the custom element instead of the built-in one.</p>
+<blockquote>
+<h3 id="use-the-original">Use the original?</h3>
+<p>If you want to be able to use both the built-in one and your own one, you can
+still provide the FQCN of the element, e.g. <code>Zend\Form\Element\Email</code>.</p>
+</blockquote>
+<p>In summary, to create your own form elements (or even reusable fieldsets!) and
+be able to use them in your form, you need to:</p>
+<ol>
+<li>Create your element (like you did before).</li>
+<li>Add it to the form element manager either via the <code>form_elements</code>
+   configuration in your module, or by defining a <code>getFormElementConfig()</code> in
+   your <code>Module</code> class.</li>
+<li>Make sure the custom form element is not added in the form's constructor,
+   but rather in its <code>init()</code> method, or after getting an instance of the form.</li>
+<li>Retrieve your form through the form element manager instead of directly
+   instantiating it, and inject it in your controller.</li>
+</ol>
+<h2 id="handling-dependencies">Handling dependencies</h2>
+<p>Dependency management can be complex. For instance, a very frequent use case is
+a form that creates a fieldset, but itself need access to the database to
+populate a <code>Select</code> element. Retrieving forms from the <code>FormElementManager</code>
+solves this issue, as factories it invokes have access to the application
+service container, and can use it to provide dependencies.</p>
+<p>For instance, let's say that a form create a fieldset called <code>AlbumFieldset</code>:</p>
+<pre class="codehilite"><code class="language-php">namespace Application\Form;
+
+use Zend\Form\Form;
+
+class CreateAlbum extends Form
+{
+    public function init()
+    {
+        $this-&gt;add([
+            'name' =&gt; 'album',
+            'type' =&gt; AlbumFieldset::class,
+        ]);
+    }
+}</code></pre>
+
+
+<p>Let's now create the <code>AlbumFieldset</code>, and have it depend on an <code>AlbumTable</code>
+object that allows us to fetch albums from the database.</p>
+<pre class="codehilite"><code class="language-php">namespace Application\Form;
+
+use Album\Model\AlbumTable;
+use Zend\Form\Fieldset;
+
+class AlbumFieldset extends Fieldset
+{
+    public function __construct(AlbumTable $albumTable)
+    {           
+        // Add any elements that need to fetch data from database
+        // using the album table !
+    }
+}</code></pre>
+
+
+<p>To enable this, we'll create a factory for our <code>AlbumFieldset</code> as follows:</p>
+<pre class="codehilite"><code class="language-php">namespace Application\Form;
+
+use Album\Model\AlbumTable;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
+
+class AlbumFieldsetFactory implements FactoryInterface
+{
+    public function __invoke(ContainerInterface $container, $name, array $options = null)
+    {
+        return new AlbumFieldset($container-&gt;get(AlbumTable::class));
+    }
+
+    public function createService(ServiceLocatorInterface $formManager)
+    {
+        return $this(
+            $formManager-&gt;getServiceLocator() ?: $formManager,
+            AlbumFieldset::class
+        );
+    }
+}</code></pre>
+
+
+<blockquote>
+<h3 id="compatibility">Compatibility</h3>
+<p>The above factory was written to work with both the v2 and v3 releases of
+zend-servicemanager. If you know you will only be using v3, you can remove the
+<code>createService()</code> implementation.</p>
+</blockquote>
+<p>You can now map the fieldset to the factory in your configuration:</p>
+<pre class="codehilite"><code class="language-php">// In module.config.php:
+return [
+    'form_elements' =&gt; [
+        'factories' =&gt; [
+            Application\Form\AlbumFieldset::class =&gt; Application\Form\AlbumFieldsetFactory::class,
+        ],
+    ],
+];</code></pre>
+
+
+<p>Inject your form into your controller, per the example in the previous section.</p>
+<p>As a reminder, to use your fieldset in a view, you need to use the
+<code>formCollection</code> helper:</p>
+<pre class="codehilite"><code class="language-php">echo $this-&gt;form()-&gt;openTag($form);
+echo $this-&gt;formCollection($form-&gt;get('album'));
+echo $this-&gt;form()-&gt;closeTag();</code></pre>
+
+
+<h2 id="initialization">Initialization</h2>
+<p>As noted in previous sections, and in the chapter on elements, we recommend
+defining an <code>init()</code> method for initializing your elements, fieldsets, and
+forms. Where does this come from, and when exactly is it invoked in the object
+lifecycle?</p>
+<p>The method is defined in <code>Zend\Stdlib\InitializableInterface</code>, which
+<code>Zend\Form\Element</code> implements. It is <em>not</em>, however, automatically invoked on
+instantiation!</p>
+<p>Within zend-form, the <code>FormElementManager</code> defines an
+<a href="http://zendframework.github.io/zend-servicemanager/configuring-the-service-manager/#initializers">initializer</a>
+that is pushed to the bottom of the initializer stack, making it the last
+initializer invoked. This initializer checks if the instance created implements
+<code>InitializableInterface</code>, and, if so, calls its <code>init()</code> method.</p>
+<p>This approach ensures that dependencies are fully injected prior to any methods
+you call from your <code>init()</code> method. As a result, when pulling items from the
+<code>FormElementManager</code>, you can be assured that all factories are correctly setup
+and populated, and shared across all specifications you provide.</p>
 
 <hr />
 
@@ -659,10 +1054,10 @@ can then be used to build the various objects you need.</p>
 <nav>
   <ul class="pager hidden-print">
     <li class="previous">
-      <a rel="prev" href=".."><i class="fa fa-arrow-left"></i> Previous</a>
+      <a rel="prev" href="../helper/form-file-upload-progress/"><i class="fa fa-arrow-left"></i> Previous</a>
     </li>
-    <li class="next">
-      <a rel="next" href="../quick-start/">Next <i class="fa fa-arrow-right"></i></a>
+    <li class="next disabled ">
+      <a rel="next" >Next <i class="fa fa-arrow-right"></i></a>
     </li>
   </ul>
 </nav>
