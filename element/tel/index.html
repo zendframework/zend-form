@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Element - zend-form</title>
+    <title>tel - zend-form</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -102,8 +102,8 @@
 
         
             
-<li class="active">
-    <a href="./">Element</a>
+<li >
+    <a href="../element/">Element</a>
 </li>
 
         
@@ -246,8 +246,8 @@
 
         
             
-<li >
-    <a href="../tel/">tel</a>
+<li class="active">
+    <a href="./">tel</a>
 </li>
 
         
@@ -607,7 +607,7 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#element-base-class">Element Base Class</a></li>
+        <li class="main active"><a href="#tel">Tel</a></li>
         
             <li><a href="#basic-usage">Basic Usage</a></li>
         
@@ -619,10 +619,10 @@
     
     <ul class="pager hidden-print">
       <li class="previous">
-        <a rel="prev" href="../intro/"><i class="fa fa-arrow-left"></i> Previous</a>
+        <a rel="prev" href="../submit/"><i class="fa fa-arrow-left"></i> Previous</a>
       </li>
       <li class="next">
-        <a rel="next" href="../button/">Next <i class="fa fa-arrow-right"></i></a>
+        <a rel="next" href="../text/">Next <i class="fa fa-arrow-right"></i></a>
       </li>
     </ul>
     
@@ -642,38 +642,44 @@
       
     
   
-  <li class="active">Element</li>
+  <li class="active">tel</li>
 </ol>
 
-<h1 id="element-base-class">Element Base Class</h1>
-<p><code>Zend\Form\Element</code> is a base class for all specialized elements and
-<code>Zend\Form\Fieldset</code>.</p>
+<h1 id="tel">Tel</h1>
+<p><code>Zend\Form\Element\Tel</code> is meant to be paired with the
+<a href="../../helper/form-tel/">FormTel</a> helper for
+<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#telephone-state-%28type=tel%29">HTML5 inputs with type "tel"</a>.
+This element adds filters and validators to its input filter specification in
+order to validate HTML5 tel input values on the server.</p>
+<p><strong>Available since 2.9.0.</strong></p>
 <h2 id="basic-usage">Basic Usage</h2>
-<p>At the bare minimum, each element or fieldset requires a name. You will also
-typically provide some attributes to hint to the view layer how it might render
-the item.</p>
+<p>This element automatically adds a <code>type</code> attribute of value <code>tel</code>.</p>
 <pre class="codehilite"><code class="language-php">use Zend\Form\Element;
 use Zend\Form\Form;
 
-$username = new Element\Text('username');
-$username-&gt;setLabel('Username');
-$username-&gt;setAttributes([
-    'class' =&gt; 'username',
-    'size'  =&gt; '30',
-]);
-
-$password = new Element\Password('password');
-$password-&gt;setLabel('Password')
-$password-&gt;setAttributes([
-    'size'  =&gt; '30',
-]);
+$phone = new Element\Tel('phone');
+$phone-&gt;setLabel('Phone');
 
 $form = new Form('my-form');
-$form-&gt;add($username);
-$form-&gt;add($password);</code></pre>
+$form-&gt;add($phone);</code></pre>
+
+
+<p>Using array notation:</p>
+<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+use Zend\Form\Form;
+
+$form = new Form('my-form');
+$form-&gt;add([
+    'type' =&gt; Element\Tel::class,
+    'name' =&gt; 'phone',
+    'options' =&gt; [
+        'label' =&gt; 'Phone',
+    ],
+]);</code></pre>
 
 
 <h2 id="public-methods">Public Methods</h2>
+<p>The following methods are specific to the <code>Tel</code> element:</p>
 <div class="table-responsive"><table>
 <thead>
 <tr>
@@ -683,96 +689,8 @@ $form-&gt;add($password);</code></pre>
 </thead>
 <tbody>
 <tr>
-<td><code>setName(string $name) : void</code></td>
-<td>Set the name for this element.</td>
-</tr>
-<tr>
-<td><code>getName() : string</code></td>
-<td>Return the name for this element.</td>
-</tr>
-<tr>
-<td><code>setValue(string $value) : void</code></td>
-<td>Set the value for this element.</td>
-</tr>
-<tr>
-<td><code>getValue() : string</code></td>
-<td>Return the value for this element.</td>
-</tr>
-<tr>
-<td><code>setLabel(string $label) : void</code></td>
-<td>Set the label content for this element.</td>
-</tr>
-<tr>
-<td><code>getLabel() : string</code></td>
-<td>Return the label content for this element.</td>
-</tr>
-<tr>
-<td><code>setLabelAttributes(array $labelAttributes) : void</code></td>
-<td>Set the attributes to use with the label.</td>
-</tr>
-<tr>
-<td><code>getLabelAttributes() : array</code></td>
-<td>Return the attributes to use with the label.</td>
-</tr>
-<tr>
-<td><code>setLabelOptions(array $labelOptions) : void</code></td>
-<td>Set label specific options.</td>
-</tr>
-<tr>
-<td><code>getLabelOptions() : array</code></td>
-<td>Return the label specific options.</td>
-</tr>
-<tr>
-<td><code>setOptions(array $options) : void</code></td>
-<td>Set options for an element. Accepted options are: <code>label</code>, <code>label_attributes"</code>, <code>label_options</code>, which call <code>setLabel</code>, <code>setLabelAttributes</code> and <code>setLabelOptions</code>, respectively.</td>
-</tr>
-<tr>
-<td><code>getOptions() : array</code></td>
-<td>Get defined options for an element</td>
-</tr>
-<tr>
-<td><code>getOption(string $option) : null|mixed</code></td>
-<td>Return the specified option, if defined. If it's not defined, returns null.</td>
-</tr>
-<tr>
-<td><code>setAttribute(string $key, mixed $value) : void</code></td>
-<td>Set a single element attribute.</td>
-</tr>
-<tr>
-<td><code>getAttribute(string $key) : mixed</code></td>
-<td>Retrieve a single element attribute.</td>
-</tr>
-<tr>
-<td><code>removeAttribute(string $key) : void</code></td>
-<td>Remove a single attribute</td>
-</tr>
-<tr>
-<td><code>hasAttribute(string $key) : boolean</code></td>
-<td>Check if a specific attribute exists for this element.</td>
-</tr>
-<tr>
-<td><code>setAttributes(array|Traversable $arrayOrTraversable) : void</code></td>
-<td>Set many attributes at once. Implementation will decide if this will overwrite or merge.</td>
-</tr>
-<tr>
-<td><code>getAttributes() : array|Traversable</code></td>
-<td>Retrieve all attributes at once.</td>
-</tr>
-<tr>
-<td><code>removeAttributes(array $keys) : void</code></td>
-<td>Remove many attributes at once</td>
-</tr>
-<tr>
-<td><code>clearAttributes() : void</code></td>
-<td>Clear all attributes for this element.</td>
-</tr>
-<tr>
-<td><code>setMessages(array|Traversable $messages) : void</code></td>
-<td>Set a list of messages to report when validation fails.</td>
-</tr>
-<tr>
-<td><code>getMessages() : array|Traversable</code></td>
-<td>Returns a list of validation failure messages, if any.</td>
+<td><code>getInputSpecification() : array</code></td>
+<td>Returns an input filter specification, which includes <code>Zend\Filter\StringTrim</code> and <code>Zend\Filter\StripNewlines</code>, as well as a regex validator to ensure the value does not contain any carriage returns or newlines within it.</td>
 </tr>
 </tbody>
 </table></div>
@@ -783,10 +701,10 @@ $form-&gt;add($password);</code></pre>
 <nav>
   <ul class="pager hidden-print">
     <li class="previous">
-      <a rel="prev" href="../intro/"><i class="fa fa-arrow-left"></i> Previous</a>
+      <a rel="prev" href="../submit/"><i class="fa fa-arrow-left"></i> Previous</a>
     </li>
     <li class="next">
-      <a rel="next" href="../button/">Next <i class="fa fa-arrow-right"></i></a>
+      <a rel="next" href="../text/">Next <i class="fa fa-arrow-right"></i></a>
     </li>
   </ul>
 </nav>

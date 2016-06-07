@@ -556,6 +556,26 @@
             "title": "Public Methods"
         }, 
         {
+            "location": "/element/search/", 
+            "text": "Search\n\n\nZend\\Form\\Element\\Search\n is meant to be paired with the\n\nFormSearch\n helper for\n\nHTML5 inputs with type \"search\"\n\n\nAvailable since 2.9.0.\n\n\nBasic Usage\n\n\nThis element automatically adds a \ntype\n attribute of value \nsearch\n.\n\n\nuse Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$search = new Element\\Search('search');\n$search-\nsetLabel('Search');\n\n$form = new Form('my-form');\n$form-\nadd($search);\n\n\n\n\nUsing array notation:\n\n\nuse Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$form = new Form('my-form');\n$form-\nadd([\n    'type' =\n Element\\Search::class,\n    'name' =\n 'search',\n    'options' =\n [\n        'label' =\n 'Search',\n    ],\n]);\n\n\n\n\nPublic Methods\n\n\nThis element defines no methods beyond those of the parent \nElement\n class.", 
+            "title": "search"
+        }, 
+        {
+            "location": "/element/search/#search", 
+            "text": "Zend\\Form\\Element\\Search  is meant to be paired with the FormSearch  helper for HTML5 inputs with type \"search\"  Available since 2.9.0.", 
+            "title": "Search"
+        }, 
+        {
+            "location": "/element/search/#basic-usage", 
+            "text": "This element automatically adds a  type  attribute of value  search .  use Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$search = new Element\\Search('search');\n$search- setLabel('Search');\n\n$form = new Form('my-form');\n$form- add($search);  Using array notation:  use Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$form = new Form('my-form');\n$form- add([\n    'type' =  Element\\Search::class,\n    'name' =  'search',\n    'options' =  [\n        'label' =  'Search',\n    ],\n]);", 
+            "title": "Basic Usage"
+        }, 
+        {
+            "location": "/element/search/#public-methods", 
+            "text": "This element defines no methods beyond those of the parent  Element  class.", 
+            "title": "Public Methods"
+        }, 
+        {
             "location": "/element/select/", 
             "text": "Select\n\n\nZend\\Form\\Element\\Select\n is meant to be paired with\n\nFormSelect\n for HTML inputs with type \"select\". This\nelement adds an \nInArray\n validator to its input filter specification in order\nto validate on the server if the selected value belongs to the values. This\nelement can be used as a multi-select element by adding the \nmultiple\n HTML\nattribute to the element.\n\n\nBasic Usage\n\n\nThis element automatically adds a \ntype\n attribute of value \nselect\n.\n\n\nuse Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$select = new Element\\Select('language');\n$select-\nsetLabel('Which is your mother tongue?');\n$select-\nsetValueOptions([\n    '0' =\n 'French',\n    '1' =\n 'English',\n    '2' =\n 'Japanese',\n    '3' =\n 'Chinese',\n]);\n\n$form = new Form('language');\n$form-\nadd($select);\n\n\n\n\nUsing array notation:\n\n\nuse Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$form = new Form('my-form');\n$form-\nadd([\n    'type' =\n Element\\Select::class,\n    'name' =\n 'language',\n    'options' =\n [\n        'label' =\n 'Which is your mother tongue?',\n        'value_options' =\n [\n            '0' =\n 'French',\n            '1' =\n 'English',\n            '2' =\n 'Japanese',\n            '3' =\n 'Chinese',\n        ],\n    ],\n]);\n\n\n\n\nYou can add an empty option (option with no value) using the \nempty_option\n\noption:\n\n\nuse Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$form = new Form('my-form');\n$form-\nadd([\n    'type' =\n Element\\Select::class,\n    'name' =\n 'language',\n    'options' =\n [\n        'label' =\n 'Which is your mother tongue?',\n        'empty_option' =\n 'Please choose your language',\n        'value_options' =\n [\n            '0' =\n 'French',\n            '1' =\n 'English',\n            '2' =\n 'Japanese',\n            '3' =\n 'Chinese',\n        ],\n    ],\n]);\n\n\n\n\nOption groups are also supported by adding an \noptions\n key to the value options:\n\n\nuse Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$select = new Element\\Select('language');\n$select-\nsetLabel('Which is your mother tongue?');\n$select-\nsetValueOptions([\n     'european' =\n [\n        'label' =\n 'European languages',\n        'options' =\n [\n           '0' =\n 'French',\n           '1' =\n 'Italian',\n        ],\n     ],\n     'asian' =\n [\n        'label' =\n 'Asian languages',\n        'options' =\n [\n           '2' =\n 'Japanese',\n           '3' =\n 'Chinese',\n        ],\n     ],\n]);\n\n$form = new Form('language');\n$form-\nadd($select);\n\n\n\n\nPublic Methods\n\n\nThe following methods are specific to the \nSelect\n element; all other methods\ndefined by the \nparent \nElement\n class\n are also\navailable.\n\n\n\n\n\n\n\n\nMethod signature\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nsetOptions(array $options) : void\n\n\nSet options for an element. Accepted options, in addition to the inherited options, include \nvalue_options\n, \nempty_option\n, and \ndisable_inarray_validator\n, which call \nsetValueOptions()\n, \nsetEmptyOption()\n and \nsetDisableInArrayValidator()\n, respectively.\n\n\n\n\n\n\nsetValueOptions(array $options) : void\n\n\nSet the value options for the select element. The array must contain key/value pairs.\n\n\n\n\n\n\ngetValueOptions() : array\n\n\nReturn the value options.\n\n\n\n\n\n\nunsetValueOption($key) : void\n\n\nUnset the value option from the select element.\n\n\n\n\n\n\nsetEmptyOption($emptyOption) : void\n\n\nOptionally set a label for an empty option (option with no value). It is set to \nnull\n by default, which means that no empty option will be rendered.\n\n\n\n\n\n\ngetEmptyOption() : string|null\n\n\nGet the label for the empty option (\nnull\n if none).", 
             "title": "select"
@@ -589,6 +609,26 @@
             "location": "/element/submit/#basic-usage", 
             "text": "This element automatically adds a  type  attribute of value  submit .  use Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$submit = new Element\\Submit('my-submit');\n$submit- setValue('Submit Form');\n\n$form = new Form('my-form');\n$form- add($submit);", 
             "title": "Basic Usage"
+        }, 
+        {
+            "location": "/element/tel/", 
+            "text": "Tel\n\n\nZend\\Form\\Element\\Tel\n is meant to be paired with the\n\nFormTel\n helper for\n\nHTML5 inputs with type \"tel\"\n.\nThis element adds filters and validators to its input filter specification in\norder to validate HTML5 tel input values on the server.\n\n\nAvailable since 2.9.0.\n\n\nBasic Usage\n\n\nThis element automatically adds a \ntype\n attribute of value \ntel\n.\n\n\nuse Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$phone = new Element\\Tel('phone');\n$phone-\nsetLabel('Phone');\n\n$form = new Form('my-form');\n$form-\nadd($phone);\n\n\n\n\nUsing array notation:\n\n\nuse Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$form = new Form('my-form');\n$form-\nadd([\n    'type' =\n Element\\Tel::class,\n    'name' =\n 'phone',\n    'options' =\n [\n        'label' =\n 'Phone',\n    ],\n]);\n\n\n\n\nPublic Methods\n\n\nThe following methods are specific to the \nTel\n element:\n\n\n\n\n\n\n\n\nMethod signature\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\ngetInputSpecification() : array\n\n\nReturns an input filter specification, which includes \nZend\\Filter\\StringTrim\n and \nZend\\Filter\\StripNewlines\n, as well as a regex validator to ensure the value does not contain any carriage returns or newlines within it.", 
+            "title": "tel"
+        }, 
+        {
+            "location": "/element/tel/#tel", 
+            "text": "Zend\\Form\\Element\\Tel  is meant to be paired with the FormTel  helper for HTML5 inputs with type \"tel\" .\nThis element adds filters and validators to its input filter specification in\norder to validate HTML5 tel input values on the server.  Available since 2.9.0.", 
+            "title": "Tel"
+        }, 
+        {
+            "location": "/element/tel/#basic-usage", 
+            "text": "This element automatically adds a  type  attribute of value  tel .  use Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$phone = new Element\\Tel('phone');\n$phone- setLabel('Phone');\n\n$form = new Form('my-form');\n$form- add($phone);  Using array notation:  use Zend\\Form\\Element;\nuse Zend\\Form\\Form;\n\n$form = new Form('my-form');\n$form- add([\n    'type' =  Element\\Tel::class,\n    'name' =  'phone',\n    'options' =  [\n        'label' =  'Phone',\n    ],\n]);", 
+            "title": "Basic Usage"
+        }, 
+        {
+            "location": "/element/tel/#public-methods", 
+            "text": "The following methods are specific to the  Tel  element:     Method signature  Description      getInputSpecification() : array  Returns an input filter specification, which includes  Zend\\Filter\\StringTrim  and  Zend\\Filter\\StripNewlines , as well as a regex validator to ensure the value does not contain any carriage returns or newlines within it.", 
+            "title": "Public Methods"
         }, 
         {
             "location": "/element/text/", 
