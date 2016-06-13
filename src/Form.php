@@ -2,8 +2,8 @@
 /**
  * Zend Framework (http://framework.zend.com/)
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @link      http://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2017 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -770,6 +770,13 @@ class Form extends Fieldset implements FormInterface
             || ! $fieldset->getTargetElement() instanceof FieldsetInterface
             || $inputFilter instanceof CollectionInputFilter
         ) {
+            if ($fieldset === $this && $fieldset instanceof InputFilterProviderInterface) {
+                foreach ($fieldset->getInputFilterSpecification() as $name => $spec) {
+                    $input = $inputFactory->createInput($spec);
+                    $inputFilter->add($input, $name);
+                }
+            }
+
             foreach ($elements as $name => $element) {
                 if ($this->preferFormInputFilter && $inputFilter->has($name)) {
                     continue;
@@ -798,13 +805,6 @@ class Form extends Fieldset implements FormInterface
                 if ($inputFilter instanceof CollectionInputFilter && ! $inputFilter->getInputFilter()->has($name)) {
                     $inputFilter->getInputFilter()->add($input, $name);
                 } else {
-                    $inputFilter->add($input, $name);
-                }
-            }
-
-            if ($fieldset === $this && $fieldset instanceof InputFilterProviderInterface) {
-                foreach ($fieldset->getInputFilterSpecification() as $name => $spec) {
-                    $input = $inputFactory->createInput($spec);
                     $inputFilter->add($input, $name);
                 }
             }
