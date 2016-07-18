@@ -41,6 +41,12 @@ class CollectionTest extends TestCase
         parent::setUp();
     }
 
+    public function testCanRetrieveDefaultPlaceholder()
+    {
+        $placeholder = $this->form->get('colors')->getTemplatePlaceholder();
+        $this->assertEquals('__index__', $placeholder);
+    }
+
     public function testCannotAddNewElementsIfGreaterThanMax()
     {
         $collection = $this->form->get('colors');
