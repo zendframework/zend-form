@@ -1067,6 +1067,18 @@ if ($form-&gt;isValid()) {
 }</code></pre>
 
 
+<blockquote>
+<h3 id="always-populate-select-elements-with-options">Always populate select elements with options</h3>
+<p>Always ensure that options for a select element are populated <em>prior</em> to
+validation; otherwise, the element will fail validation, and you will receive
+a <code>NotInArray</code> error message.</p>
+<p>If you are populating the options from a database or other data source, make
+sure this is done prior to validation. Alternately, you may disable the
+<code>InArray</code> validator programmatically prior to validation:</p>
+<pre class="codehilite"><code class="language-php">$element-&gt;setDisableInArrayValidator(true);</code></pre>
+
+
+</blockquote>
 <p>You can get the raw data if you want, by accessing the composed input filter.</p>
 <pre class="codehilite"><code class="language-php">$filter = $form-&gt;getInputFilter();
 
