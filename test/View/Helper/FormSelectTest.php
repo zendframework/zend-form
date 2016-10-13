@@ -12,6 +12,7 @@ namespace ZendTest\Form\View\Helper;
 use Zend\Form\Element;
 use Zend\Form\Element\Select as SelectElement;
 use Zend\Form\View\Helper\FormSelect as FormSelectHelper;
+use ZendTest\Form\TestAsset\Entity\SimpleStringObject;
 
 class FormSelectTest extends CommonTestCase
 {
@@ -407,5 +408,21 @@ class FormSelectTest extends CommonTestCase
 
         $this->setExpectedException('Zend\Form\Exception\DomainException');
         $this->helper->render($element);
+    }
+
+    public function testCanMarkObjectsAsSelected()
+    {
+        $element = new SelectElement('foo');
+        $element->setValueOptions([
+            [
+                'label' => 'SimpleStringObjectLabel',
+                'value' => 'SimpleStringObject',
+            ],
+        ]);
+        $valueObject = new SimpleStringObject();
+        $element->setValue($valueObject);
+
+        $markup = $this->helper->render($element);
+        $this->assertContains('<option value="SimpleStringObject" selected="selected">SimpleStringObjectLabel</option>', $markup);
     }
 }
