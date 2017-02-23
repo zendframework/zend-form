@@ -648,7 +648,7 @@
 It can be used with the <a href="../../helper/form-hidden/">FormHidden</a> view helper.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>hidden</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $hidden = new Element\Hidden('my-hidden');
@@ -657,9 +657,8 @@ $hidden-&gt;setValue('foo');
 $form = new Form('my-form');
 $form-&gt;add($hidden);</code></pre>
 
-
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');

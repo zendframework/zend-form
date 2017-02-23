@@ -654,7 +654,7 @@ CAPTCHA adapter in use.</p>
 <p>A CAPTCHA adapter must be attached in order for validation to be included in the
 element's input filter specification. See the <a href="https://zendframework.github.io/zend-captcha/adapters/">zend-captcha documentation</a>
 for more information on what adapters are available.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Captcha;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Captcha;
 use Zend\Form\Element;
 use Zend\Form\Form;
 
@@ -665,9 +665,8 @@ $captcha-&gt;setLabel('Please verify you are human');
 $form = new Form('my-form');
 $form-&gt;add($captcha);</code></pre>
 
-
 <p>Here is an example using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Captcha;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Captcha;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -679,7 +678,6 @@ $form-&gt;add([
         'captcha' =&gt; new Captcha\Dumb(),
     ],
 ]);</code></pre>
-
 
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Captcha</code> element; all other methods

@@ -649,7 +649,7 @@
 <p>The <code>FormButton</code> view helper is used to render a <code>&lt;button&gt;</code> HTML element and its
 attributes.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 
 $element = new Element\Button('my-button');
 $element-&gt;setLabel('Reset');
@@ -680,7 +680,6 @@ echo $this-&gt;formButton()-&gt;closeTag();
  */
 echo $this-&gt;formButton()-&gt;render($element, 'My Content');
 // Result: &lt;button name=&quot;my-button&quot; type=&quot;button&quot;&gt;My Content&lt;/button&gt;</code></pre>
-
 
 <h2 id="public-methods">Public methods</h2>
 <p>The following public methods are in addition to those inherited from the

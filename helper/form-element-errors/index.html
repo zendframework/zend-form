@@ -649,7 +649,7 @@
 <p>The <code>FormElementErrors</code> view helper is used to render the validation error
 messages of an element.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Form;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Form;
 use Zend\Form\Element;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Input;
@@ -696,7 +696,6 @@ $helper-&gt;setMessageCloseString('&lt;/div&gt;');
 
 echo $helper-&gt;render($element);
 // Result: &lt;div class=&quot;help-inline&quot;&gt;Value is required and can&amp;#039;t be empty&lt;/div&gt;</code></pre>
-
 
 <h2 id="public-methods">Public methods</h2>
 <p>The following public methods are in addition to those inherited from the

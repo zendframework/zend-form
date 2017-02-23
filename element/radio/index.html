@@ -656,7 +656,7 @@ elements.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>radio</code> for every
 radio.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $radio = new Element\Radio('likes_chocolate');
@@ -669,9 +669,8 @@ $radio-&gt;setValueOptions([
 $form = new Form('my-form');
 $form-&gt;add($radio);</code></pre>
 
-
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -686,7 +685,6 @@ $form-&gt;add([
         ],
     ],
 ]);</code></pre>
-
 
 <h2 id="advanced-usage">Advanced Usage</h2>
 <p>See <a href="../multi-checkbox/">MultiCheckbox for examples</a> of how to apply attributes

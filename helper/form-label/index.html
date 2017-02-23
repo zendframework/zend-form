@@ -652,7 +652,7 @@
 attributes. If you have a <code>Zend\I18n\Translator\Translator</code> attached,
 <code>FormLabel</code> will translate the label contents when rendering.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 
 $element = new Element\Text('my-text');
 $element-&gt;setLabel('Label');
@@ -695,7 +695,6 @@ echo $this-&gt;formLabel($element);
 //     &lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;
 // &lt;/label&gt;</code></pre>
 
-
 <blockquote>
 <h3 id="escaping">Escaping</h3>
 <p>HTML escaping only applies to the <code>Element::$label</code> property, not to the
@@ -703,7 +702,7 @@ helper <code>$labelContent</code> parameter.</p>
 </blockquote>
 <h2 id="label-translation">Label translation</h2>
 <p>Attaching a translator and setting a text domain:</p>
-<pre class="codehilite"><code class="language-php">// Setting a translator
+<pre class="codehilite"><code class="language-php linenums">// Setting a translator
 $this-&gt;formLabel()-&gt;setTranslator($translator);
 
 // Setting a text domain
@@ -711,7 +710,6 @@ $this-&gt;formLabel()-&gt;setTranslatorTextDomain('my-text-domain');
 
 // Setting both
 $this-&gt;formLabel()-&gt;setTranslator($translator, 'my-text-domain');</code></pre>
-
 
 <blockquote>
 <h3 id="enabling-translation">Enabling translation</h3>

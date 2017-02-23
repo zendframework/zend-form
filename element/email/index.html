@@ -654,7 +654,7 @@ order to validate <a href="http://www.whatwg.org/specs/web-apps/current-work/mul
 on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>email</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -670,9 +670,8 @@ $emails-&gt;setLabel('Email Addresses');
 $emails-&gt;setAttribute('multiple', true);
 $form-&gt;add($emails);</code></pre>
 
-
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -697,7 +696,6 @@ $form-&gt;add([
         'multiple' =&gt; true,
     ],
 ]);</code></pre>
-
 
 <blockquote>
 <h3 id="set-multiple-attribute-before-calling-prepare">Set multiple attribute before calling prepare</h3>

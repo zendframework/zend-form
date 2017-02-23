@@ -652,7 +652,7 @@
 <p>At the bare minimum, each element or fieldset requires a name. You will also
 typically provide some attributes to hint to the view layer how it might render
 the item.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $username = new Element\Text('username');
@@ -671,7 +671,6 @@ $password-&gt;setAttributes([
 $form = new Form('my-form');
 $form-&gt;add($username);
 $form-&gt;add($password);</code></pre>
-
 
 <h2 id="public-methods">Public Methods</h2>
 <div class="table-responsive"><table>

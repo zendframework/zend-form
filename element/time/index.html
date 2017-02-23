@@ -653,7 +653,7 @@ This element adds filters and validators to its input filter specification in
 order to validate HTML5 time input values on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>time</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $time = new Element\Time('time');
@@ -670,9 +670,8 @@ $time-&gt;setOptions([
 $form = new Form('my-form');
 $form-&gt;add($time);</code></pre>
 
-
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -689,7 +688,6 @@ $form-&gt;add([
         'step' =&gt; '60', // seconds; default step interval is 60 seconds
     ],
 ]);</code></pre>
-
 
 <blockquote>
 <h3 id="set-all-attributes-before-calling-prepare">Set all attributes before calling prepare</h3>

@@ -653,7 +653,7 @@ This element adds filters and validators to its input filter specification in
 order to validate HTML5 range values on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>range</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $range = new Element\Range('range');
@@ -667,9 +667,8 @@ $range-&gt;setAttributes([
 $form = new Form('my-form');
 $form-&gt;add($range);</code></pre>
 
-
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -685,7 +684,6 @@ $form-&gt;add([
         'step' =&gt; 1, // default interval is 1
     ],
 ]);</code></pre>
-
 
 <blockquote>
 <h3 id="set-all-attributes-before-calling-prepare">Set all attributes before calling prepare</h3>

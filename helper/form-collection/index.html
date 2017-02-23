@@ -655,7 +655,7 @@ view helpers based on the element encountered:</p>
 <li>Otherwise, it is passed to <a href="../form-row/">FormRow</a>.</li>
 </ul>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use My\ContactFieldset;
+<pre class="codehilite"><code class="language-php linenums">use My\ContactFieldset;
 use Zend\Form\Element;
 
 $collection = new Element\Collection();
@@ -666,7 +666,6 @@ $collection-&gt;setTargetElement([ 'type' =&gt; ContactFieldset::class ]);
 
 // In a view script:
 $this-&gt;formCollection($collection);</code></pre>
-
 
 <p>The above, assuming the fieldset is created correctly, will generate one or more
 fieldsets with the name <code>contacts[]</code>, each containing the elements defined in

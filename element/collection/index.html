@@ -654,7 +654,7 @@ collections, please refer to the <a href="../../collections/">form Collections t
 <p><code>Zend\Form\Element\Collection</code> is meant to be paired with the
 <code>Zend\Form\View\Helper\FormCollection</code>.</p>
 <h2 id="basic-usage">Basic Usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $colors = new Element\Collection('collection');
@@ -666,9 +666,8 @@ $colors-&gt;setShouldCreateTemplate(true);
 $form = new Form('my-form');
 $form-&gt;add($colors);</code></pre>
 
-
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');       
@@ -681,7 +680,6 @@ $form-&gt;add([
         'target_element' =&gt; new Element\Color()
     ],
 ]);</code></pre>
-
 
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Collection</code> element; all other methods

@@ -653,7 +653,7 @@ This element adds filters and validators to its input filter specification in
 order to validate HTML5 datetime input values on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>datetime</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $dateTime = new Element\DateTime('appointment-date-time');
@@ -670,9 +670,8 @@ $dateTime-&gt;setOptions([
 $form = new Form('my-form');
 $form-&gt;add($dateTime);</code></pre>
 
-
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -689,7 +688,6 @@ $form-&gt;add([
         'step' =&gt; '1', // minutes; default step interval is 1 min
     ],
 ]);</code></pre>
-
 
 <blockquote>
 <h3 id="set-all-attributes-before-calling-prepare">Set all attributes before calling prepare</h3>

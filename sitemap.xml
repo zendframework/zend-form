@@ -3,24 +3,24 @@
 
     
     <url>
-     <loc>None/</loc>
-     <lastmod>2016-09-22</lastmod>
+     <loc>/</loc>
+     <lastmod>2017-02-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/intro/</loc>
-     <lastmod>2016-09-22</lastmod>
+     <loc>/intro/</loc>
+     <lastmod>2017-02-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/quick-start/</loc>
-     <lastmod>2016-09-22</lastmod>
+     <loc>/quick-start/</loc>
+     <lastmod>2017-02-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -28,32 +28,32 @@
     
         
     <url>
-     <loc>None</loc>
+     <loc></loc>
      <lastmod></lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/collections/</loc>
-     <lastmod>2016-09-22</lastmod>
+     <loc>/collections/</loc>
+     <lastmod>2017-02-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/file-upload/</loc>
-     <lastmod>2016-09-22</lastmod>
+     <loc>/file-upload/</loc>
+     <lastmod>2017-02-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None</loc>
+     <loc></loc>
      <lastmod></lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/advanced/</loc>
-     <lastmod>2016-09-22</lastmod>
+     <loc>/advanced/</loc>
+     <lastmod>2017-02-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

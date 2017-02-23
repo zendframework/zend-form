@@ -647,7 +647,7 @@
 <p>The <code>FormFile</code> view helper can be used to render an <code>&lt;input type="file"&gt;</code> form
 input. It is meant to work with the <a href="../../element/file/">File element</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 
 $element = new Element\File('my-file');
 
@@ -656,10 +656,9 @@ $element = new Element\File('my-file');
 echo $this-&gt;formFile($element);
 // Result: &lt;input type=&quot;file&quot; name=&quot;my-file&quot;&gt;</code></pre>
 
-
 <p>For HTML5 multiple file uploads, the <code>multiple</code> attribute can be used. Browsers
 that do not support HTML5 will default to a single upload input.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 
 $element = new Element\File('my-file');
 $element-&gt;setAttribute('multiple', true);

@@ -654,7 +654,7 @@ element can be used as a multi-select element by adding the <code>multiple</code
 attribute to the element.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>select</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $select = new Element\Select('language');
@@ -669,9 +669,8 @@ $select-&gt;setValueOptions([
 $form = new Form('language');
 $form-&gt;add($select);</code></pre>
 
-
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -689,10 +688,9 @@ $form-&gt;add([
     ],
 ]);</code></pre>
 
-
 <p>You can add an empty option (option with no value) using the <code>empty_option</code>
 option:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -711,9 +709,8 @@ $form-&gt;add([
     ],
 ]);</code></pre>
 
-
 <p>Option groups are also supported by adding an <code>options</code> key to the value options:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<pre class="codehilite"><code class="language-php linenums">use Zend\Form\Element;
 use Zend\Form\Form;
 
 $select = new Element\Select('language');
@@ -737,7 +734,6 @@ $select-&gt;setValueOptions([
 
 $form = new Form('language');
 $form-&gt;add($select);</code></pre>
-
 
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Select</code> element; all other methods
