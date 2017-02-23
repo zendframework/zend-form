@@ -701,22 +701,7 @@ echo $this-&gt;formLabel($element);
 helper <code>$labelContent</code> parameter.</p>
 </blockquote>
 <h2 id="label-translation">Label translation</h2>
-<p>Attaching a translator and setting a text domain:</p>
-<pre class="codehilite"><code class="language-php linenums">// Setting a translator
-$this-&gt;formLabel()-&gt;setTranslator($translator);
-
-// Setting a text domain
-$this-&gt;formLabel()-&gt;setTranslatorTextDomain('my-text-domain');
-
-// Setting both
-$this-&gt;formLabel()-&gt;setTranslator($translator, 'my-text-domain');</code></pre>
-
-<blockquote>
-<h3 id="enabling-translation">Enabling translation</h3>
-<p>If you have a translator in your application container under either the key,
-<code>translator</code> or <code>MvcTranslator</code>, the view helper plugin manager will
-automatically attach the translator to the <code>FormLabel</code> view helper.</p>
-</blockquote>
+<p>See <a href="../abstract-helper/#translation">AbstractHelper Translation</a>.</p>
 <h2 id="public-methods">Public methods</h2>
 <p>The following public methods are in addition to those inherited from the
 <a href="../abstract-helper/#public-methods">AbstractHelper</a>:</p>
