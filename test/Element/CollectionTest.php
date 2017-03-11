@@ -26,6 +26,7 @@ use ZendTest\Form\TestAsset\Entity\Address;
 use ZendTest\Form\TestAsset\Entity\Phone;
 use ZendTest\Form\TestAsset\Entity\Product;
 use ZendTest\Form\TestAsset\ProductFieldset;
+use Zend\InputFilter\Factory as InputFilterFactory;
 
 class CollectionTest extends TestCase
 {
@@ -46,63 +47,98 @@ class CollectionTest extends TestCase
         $this->assertEquals('__index__', $placeholder);
     }
 
-    public function testCannotAllowNewElementsIfAllowAddIsFalse()
+    public function testCannotAddNewElementsIfGreaterThanMax()
     {
         $collection = $this->form->get('colors');
 
-        $this->assertTrue($collection->allowAdd());
-        $collection->setAllowAdd(false);
-        $this->assertFalse($collection->allowAdd());
-
-        // By default, $collection contains 2 elements
         $data = [];
         $data[] = 'blue';
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
-        $data[] = 'orange';
-        $collection->populateValues($data);
+        $inputFilterFactory = new InputFilterFactory();
+        $inputFilter = $inputFilterFactory->createInputFilter([
+            'colors' => [
+                'name' => 'colors',
+                'validators' => [
+                    [
+                        'name' => 'IterableBetween',
+                        'options' => [
+                            'min' => 1,
+                            'max' => 1
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        $collection->setInputFilter($inputFilter);
+        $this->assertFalse($this->form->isValid());
+
+        $messages = $this->form->getMessages();
+        $this->assertArrayHasKey('count', $messages);
+        $this->assertArrayHasKey('notBetween', $messages['count']);
     }
 
-    public function testCanAddNewElementsIfAllowAddIsTrue()
+    public function testCanAddNewElementsIfMaxIsUndefined()
     {
         $collection = $this->form->get('colors');
-        $collection->setAllowAdd(true);
-        $this->assertTrue($collection->allowAdd());
 
-        // By default, $collection contains 2 elements
         $data = [];
         $data[] = 'blue';
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
 
-        $data[] = 'orange';
-        $collection->populateValues($data);
-        $this->assertEquals(3, count($collection->getElements()));
+        $inputFilterFactory = new InputFilterFactory();
+        $inputFilter = $inputFilterFactory->createInputFilter([
+            'colors' => [
+                'name' => 'colors',
+                'validators' => [
+                    [
+                        'name' => 'IterableBetween',
+                        'options' => [
+                            'min' => 1
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        $collection->setInputFilter($inputFilter);
+        $this->assertTrue($this->form->isValid());
     }
 
-    public function testCanRemoveElementsIfAllowRemoveIsTrue()
+    public function testCollectionCountBetween()
     {
         $collection = $this->form->get('colors');
-        $collection->setAllowRemove(true);
-        $this->assertTrue($collection->allowRemove());
 
         $data = [];
         $data[] = 'blue';
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
 
-        unset($data[0]);
+        $inputFilterFactory = new InputFilterFactory();
+        $inputFilter = $inputFilterFactory->createInputFilter([
+            'colors' => [
+                'name' => 'colors',
+                'validators' => [
+                    [
+                        'name' => 'IterableBetween',
+                        'options' => [
+                            'min' => 1,
+                            'max' => 3,
+                            'inclusive' => true
+                        ]
+                    ]
+                ]
+            ]
+        ]);
 
-        $collection->populateValues($data);
-        $this->assertEquals(1, count($collection->getElements()));
+        $collection->setInputFilter($inputFilter);
+        $this->assertTrue($this->form->isValid());
     }
 
     public function testCanReplaceElementsIfAllowAddAndAllowRemoveIsTrue()
@@ -240,36 +276,6 @@ class CollectionTest extends TestCase
         ]);
 
         $this->assertEquals(true, $this->form->isValid());
-    }
-
-    public function testThrowExceptionIfThereAreLessElementsAndAllowRemoveNotAllowed()
-    {
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
-
-        $collection = $this->form->get('colors');
-        $collection->setAllowRemove(false);
-
-        $this->form->setData([
-            'colors' => [
-                '#ffffff'
-            ],
-            'fieldsets' => [
-                [
-                    'field' => 'oneValue',
-                    'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ],
-                [
-                    'field' => 'twoValue',
-                    'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
-        ]);
-
-        $this->form->isValid();
     }
 
     public function testCanValidateLessThanSpecifiedCount()
