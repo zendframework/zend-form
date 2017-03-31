@@ -373,6 +373,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
                 && 'data-' != substr($attribute, 0, 5)
                 && 'aria-' != substr($attribute, 0, 5)
                 && 'x-' != substr($attribute, 0, 2)
+                && 'ng-' != substr($attribute, 0, 3)
             ) {
                 // Invalid attribute for the current tag
                 unset($attributes[$key]);
