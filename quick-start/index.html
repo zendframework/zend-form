@@ -694,7 +694,6 @@ $subject-&gt;setAttributes([
 ]);
 
 // Create a textarea element to capture a message:
-$email = new Element\Email('email');
 $message = new Element\Textarea('message');
 $message-&gt;setLabel('Message');
 
@@ -1095,7 +1094,7 @@ must implement <code>Zend\InputFilter\InputFilterProviderInterface</code>, which
 <code>getInputFilterSpecification()</code> method.</p>
 <p>In the case of an element, the <code>getInputSpecification()</code> method should return
 data to be used by the input filter factory to create an input. Every HTML5
-(<code>email</code>, <code>url</code>, <code>color</code>, etc.) element has a built-in element that use this
+(<code>email</code>, <code>url</code>, <code>color</code>, etc.) element has a built-in element that uses this
 logic. For instance, here is how the <code>Zend\Form\Element\Color</code> element is
 defined:</p>
 <pre class="codehilite"><code class="language-php linenums">namespace Zend\Form\Element;
