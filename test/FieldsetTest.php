@@ -2,8 +2,8 @@
 /**
  * Zend Framework (http://framework.zend.com/)
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @link      http://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2017 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -571,5 +571,33 @@ class FieldsetTest extends TestCase
         $form->isValid();
 
         $this->assertSame('New value', $form->get('foo')->getValue());
+    }
+
+    public function testInputFilterProviderInterfaceFieldsetCustomElementValidator()
+    {
+        $form = new Form();
+        $form->add(new TestAsset\InputFilterProviderFieldset('fieldset'));
+
+        $inputFilter = $form->getInputFilter();
+        $fieldset = $inputFilter->get('fieldset');
+        $input = $fieldset->get('custom');
+
+        $validators = $input->getValidatorChain()->getValidators();
+        $this->assertCount(1, $validators);
+        $this->assertInstanceOf(TestAsset\CustomValidator::class, $validators[0]['instance']);
+    }
+
+    public function testInputFilterProviderInterfaceFieldsetDefaultElementValidator()
+    {
+        $form = new Form();
+        $form->add(new TestAsset\InputFilterProviderFieldset('fieldset'));
+
+        $inputFilter = $form->getInputFilter();
+        $fieldset = $inputFilter->get('fieldset');
+        $input = $fieldset->get('default');
+
+        $validators = $input->getValidatorChain()->getValidators();
+        $this->assertCount(1, $validators);
+        $this->assertInstanceOf(\Zend\Validator\Step::class, $validators[0]['instance']);
     }
 }
