@@ -654,7 +654,7 @@
 <p>zend-form provides support for file uploading by using features from each of
 <a href="https://github.com/zendframework/zend-inputfilter">zend-inputfilter</a>,
 <a href="https://github.com/zendframework/zend-validator">zend-validator</a>,
-<a href="https://zendframework.github.io/zend-filter">zend-filter</a>, and
+<a href="https://docs.zendframework.com/zend-filter">zend-filter</a>, and
 <a href="https://github.com/zendframework/zend-progressbar">zend-progressbar</a>. These
 reusable framework components provide a convenient and secure way for handling
 file uploads in your projects.</p>
@@ -705,8 +705,8 @@ class UploadForm extends Form
 <li>The form's <code>enctype</code> will automatically be set to <code>multipart/form-data</code> when
   the form's <code>prepare()</code> method is called.</li>
 <li>The file element's default input specification will create the correct <code>Input</code>
-  type: <a href="http://framework.zend.com/manual/current/en/modules/zend.input-filter.file-input.html"><code>Zend\InputFilter\FileInput</code></a>.</li>
-<li>The <code>FileInput</code> will automatically prepend an <a href="http://framework.zend.com/manual/current/en/modules/zend.validator.file.html#uploadfile">UploadFile validator</a>
+  type: <a href="https://docs.zendframework.com/zend-inputfilter/file-input/"><code>Zend\InputFilter\FileInput</code></a>.</li>
+<li>The <code>FileInput</code> will automatically prepend an <a href="https://docs.zendframework.com/zend-validator/validators/file/upload-file/">UploadFile validator</a>
   to securely validate that the file is actually an uploaded file, and to report
   any upload errors to the user.</li>
 </ul>
@@ -815,7 +815,7 @@ array(1) {
     }
 }</code></pre>
 
-<p><a href="http://framework.zend.com/manual/current/en/modules/zend.input-filter.file-input.html"><code>Zend\InputFilter\FileInput</code></a> expects the file data be in this
+<p><a href="https://docs.zendframework.com/zend-inputfilter/file-input/"><code>Zend\InputFilter\FileInput</code></a> expects the file data be in this
 re-mapped array format.</p>
 <p>Note: <a href="http://www.php-fig.org/psr/psr-7/">PSR-7</a> also remaps the <code>$_FILES</code>
 array in this way.</p>
@@ -829,7 +829,7 @@ request if it has not been moved away or renamed. Re-uploading a valid file each
 time another form input is invalid is inefficient and annoying to users.</p>
 <p>One strategy to get around this is to split the form into multiple forms. One
 form for the file upload inputs and another for the other standard inputs.</p>
-<p>When you cannot separate the forms, the <a href="https://zendframework.github.io/zend-mvc-plugin-fileprg/">File Post-Redirect-Get
+<p>When you cannot separate the forms, the <a href="https://docs.zendframework.com/zend-mvc-plugin-fileprg/">File Post-Redirect-Get
 Plugin</a> can be used to
 manage the file inputs and save off valid uploads until the entire form is
 valid.</p>
@@ -1015,7 +1015,7 @@ For upload progress to work in a greater number of browsers (IE9 and below), you
 must use a server-side progress solution.</p>
 <p><code>Zend\ProgressBar\Upload</code> provides handlers that can give you the actual state
 of a file upload in progress. To use this feature, you need to choose one of the
-<a href="http://framework.zend.com/manual/current/en/modules/zend.progress-bar.upload.html">Upload Progress Handlers</a>
+<a href="https://docs.zendframework.com/zend-progressbar/upload/">Upload Progress Handlers</a>
 (APC, uploadprogress, or Session) and ensure that your server setup has the
 appropriate extension or feature enabled.</p>
 <p>Verify your <code>php.ini</code> <code>session.upload</code> settings before you begin:</p>
@@ -1252,11 +1252,11 @@ was set in the JavaScript just before submit):</p>
 <ul>
 <li><a href="../element/file/">Form File Element</a></li>
 <li><a href="../helper/form-file/">Form File View Helper</a></li>
-<li><a href="http://framework.zend.com/manual/current/en/modules/zend.validator.file.html">List of File Validators</a></li>
+<li><a href="https://docs.zendframework.com/zend-validator/validators/file/intro/">List of File Validators</a></li>
 <li><a href="http://zendframework.github.io/zend-filter/file/">List of File Filters</a></li>
-<li><a href="https://zendframework.github.io/zend-mvc-plugin-fileprg/">File Post-Redirect-Get Controller Plugin</a></li>
-<li><a href="http://framework.zend.com/manual/current/en/modules/zend.input-filter.file-input.html">Zend\InputFilter\FileInput</a></li>
-<li><a href="http://framework.zend.com/manual/current/en/modules/zend.progress-bar.upload.html">Upload Progress Handlers</a></li>
+<li><a href="https://docs.zendframework.com/zend-mvc-plugin-fileprg/">File Post-Redirect-Get Controller Plugin</a></li>
+<li><a href="https://docs.zendframework.com/zend-inputfilter/file-input/">Zend\InputFilter\FileInput</a></li>
+<li><a href="https://docs.zendframework.com/zend-progressbar/upload/">Upload Progress Handlers</a></li>
 <li><a href="../helper/upload-progress-helpers/">Upload Progress View Helpers</a></li>
 </ul>
 <p>External resources and blog posts from the community:</p>
