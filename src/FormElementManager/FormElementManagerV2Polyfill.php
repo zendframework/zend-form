@@ -17,6 +17,7 @@ use Zend\Form\Form;
 use Zend\Form\FormFactoryAwareInterface;
 use Zend\ServiceManager\AbstractPluginManager;
 use Zend\ServiceManager\ConfigInterface;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\Stdlib\InitializableInterface;
 
 /**
@@ -191,7 +192,9 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
     public function injectFactory($instance, ContainerInterface $container)
     {
         // Need to retrieve the parent container
-        $container = $container->getServiceLocator() ?: $container;
+        if ($container instanceof ServiceLocatorAwareInterface || method_exists($container, 'getServiceLocator')) {
+            $container = $container->getServiceLocator() ?: $container;
+        }
 
         if (! $instance instanceof FormFactoryAwareInterface) {
             return;
