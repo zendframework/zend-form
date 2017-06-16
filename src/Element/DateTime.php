@@ -226,7 +226,7 @@ class DateTime extends Element implements InputProviderInterface
     private function valueIsValidDateTimeFormat($value)
     {
         return PhpDateTime::createFromFormat(
-            static::DATETIME_FORMAT,
+            $this->format,
             $value
         ) instanceof DateTimeInterface;
     }

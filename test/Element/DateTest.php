@@ -128,14 +128,14 @@ class DateTest extends TestCase
             'min'       => '2012-01-01',
             'max'       => '2012-12-31',
         ]);
-        $element->setFormat('d-m-Y');
+        $element->setFormat('Y-m-d');
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
             switch (get_class($validator)) {
                 case 'Zend\Validator\DateStep':
                 case 'Zend\Validator\Date':
-                    $this->assertEquals('d-m-Y', $validator->getFormat());
+                    $this->assertEquals('Y-m-d', $validator->getFormat());
                     break;
             }
         }
