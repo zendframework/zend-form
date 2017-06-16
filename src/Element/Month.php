@@ -28,6 +28,13 @@ class Month extends DateTime
     ];
 
     /**
+     * A valid format string accepted by date()
+     *
+     * @var string
+     */
+    protected $format = self::DATETIME_FORMAT;
+
+    /**
      * Retrieves a Date Validator configured for a Month Input type
      *
      * @return ValidatorInterface
