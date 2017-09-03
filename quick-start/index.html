@@ -604,46 +604,46 @@
 
     <!-- content:begin -->
     <div id="page-top" class="container docs">
-        
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-    
-        <li class="main active"><a href="#quick-start">Quick Start</a></li>
-        
-            <li><a href="#programmatic-form-creation">Programmatic Form Creation</a></li>
-        
-            <li><a href="#creation-via-factory">Creation via Factory</a></li>
-        
-            <li><a href="#factory-backed-form-extension">Factory-backed Form Extension</a></li>
-        
-            <li><a href="#validating-forms">Validating Forms</a></li>
-        
-            <li><a href="#hinting-to-the-input-filter">Hinting to the Input Filter</a></li>
-        
-            <li><a href="#binding-an-object">Binding an object</a></li>
-        
-            <li><a href="#rendering">Rendering</a></li>
-        
-            <li><a href="#taking-advantage-of-html5-input-attributes">Taking advantage of HTML5 input attributes</a></li>
-        
-            <li><a href="#validation-groups">Validation Groups</a></li>
-        
-            <li><a href="#using-annotations">Using Annotations</a></li>
-        
-    
-    </ul>
 
-    
-    <ul class="pager hidden-print">
-      <li class="previous">
-        <a rel="prev" href="../intro/"><i class="fa fa-arrow-left"></i> Previous</a>
-      </li>
-      <li class="next">
-        <a rel="next" href="../element/intro/">Next <i class="fa fa-arrow-right"></i></a>
-      </li>
-    </ul>
-    
-</div></div>
+        <div class="col-md-3">
+            <div class="bs-sidebar hidden-print affix well" role="complementary">
+                <ul class="nav bs-sidenav">
+
+                    <li class="main active"><a href="#quick-start">Quick Start</a></li>
+
+                    <li><a href="#programmatic-form-creation">Programmatic Form Creation</a></li>
+
+                    <li><a href="#creation-via-factory">Creation via Factory</a></li>
+
+                    <li><a href="#factory-backed-form-extension">Factory-backed Form Extension</a></li>
+
+                    <li><a href="#validating-forms">Validating Forms</a></li>
+
+                    <li><a href="#hinting-to-the-input-filter">Hinting to the Input Filter</a></li>
+
+                    <li><a href="#binding-an-object">Binding an object</a></li>
+
+                    <li><a href="#rendering">Rendering</a></li>
+
+                    <li><a href="#taking-advantage-of-html5-input-attributes">Taking advantage of HTML5 input attributes</a></li>
+
+                    <li><a href="#validation-groups">Validation Groups</a></li>
+
+                    <li><a href="#using-annotations">Using Annotations</a></li>                    
+
+                </ul>
+
+                <ul class="pager hidden-print">
+                <li class="previous">
+                    <a rel="prev" href="../intro/"><i class="fa fa-arrow-left"></i> Previous</a>
+                </li>
+                <li class="next">
+                    <a rel="next" href="../element/intro/">Next <i class="fa fa-arrow-right"></i></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
         <div class="col-md-9" role="main">
 
 <ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
@@ -1526,7 +1526,11 @@ behaviors with the shipped annotations in zend-form:</p>
   to your form as an additional fieldset.  Expects a string value indicating the
   class for the object being composed: <code>@ComposedObject("Namespace\Model\ComposedObject")</code>;
   or an array to compose a collection:
-  <code>@ComposedObject({ "target_object":"Namespace\Model\ComposedCollection", "is_collection":"true", "options":{"count":2}})</code>;
+  <code>@ComposedObject({ <br />
+  "target_object":"Namespace\Model\ComposedCollection", <br />
+  "is_collection":"true", <br />
+  "options":{"count":2}<br />
+  })</code>;<br />
   <code>target_object</code> is the element to compose, <code>is_collection</code> flags this as a
   collection, and <code>options</code> can take an array of options to pass into the
   collection.</li>
