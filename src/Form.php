@@ -324,11 +324,14 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Bind values to the bound object
+     * Added $validationGroup to method signature to make it align with Fieldset::bindValues()
+     * Otherwise error is seen when using Zend\Form\Form under PHP 7.2
      *
      * @param array $values
+     * @param array $validationGroup
      * @return mixed
      */
-    public function bindValues(array $values = [])
+    public function bindValues(array $values = [], array $validationGroup = null)
     {
         if (! is_object($this->object)) {
             if ($this->baseFieldset === null || $this->baseFieldset->allowValueBinding() == false) {
