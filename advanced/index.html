@@ -943,7 +943,7 @@ use Zend\Form\Fieldset;
 class AlbumFieldset extends Fieldset
 {
     public function __construct(AlbumTable $albumTable)
-    {           
+    {
         // Add any elements that need to fetch data from database
         // using the album table !
     }
@@ -1005,7 +1005,7 @@ lifecycle?</p>
 <code>Zend\Form\Element</code> implements. It is <em>not</em>, however, automatically invoked on
 instantiation!</p>
 <p>Within zend-form, the <code>FormElementManager</code> defines an
-<a href="http://zendframework.github.io/zend-servicemanager/configuring-the-service-manager/#initializers">initializer</a>
+<a href="http://docs.zendframework.com/zend-servicemanager/configuring-the-service-manager/#initializers">initializer</a>
 that is pushed to the bottom of the initializer stack, making it the last
 initializer invoked. This initializer checks if the instance created implements
 <code>InitializableInterface</code>, and, if so, calls its <code>init()</code> method.</p>

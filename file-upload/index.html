@@ -729,7 +729,7 @@ the other post data.</p>
 {
     $form = new UploadForm('upload-form');
 
-    $request = $this-&gt;getRequest(); 
+    $request = $this-&gt;getRequest();
     if ($request-&gt;isPost()) {
         // Make certain to merge the $_FILES info!
         $post = array_merge_recursive(
@@ -862,7 +862,7 @@ class UploadForm extends Form
 
 <p>The <code>filerenameupload</code> options above would cause an uploaded file to be
 renamed and moved to: <code>./data/tmpuploads/avatar_4b3403665fea6.png</code>.</p>
-<p>See the <a href="http://zendframework.github.io/zend-filter/file/#renameupload">RenameUpload filter</a>
+<p>See the <a href="http://docs.zendframework.com/zend-filter/file/#renameupload">RenameUpload filter</a>
 documentation for more information on its supported options.</p>
 <h3 id="call-the-fileprg-plugin">Call the fileprg plugin</h3>
 <p>Next, we need to update our controller action to use the <code>fileprg</code> plugin:</p>
@@ -1232,7 +1232,7 @@ was set in the JavaScript just before submit):</p>
 <li><a href="../element/file/">Form File Element</a></li>
 <li><a href="../helper/form-file/">Form File View Helper</a></li>
 <li><a href="https://docs.zendframework.com/zend-validator/validators/file/intro/">List of File Validators</a></li>
-<li><a href="http://zendframework.github.io/zend-filter/file/">List of File Filters</a></li>
+<li><a href="http://docs.zendframework.com/zend-filter/file/">List of File Filters</a></li>
 <li><a href="https://docs.zendframework.com/zend-mvc-plugin-fileprg/">File Post-Redirect-Get Controller Plugin</a></li>
 <li><a href="https://docs.zendframework.com/zend-inputfilter/file-input/">Zend\InputFilter\FileInput</a></li>
 <li><a href="https://docs.zendframework.com/zend-progressbar/upload/">Upload Progress Handlers</a></li>
