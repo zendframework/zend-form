@@ -886,6 +886,10 @@ echo $helper-&gt;render($element);
 <td>Returns the attributes that will go on the message open format.</td>
 </tr>
 <tr>
+<td><code>setTranslateMessages(bool $flag) : self</code></td>
+<td>Indicate whether or not element validation error messages should be translated during <code>render()</code>. Default is to translate them.</td>
+</tr>
+<tr>
 <td><code>render(ElementInterface $element [, array $attributes = array()]) : string</code></td>
 <td>Renders validation errors for the provided <code>$element</code>. Attributes provided will be used in the <code>messageOpenFormat</code>, and merged with any provided previously via <code>setAttributes()</code>.</td>
 </tr>

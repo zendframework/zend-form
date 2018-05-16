@@ -758,6 +758,8 @@
         
             <li><a href="#translation">Translation</a></li>
         
+            <li><a href="#allowing-framework-specific-attributes">Allowing framework-specific attributes</a></li>
+        
     
     </ul>
 
@@ -852,6 +854,14 @@ allows setting a translator and text domain.</p>
 <td><code>addDefaultTranslatableAttributePrefix(string $prefix) : void</code></td>
 <td>Marks all HTML attributes that start with the given prefix as translatable for all view helpers.</td>
 </tr>
+<tr>
+<td><code>addValidAttribute(string $attribute) : self</code></td>
+<td>Add an HTML attribute to the list of valid attributes for the given element.</td>
+</tr>
+<tr>
+<td><code>addValidAttributePrefix(string $prefix) : self</code></td>
+<td>Add an HTML attribute prefix to the list of valid attribute prefixes. Any attribute with this preix will be considered valid. By default, the list includes "data-", "aria-", and "x-".</td>
+</tr>
 </tbody>
 </table></div>
 <h2 id="translation">Translation</h2>
@@ -886,6 +896,20 @@ $this-&gt;formLabel()-&gt;addTranslatableAttributePrefix('data-translatable-');<
 
 // mark an prefix as translatable
 \Zend\Form\View\Helper\AbstractHelper-&gt;addDefaultTranslatableAttributePrefix('data-translatable-');</code></pre></p>
+<h2 id="allowing-framework-specific-attributes">Allowing framework-specific attributes</h2>
+<p>Many JavaScript frameworks use custom attributes and/or attribute prefixes with
+elements, to facilitate various bindings and event listeners. Examples include
+<code>ng-</code> for <a href="https://angularjs.org">Angular</a> elements, and <code>v-</code> for
+<a href="https://vuejs.org">Vue</a>.</p>
+<p>zend-form view helpers are strict about what attributes they consider valid. If
+you wish to allow additional attributes, you will need to notify the helper of
+them.</p>
+<p>The first mechanism is to add a specific attribute:</p>
+<pre class="codehilite"><code class="language-php">$helper-&gt;addValidAttribute('some-attribute');</code></pre>
+
+<p>If you wish to allow a set of attributes with a common prefix, use the
+following:</p>
+<pre class="codehilite"><code class="language-php">$helper-&gt;addValidAttributePrefix('ng-');</code></pre>
 
 <hr />
 
