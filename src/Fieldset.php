@@ -73,6 +73,11 @@ class Fieldset extends Element implements FieldsetInterface
     protected $allowedObjectBindingClass;
 
     /**
+     * @var callable
+     */
+    protected $emptyObjectInstantiator;
+
+    /**
      * @param  null|int|string  $name    Optional name for the element
      * @param  array            $options Optional options for the element
      */
@@ -103,7 +108,19 @@ class Fieldset extends Element implements FieldsetInterface
             $this->setAllowedObjectBindingClass($options['allowed_object_binding_class']);
         }
 
+        if (isset($options['empty_object_instantatior'])) {
+            $this->setEmptyObjectInstantiator($options['empty_object_instantiator']);
+        }
+
         return $this;
+    }
+
+    /**
+     * @param callable $emptyObjectInstantiator
+     */
+    public function setEmptyObjectInstantiator(callable $emptyObjectInstantiator)
+    {
+        $this->emptyObjectInstantiator = $emptyObjectInstantiator;
     }
 
     /**
@@ -552,7 +569,7 @@ class Fieldset extends Element implements FieldsetInterface
      */
     public function allowValueBinding()
     {
-        return is_object($this->object);
+        return is_object($this->object) || $this->emptyObjectInstantiator;
     }
 
     /**
@@ -565,6 +582,11 @@ class Fieldset extends Element implements FieldsetInterface
      */
     public function bindValues(array $values = [], array $validationGroup = null)
     {
+        if (! is_object($this->object) && $this->emptyObjectInstantiator) {
+            $instantiator = $this->emptyObjectInstantiator;
+            $this->object = $instantiator($values, $this);
+        }
+
         $objectData = $this->extract();
         $hydrator = $this->getHydrator();
         $hydratableData = [];

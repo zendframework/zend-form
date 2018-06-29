@@ -446,6 +446,20 @@ class FormTest extends TestCase
         $this->assertSame($model, $data);
     }
 
+    public function testGetDataReturnsBoundModelCreatedByInstantiator()
+    {
+        $model = new stdClass;
+        $this->form->setHydrator(new Hydrator\ObjectProperty());
+        $this->populateForm();
+        $this->form->setData([]);
+        $this->form->setEmptyObjectInstantiator(function (array $data) use ($model) {
+            return $model;
+        });
+        $this->form->isValid();
+        $data = $this->form->getData();
+        $this->assertSame($model, $data);
+    }
+
     public function testGetDataCanReturnValuesAsArrayWhenModelIsBound()
     {
         $model = new stdClass;
@@ -2288,6 +2302,43 @@ class FormTest extends TestCase
         $object->foo = ['item 1', 'item 2'];
 
         $this->form->bind($object);
+
+        $this->form->setData([
+            'submit' => 'Confirm',
+            'example' => [
+                //'foo' => [] // $_POST doesn't have this if collection is empty
+            ]
+        ]);
+
+        $this->assertTrue($this->form->isValid());
+        $this->assertEquals([], $this->form->getObject()->foo);
+    }
+
+    public function testShouldHydrateEmptyCollectionWithEmptyObjectInstantiator()
+    {
+        $fieldset = new Fieldset('example');
+        $fieldset->add([
+            'type' => Element\Collection::class,
+            'name' => 'foo',
+            'options' => [
+                'label' => 'InputFilterProviderFieldset',
+                'count' => 1,
+                'target_element' => [
+                    'type' => 'text'
+                ]
+            ],
+        ]);
+
+        $this->form->add($fieldset);
+        $this->form->setBaseFieldset($fieldset);
+        $this->form->setHydrator(new ObjectPropertyHydrator());
+
+        $object = new Entity\SimplePublicProperty();
+        $object->foo = ['item 1', 'item 2'];
+
+        $this->form->setEmptyObjectInstantiator(function () use ($object) {
+            return $object;
+        });
 
         $this->form->setData([
             'submit' => 'Confirm',
