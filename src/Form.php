@@ -312,8 +312,7 @@ class Form extends Fieldset implements FormInterface
      */
     public function setEmptyObjectInstantiator(callable $emptyObjectInstantiator)
     {
-        if (
-            $this->baseFieldset !== null
+        if ($this->baseFieldset !== null
             && \method_exists($this->baseFieldset, 'setEmptyObjectInstantiator')
         ) {
             $this->baseFieldset->setEmptyObjectInstantiator($emptyObjectInstantiator);
@@ -560,7 +559,9 @@ class Form extends Fieldset implements FormInterface
             ));
         }
 
-        if (($flag !== FormInterface::VALUES_AS_ARRAY) && (is_object($this->object) || $this->emptyObjectInstantiator)) {
+        if (($flag !== FormInterface::VALUES_AS_ARRAY)
+            && (is_object($this->object) || $this->emptyObjectInstantiator)
+        ) {
             if (! is_object($this->object) && $this->emptyObjectInstantiator) {
                 $instantiator = $this->emptyObjectInstantiator;
                 $this->object = $instantiator($this->data, $this);

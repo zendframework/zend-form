@@ -2336,7 +2336,7 @@ class FormTest extends TestCase
         $object = new Entity\SimplePublicProperty();
         $object->foo = ['item 1', 'item 2'];
 
-        $this->form->setEmptyObjectInstantiator(function() use ($object) {
+        $this->form->setEmptyObjectInstantiator(function () use ($object) {
             return $object;
         });
 
