@@ -308,6 +308,22 @@ class Form extends Fieldset implements FormInterface
     }
 
     /**
+     * @param callable $emptyObjectInstantiator
+     */
+    public function setEmptyObjectInstantiator(callable $emptyObjectInstantiator)
+    {
+        if (
+            $this->baseFieldset !== null
+            && \method_exists($this->baseFieldset, 'setEmptyObjectInstantiator')
+        ) {
+            $this->baseFieldset->setEmptyObjectInstantiator($emptyObjectInstantiator);
+        }
+
+        parent::setEmptyObjectInstantiator($emptyObjectInstantiator);
+    }
+
+
+    /**
      * Set the hydrator to use when binding an object to the element
      *
      * @param  HydratorInterface $hydrator
@@ -330,11 +346,12 @@ class Form extends Fieldset implements FormInterface
      */
     public function bindValues(array $values = [], array $validationGroup = null)
     {
-        if (! is_object($this->object)) {
-            if ($this->baseFieldset === null || $this->baseFieldset->allowValueBinding() == false) {
+        if (! is_object($this->object) && ! $this->allowValueBinding()) {
+            if ($this->baseFieldset === null || ! $this->baseFieldset->allowValueBinding()) {
                 return;
             }
         }
+
         if (! $this->hasValidated() && ! empty($values)) {
             $this->setData($values);
             if (! $this->isValid()) {
@@ -543,7 +560,12 @@ class Form extends Fieldset implements FormInterface
             ));
         }
 
-        if (($flag !== FormInterface::VALUES_AS_ARRAY) && is_object($this->object)) {
+        if (($flag !== FormInterface::VALUES_AS_ARRAY) && (is_object($this->object) || $this->emptyObjectInstantiator)) {
+            if (! is_object($this->object) && $this->emptyObjectInstantiator) {
+                $instantiator = $this->emptyObjectInstantiator;
+                $this->object = $instantiator($this->data, $this);
+            }
+
             return $this->object;
         }
 
