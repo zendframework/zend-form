@@ -772,6 +772,23 @@ $select-&gt;setValueOptions([
 $form = new Form('language');
 $form-&gt;add($select);</code></pre>
 
+<p>Attributes on the options are supported by providing the options as a
+specification array instead of key-value pairs:</p>
+<pre class="codehilite"><code class="language-php">$select-&gt;setValueOptions([
+    [
+        'value' =&gt; '0',
+        'label' =&gt; 'French',
+        'attributes' =&gt; [
+            'data-locale' = 'fr'
+        ],
+    ],
+    [
+        'value' =&gt; '1',
+        'label' =&gt; 'Italian',
+        'disabled' =&gt; true,
+    ],
+]);</code></pre>
+
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Select</code> element; all other methods
 defined by the <a href="../element/#public-methods">parent <code>Element</code> class</a> are also
