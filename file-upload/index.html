@@ -717,7 +717,7 @@ for form processing, but with some slight caveats that will be described below.<
 <ul>
 <li>Define a <strong>Form</strong> for backend validation and filtering.</li>
 <li>Create a <strong>view template</strong> with a <code>&lt;form&gt;</code> containing a file input.</li>
-<li>Process the form within a <strong>Controller action</strong>.</li>
+<li>Process the form within a <strong>Controller action</strong> (zend-mvc) or in a <strong>Request Handler</strong> (Expressive).</li>
 </ul>
 <h3 id="the-form-and-inputfilter">The Form and InputFilter</h3>
 <p>Here we define a <code>Zend\Form\Element\File</code> input in a <code>Form</code> extension named
@@ -785,8 +785,8 @@ errors), and a submit button.</p>
 &lt;/form&gt;</code></pre>
 
 <h3 id="the-controller-action">The Controller Action</h3>
-<p>For the final step, we will instantiate the <code>UploadForm</code> and process any
-postbacks in a controller action.</p>
+<p>When using zend-mvc, the final step will be to instantiate the <code>UploadForm</code> and
+process any postbacks in a controller action.</p>
 <p>The form processing in the controller action will be similar to normal forms,
 <em>except</em> that you <strong>must</strong> merge the <code>$_FILES</code> information in the request with
 the other post data.</p>
@@ -864,6 +864,52 @@ re-mapped array format.</p>
 <p>Note: <a href="http://www.php-fig.org/psr/psr-7/">PSR-7</a> also remaps the <code>$_FILES</code>
 array in this way.</p>
 </blockquote>
+<h3 id="expressive-request-handler">Expressive Request Handler</h3>
+<p>If you are using a <a href="https://www.php-fig.org/psr/psr-15/">PSR-15</a> request handler
+with <a href="https://www.php-fig.org/psr/psr-7/">PSR-7</a> request payload, the final step
+involves merging <code>$request-&gt;getParsedBody()</code> with
+<code>$request-&gt;getUploadedFiles()</code>.</p>
+<pre class="codehilite"><code class="language-php">public function handle(ServerRequestInterface $request) : ResponseInterface
+{
+    $form = new UploadForm('upload-form');
+
+    if ($request-&gt;getMethod() === 'POST') {
+        $post = array_merge_recursive(
+            $request-&gt;getParsedBody(),
+            $request-&gt;getUploadedFiles()
+        );
+
+        $form-&gt;setData($post);
+
+        if ($form-&gt;isValid()) {
+            $data = $form-&gt;getData();
+
+            // Form is valid, save the form!
+
+            return new RedirectResponse('upload-form/success');
+        }
+    }
+
+    return new HtmlResponse(
+        $this-&gt;template-&gt;render('app::page-template', [
+            'form' =&gt; $form,
+        ]);    
+    );
+}</code></pre>
+
+<p>Upon a successful file upload, <code>$form-&gt;getData()</code> would return array including
+the file field name as a key, and a new instance of <code>UploadedFileInterface</code> as
+its value.</p>
+<blockquote>
+<h3 id="further-operations-on-the-uploaded-file">Further operations on the uploaded file</h3>
+<p>After running <code>isValid()</code> on the form instance, you should no longer trust the
+<code>UploadedFileInterface</code> instance stored in the PSR-7 <code>$request</code> to perform further
+operations on the uploaded file. The file may be moved by one of the filters
+attached to form input, but since the request is immutable, the change will not
+be reflected in it. Therefore, after validation, always use the file
+information retrieved from <code>$form-&gt;getData()</code>, <em>not</em> from
+<code>$request-&gt;getUploadedFiles()</code>.</p>
+</blockquote>
 <h2 id="file-post-redirect-get-plugin">File Post-Redirect-Get Plugin</h2>
 <p>When using other standard form inputs (i.e. <code>text</code>, <code>checkbox</code>, <code>select</code>, etc.)
 along with file inputs in a form, you can encounter a situation where some
@@ -929,6 +975,15 @@ class UploadForm extends Form
 renamed and moved to: <code>./data/tmpuploads/avatar_4b3403665fea6.png</code>.</p>
 <p>See the <a href="http://docs.zendframework.com/zend-filter/file/#renameupload">RenameUpload filter</a>
 documentation for more information on its supported options.</p>
+<blockquote>
+<h3 id="further-operations-on-the-uploaded-file_1">Further operations on the uploaded file</h3>
+<p>If the file is coming in as a PSR-7 payload, the move operation will be
+performed on the passed <code>UploadedFileInterface</code> instance. Therefore, it will
+contain an expired stream and outdated target file name. After running this filter,
+<em>do not use</em> the request object to get further details about the uploaded file;
+use the new instance of <code>UploadedFileInterface</code> returned from the filter
+invocation. </p>
+</blockquote>
 <h3 id="call-the-fileprg-plugin">Call the fileprg plugin</h3>
 <p>Next, we need to update our controller action to use the <code>fileprg</code> plugin:</p>
 <pre class="codehilite"><code class="language-php">public function uploadFormAction()
