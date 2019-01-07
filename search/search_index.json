@@ -3,7 +3,7 @@
         {
             "location": "/",
             "text": "zend-form\n\n\n\n\n\n\nzend-form is intended primarily as a bridge between your domain models and\nthe View Layer. It composes a thin layer of objects representing form elements,\nan InputFilter, and a small number of methods for binding data to and from the\nform and attached objects.\n\n\n\n\nFile issues at https://github.com/zendframework/zend-form/issues\n\n\nAsk questions at https://discourse.zendframework.com/c/questions/components\n  (use the tag zend-form)\n\n\nDocumentation is at https://docs.zendframework.com/zend-form/",
-            "title": "zend-form"
+            "title": "Home"
         },
         {
             "location": "/#zend-form",
@@ -13,7 +13,7 @@
         {
             "location": "/intro/",
             "text": "Introduction\n\n\nzend-form is a bridge between your domain models and the view layer. It composes\na thin layer of objects representing form elements, an\n\nInputFilter\n, and a small\nnumber of methods for binding data to and from the form and attached objects.\n\n\nThe component consists of the following objects:\n\n\n\n\nElements, which consist of a name and attributes.\n\n\nFieldsets, which extend from elements, but allow composing other fieldsets and\n  elements.\n\n\nForms, which extend from Fieldsets (and thus Elements). They provide data and\n  object binding, and compose \nInputFilters\n.\n  Data binding is done via \nzend-hydrator\n.\n\n\n\n\nTo facilitate usage with the view layer, zend-form also aggregates a number of\nform-specific view helpers. These accept elements, fieldsets, and/or forms, and\nuse the attributes they compose to render markup.\n\n\nA small number of specialized elements are provided for accomplishing\napplication-centric tasks.  These include the \nCsrf\n element, used to prevent\nCross Site Request Forgery attacks, and the \nCaptcha\n element, used to display\nand validate \nCAPTCHAs\n.\n\n\nA \nFactory\n is provided to facilitate creation of elements, fieldsets, forms,\nand the related input filter. The default \nForm\n implementation is backed by a\nfactory to facilitate extension and ease the process of form creation.\n\n\nThe code related to forms can often spread between a variety of concerns: a form\ndefinition, an input filter definition, a domain model class, and one or more\nhydrator implementations. As such, finding the various bits of code and how they\nrelate can become tedious. To simplify the situation, you can also annotate your\ndomain model class, detailing the various input filter definitions, attributes,\nand hydrators that should all be used together. \nZend\\Form\\Annotation\\AnnotationBuilder\n\ncan then be used to build the various objects you need.",
-            "title": "Intro"
+            "title": "Introduction"
         },
         {
             "location": "/intro/#introduction",
@@ -108,7 +108,7 @@
         {
             "location": "/element/intro/",
             "text": "Form Elements\n\n\nA set of specialized elements are provided for accomplishing application-centric\ntasks. These include several HTML5 input elements with matching server-side\nvalidators, the \nCsrf\n element (to prevent Cross Site Request Forgery attacks),\nand the \nCaptcha\n element (to display and validate\n\nCAPTCHAs\n).\n\n\nA \nFactory\n is provided to facilitate creation of elements, fieldsets, forms,\nand the related input filter. See the \nquick start\n\nfor more information.",
-            "title": "Intro"
+            "title": "Introduction"
         },
         {
             "location": "/element/intro/#form-elements",
@@ -882,13 +882,23 @@
         },
         {
             "location": "/helper/intro/",
-            "text": "View Helpers\n\n\nzend-form comes with an initial set of zend-view helper classes for tasks such\nas rendering forms, rendering a text input, rendering a selection box, etc.\n\n\nSee the \nview helpers documentation\n\nfor more information.",
-            "title": "Intro"
+            "text": "View Helpers\n\n\nzend-form comes with an initial set of zend-view helper classes for tasks such\nas rendering forms, rendering a text input, rendering a selection box, etc.\n\n\nSee the \nview helpers documentation\n\nfor more information.\n\n\n\n\nIDE auto-completion in templates\n\n\nThe \nZend\\Form\\View\\HelperTrait\n trait can be used to provide auto-completion\nfor modern IDEs. It defines the aliases of the view helpers in a DocBlock as\n\n@method\n tags.\n\n\nUsage\n\n\nIn order to allow auto-completion in templates, \n$this\n variable should be\ntype-hinted via a DocBlock at the top of your template. It is recommended that\nyou always add the \nZend\\View\\Renderer\\PhpRenderer\n as the first type, so that\nthe IDE can auto-suggest the default view helpers from \nzend-view\n. Next,\nchain the \nHelperTrait\n from \nzend-form\n with a pipe symbol (a.k.a. vertical\nbar) \n|\n:\n\n\n/**\n * @var Zend\\View\\Renderer\\PhpRenderer|Zend\\Form\\View\\HelperTrait $this\n */\n\n\n\nYou may chain as many \nHelperTrait\n traits as you like, depending on view\nhelpers from which Zend Framework component you are using and would like to\nprovide auto-completion for.",
+            "title": "Introduction"
         },
         {
             "location": "/helper/intro/#view-helpers",
             "text": "zend-form comes with an initial set of zend-view helper classes for tasks such\nas rendering forms, rendering a text input, rendering a selection box, etc.  See the  view helpers documentation \nfor more information.",
             "title": "View Helpers"
+        },
+        {
+            "location": "/helper/intro/#ide-auto-completion-in-templates",
+            "text": "The  Zend\\Form\\View\\HelperTrait  trait can be used to provide auto-completion\nfor modern IDEs. It defines the aliases of the view helpers in a DocBlock as @method  tags.",
+            "title": "IDE auto-completion in templates"
+        },
+        {
+            "location": "/helper/intro/#usage",
+            "text": "In order to allow auto-completion in templates,  $this  variable should be\ntype-hinted via a DocBlock at the top of your template. It is recommended that\nyou always add the  Zend\\View\\Renderer\\PhpRenderer  as the first type, so that\nthe IDE can auto-suggest the default view helpers from  zend-view . Next,\nchain the  HelperTrait  from  zend-form  with a pipe symbol (a.k.a. vertical\nbar)  | :  /**\n * @var Zend\\View\\Renderer\\PhpRenderer|Zend\\Form\\View\\HelperTrait $this\n */  You may chain as many  HelperTrait  traits as you like, depending on view\nhelpers from which Zend Framework component you are using and would like to\nprovide auto-completion for.",
+            "title": "Usage"
         },
         {
             "location": "/helper/abstract-helper/",
@@ -1483,7 +1493,7 @@
         {
             "location": "/helper/upload-progress-helpers/",
             "text": "Upload Progress Helpers\n\n\nzend-form provides several helpers to use in conjunction with\n\nzend-progressbar\n for the\npuproses of rending upload progress information. These include:\n\n\n\n\nFormFileApcProgress\n, which works with the APC\n  extension.\n\n\nFormFileSessionProgress\n, which works with the\n  built-in support via the session extension.\n\n\nFormFileUploadProgress\n, which works with the\n  UploadProgress extension.",
-            "title": "Intro"
+            "title": "Introduction"
         },
         {
             "location": "/helper/upload-progress-helpers/#upload-progress-helpers",
