@@ -740,7 +740,7 @@ order to validate <a href="http://www.whatwg.org/specs/web-apps/current-work/mul
 on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>email</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -754,10 +754,9 @@ $form-&gt;add($email);
 $emails = new Element\Email('emails');
 $emails-&gt;setLabel('Email Addresses');
 $emails-&gt;setAttribute('multiple', true);
-$form-&gt;add($emails);</code></pre>
-
+$form-&gt;add($emails);</code></pre></p>
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -781,10 +780,9 @@ $form-&gt;add([
     'attributes' =&gt; [
         'multiple' =&gt; true,
     ],
-]);</code></pre>
-
+]);</code></pre></p>
 <blockquote>
-<h3 id="set-multiple-attribute-before-calling-prepare">Set multiple attribute before calling prepare</h3>
+<h3>Set multiple attribute before calling prepare</h3>
 <p>Note: the <code>multiple</code> attribute should be set prior to calling
 <code>Zend\Form::prepare()</code>. Otherwise, the default input specification for the
 element may not contain the correct validation rules.</p>
@@ -866,7 +864,7 @@ attribute:</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/element/email.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/element/email.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

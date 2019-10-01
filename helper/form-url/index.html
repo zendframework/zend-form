@@ -732,27 +732,24 @@
 form input. It is meant to work with the <a href="../../element/url/">Url element</a>, which
 provides a default input specification with an URL validator.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $element = new Element\Url('my-url');
 
 // Within your view...
-echo $this-&gt;formUrl($element);</code></pre>
-
+echo $this-&gt;formUrl($element);</code></pre></p>
 <p>Output:</p>
-<pre class="codehilite"><code class="language-html">&lt;input type="url" name="my-url" value=""&gt;</code></pre>
-
+<p> <pre class=codehilite><code class=language-html>&lt;input type=&quot;url&quot; name=&quot;my-url&quot; value=&quot;&quot;&gt;</code></pre></p>
 <p>Usage of custom regular expression pattern:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $element = new Element\Url('my-url');
 $element-&gt;setAttribute('pattern', 'https?://.+');
 
 // Within your view...
-echo $this-&gt;formUrl($element);</code></pre>
-
+echo $this-&gt;formUrl($element);</code></pre></p>
 <p>Output:</p>
-<pre class="codehilite"><code class="language-html">&lt;input type="url" name="my-url" pattern="https?://.+" value=""&gt;</code></pre>
+<p> <pre class=codehilite><code class=language-html>&lt;input type=&quot;url&quot; name=&quot;my-url&quot; pattern=&quot;https?://.+&quot; value=&quot;&quot;&gt;</code></pre></p>
 
 
 
@@ -786,7 +783,7 @@ echo $this-&gt;formUrl($element);</code></pre>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/form-url.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/form-url.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

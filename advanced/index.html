@@ -741,20 +741,18 @@ especially when you need to handle complex dependencies in forms/fieldsets.</p>
 <p>The first advantage of pulling form elements from the service manager is that
 now you can use short names to create new elements through the factory.
 Therefore, this code:</p>
-<pre class="codehilite"><code class="language-php">$form-&gt;add([
+<p> <pre class=codehilite><code class=language-php>$form-&gt;add([
     'type' =&gt; Element\Email::class,
     'name' =&gt; 'email',
-]);</code></pre>
-
+]);</code></pre></p>
 <p>can now be replaced by:</p>
-<pre class="codehilite"><code class="language-php">$form-&gt;add([
+<p> <pre class=codehilite><code class=language-php>$form-&gt;add([
      'type' =&gt; 'Email',
      'name' =&gt; 'email'
-]);</code></pre>
-
+]);</code></pre></p>
 <p>Each element provided out-of-the-box by zend-form supports this natively.</p>
 <blockquote>
-<h3 id="use-the-class-constant">Use the ::class constant</h3>
+<h3>Use the ::class constant</h3>
 <p>While using aliases leads to compact code, they're also can more easily result
 in typographic mistakes. We recommend using the <code>::class</code> constant in most
 situations, as these can be more easily scanned with static analysis tools for
@@ -769,7 +767,7 @@ or, if you have a more specific dependency, extend one of the classes in the
 entering phone numbers. It will extend <code>Zend\Form\Element</code> class and provide
 some default input rules.</p>
 <p>Our custom phone element could look something like this:</p>
-<pre class="codehilite"><code class="language-php">namespace Application\Form\Element;
+<p> <pre class=codehilite><code class=language-php>namespace Application\Form\Element;
 
 use Zend\Filter;
 use Zend\Form\Element;
@@ -835,8 +833,7 @@ class Phone extends Element implements InputProviderInterface
             ],
         ];
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>By implementing <code>Zend\InputFilter\InputProviderInterface</code> interface, we are
 hinting to our form object that this element provides some default input rules
 for filtering and/or validating values. In this example, the default input
@@ -845,17 +842,16 @@ specification provides a <code>Zend\Filter\StringTrim</code> filter and a
 <code>+</code> sign at the beginning, and is followed by 11 or 12 digits.</p>
 <p>To use the new element in our forms, we can specify it by its fully qualified
 class name (FQCN):</p>
-<pre class="codehilite"><code class="language-php">use Application\Form\Element\Phone;
+<p> <pre class=codehilite><code class=language-php>use Application\Form\Element\Phone;
 use Zend\Form\Form;
 
 $form = Form();
 $form-&gt;add(array(
     'name' =&gt; 'phone',
     'type' =&gt; Phone::class,
-));</code></pre>
-
+));</code></pre></p>
 <p>Or, if you are extending <code>Zend\Form\Form</code>:</p>
-<pre class="codehilite"><code class="language-php">namespace Application\Form;
+<p> <pre class=codehilite><code class=language-php>namespace Application\Form;
 
 use Zend\Form\Form;
 
@@ -870,15 +866,14 @@ class MyForm extends Form
             'type' =&gt; Element\Phone::class,
         ]);
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>If you don't want to use the custom element's FQCN, but rather a short name,
 add an entry for it to <code>Zend\Form\FormElementManager</code>. You can do this by adding
 an entry under the <code>form_elements</code> configuration, or within your <code>Module</code> class
 via a <code>getFormElementConfig()</code> method.</p>
 <p>Configuration via a config file (e.g., <code>module.config.php</code>) file looks like the
 following:</p>
-<pre class="codehilite"><code class="language-php">use Zend\ServiceManager\Factory\InvokableFactory;
+<p> <pre class=codehilite><code class=language-php>use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'form_elements' =&gt; [
@@ -889,10 +884,9 @@ return [
             Application\Form\Element\Phone::class =&gt; InvokableFactory::class,
         ],
     ],
-];</code></pre>
-
+];</code></pre></p>
 <p>The following demonstrates using your <code>Module</code> class:</p>
-<pre class="codehilite"><code class="language-php">namespace Application;
+<p> <pre class=codehilite><code class=language-php>namespace Application;
 
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -910,15 +904,14 @@ class Module implements FormElementProviderInterface
             ],
         ];
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>If needed, you can define a custom factory for handling dependencies.</p>
 <p><strong>And now comes the first catch.</strong></p>
 <p>If you are creating your form class by extending <code>Zend\Form\Form</code>, you <em>must
 not</em> add the custom element in the constructor (as we have done in the previous
 example where we used the custom element's FQCN), but rather in the <code>init()</code>
 method:</p>
-<pre class="codehilite"><code class="language-php">namespace Application\Form;
+<p> <pre class=codehilite><code class=language-php>namespace Application\Form;
 
 use Zend\Form\Form;
 
@@ -931,11 +924,10 @@ class MyForm extends Form
             'type' =&gt; 'phone',
         ]);
     }
-}</code></pre>
-
+}</code></pre></p>
 <p><strong>The second catch</strong> is that you <em>must not</em> directly instantiate your form
 class, but rather get an instance of it through <code>Zend\Form\FormElementManager</code>:</p>
-<pre class="codehilite"><code class="language-php">namespace Application\Controller;
+<p> <pre class=codehilite><code class=language-php>namespace Application\Controller;
 
 use Application\Form\MyForm;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -953,10 +945,9 @@ class IndexController extends AbstractActionController
     {
         return array('form' =&gt; $this-&gt;form);
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>This now requires a factory to inject the form instance:</p>
-<pre class="codehilite"><code class="language-php">namespace Application\Controller;
+<p> <pre class=codehilite><code class=language-php>namespace Application\Controller;
 
 use Interop\Container\ContainerInterface;
 use Application\Form\MyForm;
@@ -968,10 +959,9 @@ class IndexControllerFactory
         $formManager = $container-&gt;get('FormElementManager');
         return new IndexController($formManager-&gt;get(MyForm::class));
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>Which in turn requires that you map the controller to the factory:</p>
-<pre class="codehilite"><code class="language-php">// In module.config.php
+<p> <pre class=codehilite><code class=language-php>// In module.config.php
 return [
     /* ... */
     'controllers' =&gt; [
@@ -979,14 +969,13 @@ return [
             Application\Controller\IndexController::class =&gt; Application\Controller\IndexControllerFactory::class,
         ],
     ],
-];</code></pre>
-
+];</code></pre></p>
 <p>The biggest gain of this is that you can easily override any built-in form
 elements if they do not fit your needs. For instance, if you want to create your
 own <code>Email</code> element instead of the standard one, create your custom element, and
 add it to the form element config with the same key as the element you want to
 replace:</p>
-<pre class="codehilite"><code class="language-php">namespace Application;
+<p> <pre class=codehilite><code class=language-php>namespace Application;
 
 use Zend\Form\Element\Email;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
@@ -1006,12 +995,11 @@ class Module implements FormElementProviderInterface
             ],
         ];
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>Now whenever you create an element with a <code>type</code> of 'email',
 it will create the custom element instead of the built-in one.</p>
 <blockquote>
-<h3 id="use-the-original">Use the original?</h3>
+<h3>Use the original?</h3>
 <p>If you want to be able to use both the built-in one and your own one, you can
 still provide the FQCN of the element, e.g. <code>Zend\Form\Element\Email</code>.</p>
 </blockquote>
@@ -1034,7 +1022,7 @@ populate a <code>Select</code> element. Retrieving forms from the <code>FormElem
 solves this issue, as factories it invokes have access to the application
 service container, and can use it to provide dependencies.</p>
 <p>For instance, let's say that a form create a fieldset called <code>AlbumFieldset</code>:</p>
-<pre class="codehilite"><code class="language-php">namespace Application\Form;
+<p> <pre class=codehilite><code class=language-php>namespace Application\Form;
 
 use Zend\Form\Form;
 
@@ -1047,11 +1035,10 @@ class CreateAlbum extends Form
             'type' =&gt; AlbumFieldset::class,
         ]);
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>Let's now create the <code>AlbumFieldset</code>, and have it depend on an <code>AlbumTable</code>
 object that allows us to fetch albums from the database.</p>
-<pre class="codehilite"><code class="language-php">namespace Application\Form;
+<p> <pre class=codehilite><code class=language-php>namespace Application\Form;
 
 use Album\Model\AlbumTable;
 use Zend\Form\Fieldset;
@@ -1063,10 +1050,9 @@ class AlbumFieldset extends Fieldset
         // Add any elements that need to fetch data from database
         // using the album table !
     }
-}</code></pre>
-
+}</code></pre></p>
 <p>To enable this, we'll create a factory for our <code>AlbumFieldset</code> as follows:</p>
-<pre class="codehilite"><code class="language-php">namespace Application\Form;
+<p> <pre class=codehilite><code class=language-php>namespace Application\Form;
 
 use Album\Model\AlbumTable;
 use Interop\Container\ContainerInterface;
@@ -1087,31 +1073,28 @@ class AlbumFieldsetFactory implements FactoryInterface
             AlbumFieldset::class
         );
     }
-}</code></pre>
-
+}</code></pre></p>
 <blockquote>
-<h3 id="compatibility">Compatibility</h3>
+<h3>Compatibility</h3>
 <p>The above factory was written to work with both the v2 and v3 releases of
 zend-servicemanager. If you know you will only be using v3, you can remove the
 <code>createService()</code> implementation.</p>
 </blockquote>
 <p>You can now map the fieldset to the factory in your configuration:</p>
-<pre class="codehilite"><code class="language-php">// In module.config.php:
+<p> <pre class=codehilite><code class=language-php>// In module.config.php:
 return [
     'form_elements' =&gt; [
         'factories' =&gt; [
             Application\Form\AlbumFieldset::class =&gt; Application\Form\AlbumFieldsetFactory::class,
         ],
     ],
-];</code></pre>
-
+];</code></pre></p>
 <p>Inject your form into your controller, per the example in the previous section.</p>
 <p>As a reminder, to use your fieldset in a view, you need to use the
 <code>formCollection</code> helper:</p>
-<pre class="codehilite"><code class="language-php">echo $this-&gt;form()-&gt;openTag($form);
+<p> <pre class=codehilite><code class=language-php>echo $this-&gt;form()-&gt;openTag($form);
 echo $this-&gt;formCollection($form-&gt;get('album'));
-echo $this-&gt;form()-&gt;closeTag();</code></pre>
-
+echo $this-&gt;form()-&gt;closeTag();</code></pre></p>
 <h2 id="initialization">Initialization</h2>
 <p>As noted in previous sections, and in the chapter on elements, we recommend
 defining an <code>init()</code> method for initializing your elements, fieldsets, and
@@ -1158,7 +1141,7 @@ and populated, and shared across all specifications you provide.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/advanced.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/advanced.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

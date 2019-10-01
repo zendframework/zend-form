@@ -739,7 +739,7 @@ This element adds filters and validators to its input filter specification in
 order to validate HTML5 week input values on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>week</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $week = new Element\Week('week');
@@ -751,10 +751,9 @@ $week-&gt;setAttributes([
 ]);
 
 $form = new Form('my-form');
-$form-&gt;add($week);</code></pre>
-
+$form-&gt;add($week);</code></pre></p>
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -769,10 +768,9 @@ $form-&gt;add([
         'max' =&gt; '2020-W01',
         'step' =&gt; '1', // weeks; default step interval is 1 week
     ],
-]);</code></pre>
-
+]);</code></pre></p>
 <blockquote>
-<h3 id="set-all-attributes-before-calling-prepare">Set all attributes before calling prepare</h3>
+<h3>Set all attributes before calling prepare</h3>
 <p>The <code>min</code>, <code>max</code>, and <code>step</code> attributes should be set prior to calling
 <code>Zend\Form::prepare()</code>. Otherwise, the default input specification for the
 element may not contain the correct validation rules.</p>
@@ -828,7 +826,7 @@ available.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/element/week.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/element/week.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

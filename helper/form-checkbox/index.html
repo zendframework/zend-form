@@ -733,7 +733,7 @@ type="checkbox"&gt;</code> HTML form input. It is meant to work with the
 <a href="../../element/checkbox/">checkbox element</a>, which provides a default input
 specification for validating the checkbox values.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $element = new Element\Checkbox('my-checkbox');
 
@@ -744,15 +744,15 @@ $element = new Element\Checkbox('my-checkbox');
  */
 echo $this-&gt;formCheckbox($element);
 // Result:
-// &lt;input type="hidden" name="my-checkbox" value="0"&gt;
-// &lt;input type="checkbox" name="my-checkbox" value="1"&gt;
+// &lt;input type=&quot;hidden&quot; name=&quot;my-checkbox&quot; value=&quot;0&quot;&gt;
+// &lt;input type=&quot;checkbox&quot; name=&quot;my-checkbox&quot; value=&quot;1&quot;&gt;
 
 /**
  * Example #2: Disable hidden element
  */
 $element-&gt;setUseHiddenElement(false);
 echo $this-&gt;formCheckbox($element);
-// Result: &lt;input type="checkbox" name="my-checkbox" value="1"&gt;
+// Result: &lt;input type=&quot;checkbox&quot; name=&quot;my-checkbox&quot; value=&quot;1&quot;&gt;
 
 /**
  * Example #3: Change checked/unchecked values
@@ -762,8 +762,8 @@ $element-&gt;setUncheckedValue('no');
 $element-&gt;setCheckedValue('yes');
 echo $this-&gt;formCheckbox($element);
 // Result:
-// &lt;input type="hidden" name="my-checkbox" value="no"&gt;
-// &lt;input type="checkbox" name="my-checkbox" value="yes"&gt;</code></pre>
+// &lt;input type=&quot;hidden&quot; name=&quot;my-checkbox&quot; value=&quot;no&quot;&gt;
+// &lt;input type=&quot;checkbox&quot; name=&quot;my-checkbox&quot; value=&quot;yes&quot;&gt;</code></pre></p>
 
 
 
@@ -797,7 +797,7 @@ echo $this-&gt;formCheckbox($element);
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/form-checkbox.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/form-checkbox.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

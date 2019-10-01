@@ -733,7 +733,7 @@ of months, another with a list of years. It works in conjection with the
 <a href="../../element/month-select/">MonthSelect</a> element, which provides the data for
 the selects, as well as validation around input provided by them.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $monthYear = new Element\MonthSelect('monthyear');
 $monthYear-&gt;setLabel('Select a month and a year');
@@ -743,8 +743,8 @@ $monthYear-&gt;setMinYear(1986);
 
 echo $this-&gt;formMonthSelect($monthYear);
 // Result:
-// &lt;select name="monthyear[month]"&gt; ... &lt;/select&gt;
-// &lt;select name="monthyear[year]"&gt; ... &lt;/select&gt;</code></pre>
+// &lt;select name=&quot;monthyear[month]&quot;&gt; ... &lt;/select&gt;
+// &lt;select name=&quot;monthyear[year]&quot;&gt; ... &lt;/select&gt;</code></pre></p>
 
 
 
@@ -778,7 +778,7 @@ echo $this-&gt;formMonthSelect($monthYear);
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/form-month-select.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/form-month-select.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

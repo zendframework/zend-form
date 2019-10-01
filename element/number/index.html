@@ -739,7 +739,7 @@ This element adds filters and validators to its input filter specification in
 order to validate HTML5 number input values on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>number</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $number = new Element\Number('quantity');
@@ -751,10 +751,9 @@ $number-&gt;setAttributes([
 ]);
 
 $form = new Form('my-form');
-$form-&gt;add($number);</code></pre>
-
+$form-&gt;add($number);</code></pre></p>
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -769,10 +768,9 @@ $form-&gt;add([
         'max' =&gt; '10',
         'step' =&gt; '1', // default step interval is 1
     ],
-]);</code></pre>
-
+]);</code></pre></p>
 <blockquote>
-<h3 id="set-all-attributes-before-calling-prepare">Set all attributes before calling prepare</h3>
+<h3>Set all attributes before calling prepare</h3>
 <p>The <code>min</code>, <code>max</code>, and <code>step</code> attributes should be set prior to calling
 <code>Zend\Form::prepare()</code>. Otherwise, the default input specification for the
 element may not contain the correct validation rules.</p>
@@ -842,7 +840,7 @@ provided:</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/element/number.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/element/number.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

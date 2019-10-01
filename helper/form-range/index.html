@@ -732,18 +732,16 @@
 form input. It is meant to work with the <a href="../../element/range/">Range element</a>,
 which provides a default input specification for validating numerical ranges.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $element = new Element\Range('my-range');
 
 // Within your view...
-echo $this-&gt;formRange($element);</code></pre>
-
+echo $this-&gt;formRange($element);</code></pre></p>
 <p>Output:</p>
-<pre class="codehilite"><code class="language-html">&lt;input type="range" name="my-range" value=""&gt;</code></pre>
-
+<p> <pre class=codehilite><code class=language-html>&lt;input type=&quot;range&quot; name=&quot;my-range&quot; value=&quot;&quot;&gt;</code></pre></p>
 <p>Usage of <code>min</code>, <code>max</code> and <code>step</code> attributes:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $element = new Element\Range('my-range');
 $element-&gt;setAttributes([
@@ -754,10 +752,9 @@ $element-&gt;setAttributes([
 $element-&gt;setValue(20);
 
 // Within your view...
-echo $this-&gt;formRange($element);</code></pre>
-
+echo $this-&gt;formRange($element);</code></pre></p>
 <p>Output:</p>
-<pre class="codehilite"><code class="language-html">&lt;input type="range" name="my-range" min="0" max="100" step="5" value="20"&gt;</code></pre>
+<p> <pre class=codehilite><code class=language-html>&lt;input type=&quot;range&quot; name=&quot;my-range&quot; min=&quot;0&quot; max=&quot;100&quot; step=&quot;5&quot; value=&quot;20&quot;&gt;</code></pre></p>
 
 
 
@@ -791,7 +788,7 @@ echo $this-&gt;formRange($element);</code></pre>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/form-range.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/form-range.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

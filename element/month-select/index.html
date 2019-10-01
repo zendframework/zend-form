@@ -738,7 +738,7 @@ creates two select elements, where the first one is populated with months and
 the second is populated with years. By default, it sets 100 years in the past
 for the year element, starting with the current year.</p>
 <h2 id="basic-usage">Basic Usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $monthYear = new Element\MonthSelect('monthyear');
@@ -746,10 +746,9 @@ $monthYear-&gt;setLabel('Select a month and a year');
 $monthYear-&gt;setMinYear(1986);
 
 $form = new Form('dateselect');
-$form-&gt;add($monthYear);</code></pre>
-
+$form-&gt;add($monthYear);</code></pre></p>
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('dateselect');
@@ -760,8 +759,7 @@ $form-&gt;add([
         'label' =&gt; 'Select a month and a year',
         'min_year' =&gt; 1986,
     ],
-]);</code></pre>
-
+]);</code></pre></p>
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>MonthSelect</code> element; all other methods
 defined by the <a href="../element/#public-methods">parent <code>Element</code> class</a> are also
@@ -853,7 +851,7 @@ available.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/element/month-select.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/element/month-select.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

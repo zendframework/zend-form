@@ -809,32 +809,31 @@ allows setting a translator and text domain.</p>
 </table></div>
 <h2 id="translation">Translation</h2>
 <p>Attaching a translator and setting a text domain (using the formLabel view helper as an example):</p>
-<pre class="codehilite"><code class="language-php">// Setting a translator
+<p> <pre class=codehilite><code class=language-php>// Setting a translator
 $this-&gt;formLabel()-&gt;setTranslator($translator);
 
 // Setting a text domain
 $this-&gt;formLabel()-&gt;setTranslatorTextDomain('my-text-domain');
 
 // Setting both
-$this-&gt;formLabel()-&gt;setTranslator($translator, 'my-text-domain');</code></pre>
-
+$this-&gt;formLabel()-&gt;setTranslator($translator, 'my-text-domain');</code></pre></p>
 <blockquote>
-<h3 id="enabling-translation">Enabling translation</h3>
+<h3>Enabling translation</h3>
 <p>If you have a translator in your application container under either the key,
 <code>translator</code> or <code>MvcTranslator</code>, the view helper plugin manager will
 automatically attach the translator to the view helpers.</p>
 </blockquote>
-<h3 id="what-will-be-translated">What will be translated?</h3>
+<h3>What will be translated?</h3>
 <p>The specific view helpers are responsible to determine what exactly should be translated
 (e. g. the Label in the FormLabel view helper or the "title" HTML attribute).</p>
-<p>If you want to have certain HTML attribute values translated you can mark them as "translatable":
-<pre class="codehilite"><code class="language-php">// mark one attribute as translatable
+<p>If you want to have certain HTML attribute values translated you can mark them as "translatable":</p>
+<p> <pre class=codehilite><code class=language-php>// mark one attribute as translatable
 $this-&gt;formLabel()-&gt;addTranslatableAttribute('data-translate-me');
 
 // mark an prefix as translatable
 $this-&gt;formLabel()-&gt;addTranslatableAttributePrefix('data-translatable-');</code></pre></p>
-<p>Or you can mark them as translatable for all view helpers (e. g. the title attribute):
-<pre class="codehilite"><code class="language-php">// mark one attribute as translatable
+<p>Or you can mark them as translatable for all view helpers (e. g. the title attribute):</p>
+<p> <pre class=codehilite><code class=language-php>// mark one attribute as translatable
 \Zend\Form\View\Helper\AbstractHelper-&gt;addDefaultTranslatableAttribute('title');
 
 // mark an prefix as translatable
@@ -848,11 +847,10 @@ elements, to facilitate various bindings and event listeners. Examples include
 you wish to allow additional attributes, you will need to notify the helper of
 them.</p>
 <p>The first mechanism is to add a specific attribute:</p>
-<pre class="codehilite"><code class="language-php">$helper-&gt;addValidAttribute('some-attribute');</code></pre>
-
+<p> <pre class=codehilite><code class=language-php>$helper-&gt;addValidAttribute('some-attribute');</code></pre></p>
 <p>If you wish to allow a set of attributes with a common prefix, use the
 following:</p>
-<pre class="codehilite"><code class="language-php">$helper-&gt;addValidAttributePrefix('ng-');</code></pre>
+<p> <pre class=codehilite><code class=language-php>$helper-&gt;addValidAttributePrefix('ng-');</code></pre></p>
 
 
 
@@ -886,7 +884,7 @@ following:</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/abstract-helper.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/abstract-helper.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

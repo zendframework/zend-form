@@ -731,18 +731,17 @@
 <p>The <code>FormFile</code> view helper can be used to render an <code>&lt;input type="file"&gt;</code> form
 input. It is meant to work with the <a href="../../element/file/">File element</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $element = new Element\File('my-file');
 
 // Within your view...
 
 echo $this-&gt;formFile($element);
-// Result: &lt;input type="file" name="my-file"&gt;</code></pre>
-
+// Result: &lt;input type=&quot;file&quot; name=&quot;my-file&quot;&gt;</code></pre></p>
 <p>For HTML5 multiple file uploads, the <code>multiple</code> attribute can be used. Browsers
 that do not support HTML5 will default to a single upload input.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $element = new Element\File('my-file');
 $element-&gt;setAttribute('multiple', true);
@@ -750,7 +749,7 @@ $element-&gt;setAttribute('multiple', true);
 // Within your view...
 
 echo $this-&gt;formFile($element);
-// Result: &lt;input type="file" name="my-file" multiple="multiple"&gt;</code></pre>
+// Result: &lt;input type=&quot;file&quot; name=&quot;my-file&quot; multiple=&quot;multiple&quot;&gt;</code></pre></p>
 
 
 
@@ -784,7 +783,7 @@ echo $this-&gt;formFile($element);
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/form-file.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/form-file.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

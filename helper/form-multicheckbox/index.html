@@ -733,7 +733,7 @@ type="checkbox"&gt;</code> HTML form inputs. It is meant to work with the
 <a href="../../element/multi-checkbox/">MultiCheckbox element</a>, which provides a default
 input specification for validating checkbox groups.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $element = new Element\MultiCheckbox('my-multicheckbox');
 $element-&gt;setValueOptions([
@@ -749,18 +749,18 @@ $element-&gt;setValueOptions([
  */
 echo $this-&gt;formMultiCheckbox($element);
 // Result:
-// &lt;label&gt;&lt;input type="checkbox" name="my-multicheckbox[]" value="0"&gt;Apple&lt;/label&gt;
-// &lt;label&gt;&lt;input type="checkbox" name="my-multicheckbox[]" value="1"&gt;Orange&lt;/label&gt;
-// &lt;label&gt;&lt;input type="checkbox" name="my-multicheckbox[]" value="2"&gt;Lemon&lt;/label&gt;
+// &lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;0&quot;&gt;Apple&lt;/label&gt;
+// &lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;1&quot;&gt;Orange&lt;/label&gt;
+// &lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;2&quot;&gt;Lemon&lt;/label&gt;
 
 /**
  * Example #2: using the prepend label placement
  */
 echo $this-&gt;formMultiCheckbox($element, 'prepend');
 // Result:
-// &lt;label&gt;Apple&lt;input type="checkbox" name="my-multicheckbox[]" value="0"&gt;&lt;/label&gt;
-// &lt;label&gt;Orange&lt;input type="checkbox" name="my-multicheckbox[]" value="1"&gt;&lt;/label&gt;
-// &lt;label&gt;Lemon&lt;input type="checkbox" name="my-multicheckbox[]" value="2"&gt;&lt;/label&gt;</code></pre>
+// &lt;label&gt;Apple&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;0&quot;&gt;&lt;/label&gt;
+// &lt;label&gt;Orange&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;1&quot;&gt;&lt;/label&gt;
+// &lt;label&gt;Lemon&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;2&quot;&gt;&lt;/label&gt;</code></pre></p>
 
 
 
@@ -794,7 +794,7 @@ echo $this-&gt;formMultiCheckbox($element, 'prepend');
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/form-multicheckbox.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/form-multicheckbox.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

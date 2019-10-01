@@ -735,7 +735,7 @@
 <p>The <code>FormElementErrors</code> view helper is used to render the validation error
 messages of an element.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Form;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Form;
 use Zend\Form\Element;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Input;
@@ -770,19 +770,18 @@ echo $this-&gt;formElementErrors($element);
  */
 echo $this-&gt;formElementErrors($element, ['class' =&gt; 'help-inline']);
 // Result:
-// &lt;ul class="help-inline"&gt;&lt;li&gt;Value is required and can&amp;#039;t be empty&lt;/li&gt;&lt;/ul&gt;
+// &lt;ul class=&quot;help-inline&quot;&gt;&lt;li&gt;Value is required and can&amp;#039;t be empty&lt;/li&gt;&lt;/ul&gt;
 
 /**
  * Example #3: Custom format
  */
 $helper = $this-&gt;formElementErrors();
-$helper-&gt;setMessageOpenFormat('&lt;div class="help-inline"&gt;');
-$helper-&gt;setMessageSeparatorString('&lt;/div&gt;&lt;div class="help-inline"&gt;');
+$helper-&gt;setMessageOpenFormat('&lt;div class=&quot;help-inline&quot;&gt;');
+$helper-&gt;setMessageSeparatorString('&lt;/div&gt;&lt;div class=&quot;help-inline&quot;&gt;');
 $helper-&gt;setMessageCloseString('&lt;/div&gt;');
 
 echo $helper-&gt;render($element);
-// Result: &lt;div class="help-inline"&gt;Value is required and can&amp;#039;t be empty&lt;/div&gt;</code></pre>
-
+// Result: &lt;div class=&quot;help-inline&quot;&gt;Value is required and can&amp;#039;t be empty&lt;/div&gt;</code></pre></p>
 <h2 id="public-methods">Public methods</h2>
 <p>The following public methods are in addition to those inherited from the
 <a href="../abstract-helper/#public-methods">AbstractHelper</a>:</p>
@@ -869,7 +868,7 @@ echo $helper-&gt;render($element);
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/form-element-errors.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/form-element-errors.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

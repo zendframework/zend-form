@@ -725,10 +725,6 @@
             <ul class="toc__list">
                 
                     <li class="toc__entry">
-                        <a href="#render-early" class="toc__link">Render early</a>
-                    </li>
-                
-                    <li class="toc__entry">
                         <a href="#basic-usage" class="toc__link">Basic usage</a>
                     </li>
                 
@@ -745,7 +741,7 @@ Progress feature.Unlike other zend-form view helpers, the
 <code>FormFileSessionProgress</code> helper does not accept an <code>Element</code> as a parameter.</p>
 <p>An <code>id</code> attribute with a value of <code>"progress_key"</code> will automatically be added.</p>
 <blockquote>
-<h3 id="render-early">Render early</h3>
+<h3>Render early</h3>
 <p>The view helper <strong>must</strong> be rendered <em>before</em> the file input in the form, or
 upload progress will not work correctly.</p>
 </blockquote>
@@ -754,10 +750,10 @@ handler.</p>
 <p>See the <a href="http://php.net/session.upload-progress">Session Upload Progress</a>
 chapter in the PHP documentation for more information.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">// Within your view...
+<p> <pre class=codehilite><code class=language-php>// Within your view...
 
 echo $this-&gt;formFileSessionProgress();
-// Result: &lt;input type="hidden" id="progress_key" name="PHP_SESSION_UPLOAD_PROGRESS" value="12345abcde"&gt;</code></pre>
+// Result: &lt;input type=&quot;hidden&quot; id=&quot;progress_key&quot; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot; value=&quot;12345abcde&quot;&gt;</code></pre></p>
 
 
 
@@ -791,7 +787,7 @@ echo $this-&gt;formFileSessionProgress();
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/form-file-session-progress.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/form-file-session-progress.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

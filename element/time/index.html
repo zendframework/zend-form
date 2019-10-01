@@ -739,7 +739,7 @@ This element adds filters and validators to its input filter specification in
 order to validate HTML5 time input values on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>time</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $time = new Element\Time('time');
@@ -754,10 +754,9 @@ $time-&gt;setOptions([
 ]);
 
 $form = new Form('my-form');
-$form-&gt;add($time);</code></pre>
-
+$form-&gt;add($time);</code></pre></p>
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -773,14 +772,13 @@ $form-&gt;add([
         'max' =&gt; '23:59:59',
         'step' =&gt; '60', // seconds; default step interval is 60 seconds
     ],
-]);</code></pre>
-
+]);</code></pre></p>
 <blockquote>
-<h3 id="set-all-attributes-before-calling-prepare">Set all attributes before calling prepare</h3>
+<h3>Set all attributes before calling prepare</h3>
 <p>The <code>min</code>, <code>max</code>, and <code>step</code> attributes should be set prior to calling
 <code>Zend\Form::prepare()</code>. Otherwise, the default input specification for the
 element may not contain the correct validation rules.</p>
-<h3 id="default-date-format">Default date format</h3>
+<h3>Default date format</h3>
 <p>The default date format for the validator is <code>H:i:s</code>. However, a valid time
 string is not required to have a "seconds" representation. In fact, some user
 agent UIs such as Google Chrome and Opera submit time elements using the <code>H:i</code>
@@ -838,7 +836,7 @@ available.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/element/time.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/element/time.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

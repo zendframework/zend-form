@@ -740,17 +740,16 @@ order to validate HTML5 tel input values on the server.</p>
 <p><strong>Available since 2.9.0.</strong></p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>tel</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $phone = new Element\Tel('phone');
 $phone-&gt;setLabel('Phone');
 
 $form = new Form('my-form');
-$form-&gt;add($phone);</code></pre>
-
+$form-&gt;add($phone);</code></pre></p>
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -760,8 +759,7 @@ $form-&gt;add([
     'options' =&gt; [
         'label' =&gt; 'Phone',
     ],
-]);</code></pre>
-
+]);</code></pre></p>
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Tel</code> element:</p>
 <div class="table-responsive"><table>
@@ -811,7 +809,7 @@ $form-&gt;add([
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/element/tel.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/element/tel.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

@@ -731,7 +731,7 @@
 <p>The <code>FormHidden</code> view helper can be used to render an <code>&lt;input type="hidden"&gt;</code>
 HTML form input. It is meant to work with the <a href="../../element/hidden/">Hidden element</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $element = new Element\Hidden('my-hidden');
 $element-&gt;setValue('foo');
@@ -739,7 +739,7 @@ $element-&gt;setValue('foo');
 // Within your view...
 
 echo $this-&gt;formHidden($element);
-// Result: &lt;input type="hidden" name="my-hidden" value="foo"&gt;</code></pre>
+// Result: &lt;input type=&quot;hidden&quot; name=&quot;my-hidden&quot; value=&quot;foo&quot;&gt;</code></pre></p>
 
 
 
@@ -773,7 +773,7 @@ echo $this-&gt;formHidden($element);
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/form-hidden.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/form-hidden.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

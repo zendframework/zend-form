@@ -740,7 +740,7 @@
 attributes. If you have a <code>Zend\I18n\Translator\Translator</code> attached,
 <code>FormLabel</code> will translate the label contents when rendering.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 
 $element = new Element\Text('my-text');
 $element-&gt;setLabel('Label');
@@ -753,20 +753,20 @@ $element-&gt;setLabelAttributes(['class' =&gt; 'control-label']);
  * Example #1: Render label in one shot
  */
 echo $this-&gt;formLabel($element);
-// Result: &lt;label class="control-label" for="text-id"&gt;Label&lt;/label&gt;
+// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;Label&lt;/label&gt;
 
 echo $this-&gt;formLabel($element, $this-&gt;formText($element));
-// Result: &lt;label class="control-label" for="text-id"&gt;Label&lt;input type="text" name="my-text"&gt;&lt;/label&gt;
+// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;Label&lt;input type=&quot;text&quot; name=&quot;my-text&quot;&gt;&lt;/label&gt;
 
 echo $this-&gt;formLabel($element, $this-&gt;formText($element), 'append');
-// Result: &lt;label class="control-label" for="text-id"&gt;&lt;input type="text" name="my-text"&gt;Label&lt;/label&gt;
+// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;my-text&quot;&gt;Label&lt;/label&gt;
 
 /**
  * Example #2: Render label in separate steps
  */
 // Render the opening tag
 echo $this-&gt;formLabel()-&gt;openTag($element);
-// Result: &lt;label class="control-label" for="text-id"&gt;
+// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;
 
 // Render the closing tag
 echo $this-&gt;formLabel()-&gt;closeTag();
@@ -775,16 +775,15 @@ echo $this-&gt;formLabel()-&gt;closeTag();
 /**
  * Example #3: Render html label after toggling off escape
  */
-$element-&gt;setLabel('&lt;abbr title="Completely Automated Public Turing test to tell Computers and Humans Apart"&gt;CAPTCHA&lt;/abbr&gt;');
+$element-&gt;setLabel('&lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;');
 $element-&gt;setLabelOptions(['disable_html_escape' =&gt; true]);
 echo $this-&gt;formLabel($element);
 // Result:
-// &lt;label class="control-label" for="text-id"&gt;
-//     &lt;abbr title="Completely Automated Public Turing test to tell Computers and Humans Apart"&gt;CAPTCHA&lt;/abbr&gt;
-// &lt;/label&gt;</code></pre>
-
+// &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;
+//     &lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;
+// &lt;/label&gt;</code></pre></p>
 <blockquote>
-<h3 id="escaping">Escaping</h3>
+<h3>Escaping</h3>
 <p>HTML escaping only applies to the <code>Element::$label</code> property, not to the
 helper <code>$labelContent</code> parameter.</p>
 </blockquote>
@@ -848,7 +847,7 @@ helper <code>$labelContent</code> parameter.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/helper/form-label.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/helper/form-label.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

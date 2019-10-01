@@ -732,17 +732,16 @@
 It can be used with the <a href="../../helper/form-hidden/">FormHidden</a> view helper.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>hidden</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $hidden = new Element\Hidden('my-hidden');
 $hidden-&gt;setValue('foo');
 
 $form = new Form('my-form');
-$form-&gt;add($hidden);</code></pre>
-
+$form-&gt;add($hidden);</code></pre></p>
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -752,7 +751,7 @@ $form-&gt;add([
     'attributes' =&gt; [
         'value' =&gt; 'foo',
     ],
-]);</code></pre>
+]);</code></pre></p>
 
 
 
@@ -786,7 +785,7 @@ $form-&gt;add([
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/element/hidden.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/element/hidden.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

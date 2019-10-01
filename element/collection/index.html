@@ -740,7 +740,7 @@ collections, please refer to the <a href="../../collections/">form Collections t
 <p><code>Zend\Form\Element\Collection</code> is meant to be paired with the
 <code>Zend\Form\View\Helper\FormCollection</code>.</p>
 <h2 id="basic-usage">Basic Usage</h2>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $colors = new Element\Collection('collection');
@@ -750,10 +750,9 @@ $colors-&gt;setTargetElement(new Element\Color());
 $colors-&gt;setShouldCreateTemplate(true);
 
 $form = new Form('my-form');
-$form-&gt;add($colors);</code></pre>
-
+$form-&gt;add($colors);</code></pre></p>
 <p>Using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -765,8 +764,7 @@ $form-&gt;add([
         'should_create_template' =&gt; true,
         'target_element' =&gt; new Element\Color()
     ],
-]);</code></pre>
-
+]);</code></pre></p>
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Collection</code> element; all other methods
 defined by the <a href="../element/#public-methods">parent <code>Element</code> class</a> are also
@@ -894,7 +892,7 @@ available.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/element/collection.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/element/collection.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

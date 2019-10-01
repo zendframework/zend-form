@@ -739,18 +739,17 @@ Protection is achieved by adding a hash element to a form and verifying it when
 the form is submitted.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>hidden</code>.</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $csrf = new Element\Csrf('csrf');
 
 $form = new Form('my-form');
-$form-&gt;add($csrf);</code></pre>
-
+$form-&gt;add($csrf);</code></pre></p>
 <p>You can change the options of the CSRF validator using the
 <code>setCsrfValidatorOptions()</code> function, or by using the <code>csrf_options</code> key. Here
 is an example using array notation:</p>
-<pre class="codehilite"><code class="language-php">use Zend\Form\Element;
+<p> <pre class=codehilite><code class=language-php>use Zend\Form\Element;
 use Zend\Form\Form;
 
 $form = new Form('my-form');
@@ -762,10 +761,9 @@ $form-&gt;add([
             'timeout' =&gt; 600,
         ],
     ],
-]);</code></pre>
-
+]);</code></pre></p>
 <blockquote>
-<h3 id="multiple-csrf-elements-must-be-uniquely-named">Multiple CSRF elements must be uniquely named</h3>
+<h3>Multiple CSRF elements must be uniquely named</h3>
 <p>If you are using more than one form on a page, and each contains its own CSRF
 element, you will need to make sure that each form uniquely names its element;
 if you do not, it's possible for the value of one to override the other within
@@ -840,7 +838,7 @@ available.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-form/edit/master/docs/element/csrf.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-form/edit/master/docs/book/element/csrf.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>
