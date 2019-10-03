@@ -930,7 +930,7 @@ involves merging <code>$request-&gt;getParsedBody()</code> with
     return new HtmlResponse(
         $this-&gt;template-&gt;render('app::page-template', [
             'form' =&gt; $form,
-        ]);    
+        ]);
     );
 }</code></pre></p>
 <p>Upon a successful file upload, <code>$form-&gt;getData()</code> would return array including
@@ -1017,7 +1017,7 @@ performed on the passed <code>UploadedFileInterface</code> instance. Therefore, 
 contain an expired stream and outdated target file name. After running this filter,
 <em>do not use</em> the request object to get further details about the uploaded file;
 use the new instance of <code>UploadedFileInterface</code> returned from the filter
-invocation. </p>
+invocation.</p>
 </blockquote>
 <h3>Call the fileprg plugin</h3>
 <p>Next, we need to update our controller action to use the <code>fileprg</code> plugin:</p>
