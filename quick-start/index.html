@@ -1155,8 +1155,9 @@ a <code>NotInArray</code> error message.</p>
 <p>If you are populating the options from a database or other data source, make
 sure this is done prior to validation. Alternately, you may disable the
 <code>InArray</code> validator programmatically prior to validation:</p>
-<p><code>php
-$element-&gt;setDisableInArrayValidator(true);</code></p>
+<p><pre class=codehilite><code class=language-php>
+$element-&gt;setDisableInArrayValidator(true);
+</code></pre></p>
 </blockquote>
 <p>You can get the raw data if you want, by accessing the composed input filter.</p>
 <p> <pre class=codehilite><code class=language-php>$filter = $form-&gt;getInputFilter();
@@ -1651,8 +1652,9 @@ what you import.</p>
 <h3>doctrine/common dependency</h3>
 <p>Form annotations require <code>doctrine\common</code>, which contains an annotation
 parsing engine. Install it using composer:</p>
-<p><code>bash
-$ composer require doctrine/common</code></p>
+<p><pre class=codehilite><code class=language-bash>
+$ composer require doctrine/common
+</code></pre></p>
 </blockquote>
 <p>Here's an example:</p>
 <p> <pre class=codehilite><code class=language-php>use Zend\Form\Annotation;

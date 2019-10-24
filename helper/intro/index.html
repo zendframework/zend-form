@@ -733,10 +733,11 @@ you always add the <code>Zend\View\Renderer\PhpRenderer</code> as the first type
 the IDE can auto-suggest the default view helpers from <code>zend-view</code>. Next,
 chain the <code>HelperTrait</code> from <code>zend-form</code> with a pipe symbol (a.k.a. vertical
 bar) <code>|</code>:</p>
-<p><code>php
+<p><pre class=codehilite><code class=language-php>
 /**
  * @var Zend\View\Renderer\PhpRenderer|Zend\Form\View\HelperTrait $this
- */</code></p>
+ */
+</code></pre></p>
 <p>You may chain as many <code>HelperTrait</code> traits as you like, depending on view
 helpers from which Zend Framework component you are using and would like to
 provide auto-completion for.</p>

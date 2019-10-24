@@ -868,34 +868,35 @@ the other post data.</p>
 object to retrieve and merge the <code>$_FILES</code> information with the form, instead
 of using <code>$_FILES</code> directly,  due to how the file information is
 mapped in the <code>$_FILES</code> array:</p>
-<p>```php
+<p><pre class=codehilite><code class=language-php>
 // A $_FILES array with single input and multiple files:
 array(1) {
-    ["image-file"]=array(2) {
-        ["name"]=array(2) {
-            [0]=string(9)"file0.txt"
-            [1]=string(9)"file1.txt"
+    [&quot;image-file&quot;]=array(2) {
+        [&quot;name&quot;]=array(2) {
+            [0]=string(9)&quot;file0.txt&quot;
+            [1]=string(9)&quot;file1.txt&quot;
         }
-        ["type"]=array(2) {
-            [0]=string(10)"text/plain"
-            [1]=string(10)"text/html"
-        }
-    }
-}</p>
-<p>// How Zend\Http\PhpEnvironment\Request remaps the $_FILES array:
-array(1) {
-    ["image-file"]=array(2) {
-        [0]=array(2) {
-            ["name"]=string(9)"file0.txt"
-            ["type"]=string(10)"text/plain"
-        },
-        [1]=array(2) {
-            ["name"]=string(9)"file1.txt"
-            ["type"]=string(10)"text/html"
+        [&quot;type&quot;]=array(2) {
+            [0]=string(10)&quot;text/plain&quot;
+            [1]=string(10)&quot;text/html&quot;
         }
     }
 }
-```</p>
+
+// How Zend\Http\PhpEnvironment\Request remaps the $_FILES array:
+array(1) {
+    [&quot;image-file&quot;]=array(2) {
+        [0]=array(2) {
+            [&quot;name&quot;]=string(9)&quot;file0.txt&quot;
+            [&quot;type&quot;]=string(10)&quot;text/plain&quot;
+        },
+        [1]=array(2) {
+            [&quot;name&quot;]=string(9)&quot;file1.txt&quot;
+            [&quot;type&quot;]=string(10)&quot;text/html&quot;
+        }
+    }
+}
+</code></pre></p>
 <p><a href="https://docs.zendframework.com/zend-inputfilter/file-input/"><code>Zend\InputFilter\FileInput</code></a> expects the file data be in this
 re-mapped array format.</p>
 <p>Note: <a href="http://www.php-fig.org/psr/psr-7/">PSR-7</a> also remaps the <code>$_FILES</code>
