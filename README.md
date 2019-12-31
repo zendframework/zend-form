@@ -1,5 +1,9 @@
 # zend-form
 
+> ## Repository abandoned 2019-12-31
+>
+> This repository has moved to laminas/laminas-form.
+
 [![Build Status](https://secure.travis-ci.org/zendframework/zend-form.svg?branch=master)](https://secure.travis-ci.org/zendframework/zend-form)
 [![Coverage Status](https://coveralls.io/repos/github/zendframework/zend-form/badge.svg?branch=master)](https://coveralls.io/github/zendframework/zend-form?branch=master)
 
