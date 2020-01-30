@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Validate and display simple and complex forms, casting forms to business objects and vice versa.">  
-    <link rel="canonical" href="https://docs.zendframework.com/zend-form/advanced/">
+    <link rel="canonical" href="https://docs.zendframework.com/advanced/">
     <link rel="shortcut icon" href="../img/favicon.ico">
 
     <title>Advanced - zend-form - Zend Framework Docs</title>
 
-    <link rel="stylesheet" href="../css/styles-5cfabd53ee.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body id="page-top">
 
@@ -654,9 +654,9 @@
     <div class="laminas-announcement">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
-                Zend Framework transitions to the Linux Foundation. <a href="https://getlaminas.org">Learn More.</a>
-            </div>
+            <div class="col-xs-12"><strong>
+                This package has moved. Visit its replacement, <a href="https://docs.laminas.dev/laminas-form/">laminas/laminas-form.</a>
+            </strong></div>
         </div>
     </div>
 </div>
@@ -741,15 +741,19 @@ especially when you need to handle complex dependencies in forms/fieldsets.</p>
 <p>The first advantage of pulling form elements from the service manager is that
 now you can use short names to create new elements through the factory.
 Therefore, this code:</p>
-<p> <pre class=codehilite><code class=language-php>$form-&gt;add([
+<pre><code class="language-php">$form-&gt;add([
     'type' =&gt; Element\Email::class,
     'name' =&gt; 'email',
-]);</code></pre></p>
+]);
+</code></pre>
+
 <p>can now be replaced by:</p>
-<p> <pre class=codehilite><code class=language-php>$form-&gt;add([
+<pre><code class="language-php">$form-&gt;add([
      'type' =&gt; 'Email',
      'name' =&gt; 'email'
-]);</code></pre></p>
+]);
+</code></pre>
+
 <p>Each element provided out-of-the-box by zend-form supports this natively.</p>
 <blockquote>
 <h3>Use the ::class constant</h3>
@@ -767,7 +771,7 @@ or, if you have a more specific dependency, extend one of the classes in the
 entering phone numbers. It will extend <code>Zend\Form\Element</code> class and provide
 some default input rules.</p>
 <p>Our custom phone element could look something like this:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application\Form\Element;
+<pre><code class="language-php">namespace Application\Form\Element;
 
 use Zend\Filter;
 use Zend\Form\Element;
@@ -833,7 +837,9 @@ class Phone extends Element implements InputProviderInterface
             ],
         ];
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p>By implementing <code>Zend\InputFilter\InputProviderInterface</code> interface, we are
 hinting to our form object that this element provides some default input rules
 for filtering and/or validating values. In this example, the default input
@@ -842,16 +848,18 @@ specification provides a <code>Zend\Filter\StringTrim</code> filter and a
 <code>+</code> sign at the beginning, and is followed by 11 or 12 digits.</p>
 <p>To use the new element in our forms, we can specify it by its fully qualified
 class name (FQCN):</p>
-<p> <pre class=codehilite><code class=language-php>use Application\Form\Element\Phone;
+<pre><code class="language-php">use Application\Form\Element\Phone;
 use Zend\Form\Form;
 
 $form = Form();
 $form-&gt;add(array(
     'name' =&gt; 'phone',
     'type' =&gt; Phone::class,
-));</code></pre></p>
+));
+</code></pre>
+
 <p>Or, if you are extending <code>Zend\Form\Form</code>:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application\Form;
+<pre><code class="language-php">namespace Application\Form;
 
 use Zend\Form\Form;
 
@@ -866,14 +874,16 @@ class MyForm extends Form
             'type' =&gt; Element\Phone::class,
         ]);
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p>If you don't want to use the custom element's FQCN, but rather a short name,
 add an entry for it to <code>Zend\Form\FormElementManager</code>. You can do this by adding
 an entry under the <code>form_elements</code> configuration, or within your <code>Module</code> class
 via a <code>getFormElementConfig()</code> method.</p>
 <p>Configuration via a config file (e.g., <code>module.config.php</code>) file looks like the
 following:</p>
-<p> <pre class=codehilite><code class=language-php>use Zend\ServiceManager\Factory\InvokableFactory;
+<pre><code class="language-php">use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'form_elements' =&gt; [
@@ -884,9 +894,11 @@ return [
             Application\Form\Element\Phone::class =&gt; InvokableFactory::class,
         ],
     ],
-];</code></pre></p>
+];
+</code></pre>
+
 <p>The following demonstrates using your <code>Module</code> class:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application;
+<pre><code class="language-php">namespace Application;
 
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -904,14 +916,16 @@ class Module implements FormElementProviderInterface
             ],
         ];
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p>If needed, you can define a custom factory for handling dependencies.</p>
 <p><strong>And now comes the first catch.</strong></p>
 <p>If you are creating your form class by extending <code>Zend\Form\Form</code>, you <em>must
 not</em> add the custom element in the constructor (as we have done in the previous
 example where we used the custom element's FQCN), but rather in the <code>init()</code>
 method:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application\Form;
+<pre><code class="language-php">namespace Application\Form;
 
 use Zend\Form\Form;
 
@@ -924,10 +938,12 @@ class MyForm extends Form
             'type' =&gt; 'phone',
         ]);
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p><strong>The second catch</strong> is that you <em>must not</em> directly instantiate your form
 class, but rather get an instance of it through <code>Zend\Form\FormElementManager</code>:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application\Controller;
+<pre><code class="language-php">namespace Application\Controller;
 
 use Application\Form\MyForm;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -945,9 +961,11 @@ class IndexController extends AbstractActionController
     {
         return array('form' =&gt; $this-&gt;form);
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p>This now requires a factory to inject the form instance:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application\Controller;
+<pre><code class="language-php">namespace Application\Controller;
 
 use Interop\Container\ContainerInterface;
 use Application\Form\MyForm;
@@ -959,9 +977,11 @@ class IndexControllerFactory
         $formManager = $container-&gt;get('FormElementManager');
         return new IndexController($formManager-&gt;get(MyForm::class));
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p>Which in turn requires that you map the controller to the factory:</p>
-<p> <pre class=codehilite><code class=language-php>// In module.config.php
+<pre><code class="language-php">// In module.config.php
 return [
     /* ... */
     'controllers' =&gt; [
@@ -969,13 +989,15 @@ return [
             Application\Controller\IndexController::class =&gt; Application\Controller\IndexControllerFactory::class,
         ],
     ],
-];</code></pre></p>
+];
+</code></pre>
+
 <p>The biggest gain of this is that you can easily override any built-in form
 elements if they do not fit your needs. For instance, if you want to create your
 own <code>Email</code> element instead of the standard one, create your custom element, and
 add it to the form element config with the same key as the element you want to
 replace:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application;
+<pre><code class="language-php">namespace Application;
 
 use Zend\Form\Element\Email;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
@@ -995,7 +1017,9 @@ class Module implements FormElementProviderInterface
             ],
         ];
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p>Now whenever you create an element with a <code>type</code> of 'email',
 it will create the custom element instead of the built-in one.</p>
 <blockquote>
@@ -1022,7 +1046,7 @@ populate a <code>Select</code> element. Retrieving forms from the <code>FormElem
 solves this issue, as factories it invokes have access to the application
 service container, and can use it to provide dependencies.</p>
 <p>For instance, let's say that a form create a fieldset called <code>AlbumFieldset</code>:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application\Form;
+<pre><code class="language-php">namespace Application\Form;
 
 use Zend\Form\Form;
 
@@ -1035,10 +1059,12 @@ class CreateAlbum extends Form
             'type' =&gt; AlbumFieldset::class,
         ]);
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p>Let's now create the <code>AlbumFieldset</code>, and have it depend on an <code>AlbumTable</code>
 object that allows us to fetch albums from the database.</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application\Form;
+<pre><code class="language-php">namespace Application\Form;
 
 use Album\Model\AlbumTable;
 use Zend\Form\Fieldset;
@@ -1050,9 +1076,11 @@ class AlbumFieldset extends Fieldset
         // Add any elements that need to fetch data from database
         // using the album table !
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <p>To enable this, we'll create a factory for our <code>AlbumFieldset</code> as follows:</p>
-<p> <pre class=codehilite><code class=language-php>namespace Application\Form;
+<pre><code class="language-php">namespace Application\Form;
 
 use Album\Model\AlbumTable;
 use Interop\Container\ContainerInterface;
@@ -1073,7 +1101,9 @@ class AlbumFieldsetFactory implements FactoryInterface
             AlbumFieldset::class
         );
     }
-}</code></pre></p>
+}
+</code></pre>
+
 <blockquote>
 <h3>Compatibility</h3>
 <p>The above factory was written to work with both the v2 and v3 releases of
@@ -1081,20 +1111,24 @@ zend-servicemanager. If you know you will only be using v3, you can remove the
 <code>createService()</code> implementation.</p>
 </blockquote>
 <p>You can now map the fieldset to the factory in your configuration:</p>
-<p> <pre class=codehilite><code class=language-php>// In module.config.php:
+<pre><code class="language-php">// In module.config.php:
 return [
     'form_elements' =&gt; [
         'factories' =&gt; [
             Application\Form\AlbumFieldset::class =&gt; Application\Form\AlbumFieldsetFactory::class,
         ],
     ],
-];</code></pre></p>
+];
+</code></pre>
+
 <p>Inject your form into your controller, per the example in the previous section.</p>
 <p>As a reminder, to use your fieldset in a view, you need to use the
 <code>formCollection</code> helper:</p>
-<p> <pre class=codehilite><code class=language-php>echo $this-&gt;form()-&gt;openTag($form);
+<pre><code class="language-php">echo $this-&gt;form()-&gt;openTag($form);
 echo $this-&gt;formCollection($form-&gt;get('album'));
-echo $this-&gt;form()-&gt;closeTag();</code></pre></p>
+echo $this-&gt;form()-&gt;closeTag();
+</code></pre>
+
 <h2 id="initialization">Initialization</h2>
 <p>As noted in previous sections, and in the chapter on elements, we recommend
 defining an <code>init()</code> method for initializing your elements, fieldsets, and
@@ -1728,7 +1762,7 @@ and populated, and shared across all specifications you provide.</p>
             
             <div class="col-md-9">
                 <h4 class="footer__headline">Copyright</h4>
-                <p>&copy; 2006-2019 by <a href="https://www.zend.com/">Zend</a>, a <a href="https://www.roguewave.com/">Rogue Wave Company</a>.</p>
+                <p>&copy; 2006-2020 by <a href="https://www.zend.com/">Zend</a> by <a href="https://www.perforce.com/">Perforce</a>.</p>
             </div>
 
             
@@ -1736,10 +1770,10 @@ and populated, and shared across all specifications you provide.</p>
                 <h4 class="footer__headline">Support</h4>
                 <ul class="support__list">
                     <li class="support__list-item">
-                        <a href="https://discourse.zendframework.com" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
+                        <a href="https://discourse.laminas.dev" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
                     </li>
                     <li class="support__list-item">
-                        <a href="https://zendframework-slack.herokuapp.com" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
+                        <a href="https://laminas.dev/chat/" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
                     </li>
                     <li class="support__list-item">
                         <a href="https://github.com/zendframework" class="support__link" title="Github"><i class="fa fa-github"></i></a>
@@ -1747,27 +1781,28 @@ and populated, and shared across all specifications you provide.</p>
                     <li class="support__list-item">
                         <a href="https://twitter.com/zfdevteam" class="support__link" title="Twitter"><i class="fa fa-twitter"></i></a>
                     </li>
-                    <li class="support__list-item">
-                        <a href="https://tinyletter.com/mwopzend" class="support__link" title="Newsletter"><i class="fa fa-envelope"></i></a>
-                    </li>
-                    <li class="support__list-item">
-                        <a href="https://framework.zend.com/blog/feed-rss.xml" class="support__link" title="Blog feed"><i class="fa fa-rss"></i></a>
-                    </li>
-                    <li class="support__list-item">
-                        <a href="https://framework.zend.com/security/feed" class="support__link" title="Security feed"><i class="fa fa-rss-square"></i></a>
-                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </footer>
 
+<nav class="cookie-bar navbar navbar-fixed-bottom navbar-default hidden">
+    <div class="container">
+        <p class="navbar-text">
+            We use cookies to allow you to dismiss dialogs such as the Laminas
+            Project notification.
+        </p>
+        <button type="button" class="cookie-button btn btn-default navbar-btn">Allow Cookies</button>
+    </div>
+</nav>
+
     <script>
         var base_url = '..',
             siteName = 'zend-form';
     </script>
-    <script src="../js/scripts-8d7ae56abf.js"></script>
-        <script src="../search/main.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="../search/main.js"></script>
 
     
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
